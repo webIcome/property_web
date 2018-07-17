@@ -4,5 +4,6 @@
 export default {
     GET_USER: 'GET_USER',
     TOKEN: 'accessToken',
-    EXPIRE_TIME: 'expiretime'
+    EXPIRE_TIME: 'expiretime',
+    ROUTER: "ROUTER"
 }

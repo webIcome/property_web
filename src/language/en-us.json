@@ -1,0 +1,15 @@
+{
+  "header": {
+    "hello": "hello",
+    "personal": "personal",
+    "help": "help",
+    "logout": "logout",
+    "changePassword": "change-password",
+    "currentPassword": "current-password：",
+    "currentPasswordPlaceholder": "current password",
+    "newPassword": "new-password：",
+    "newPasswordPlaceholder": "new password：",
+    "confirmPasswordPlaceholder": "confirm password",
+    "confirmPassword": "confirm-password"
+  }
+}

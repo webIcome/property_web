@@ -8,5 +8,10 @@ export default {
     return HttpClient.post('accounts/login', access, {baseURL: Config.URL_API}).then(res => {
       return res;
     })
+  },
+  changePassword(body) {
+    return HttpClient.post('user/changePassword', body, {baseURL: Config.URL_API}).then(res => {
+      return res;
+    })
   }
 }

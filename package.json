@@ -16,11 +16,11 @@
     "echarts-gl": "^1.1.1",
     "element-ui": "^2.3.3",
     "es6-promise": "^4.2.4",
-    "jquery": "^3.3.1",
     "moment": "^2.22.0",
     "template-compiler": "^1.2.1",
     "uuid": "^3.2.1",
     "vue": "^2.5.2",
+    "vue-i18n": "^8.0.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

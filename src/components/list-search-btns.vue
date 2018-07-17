@@ -25,3 +25,15 @@
       }
   }
 </script>
+<style scoped lang="less">
+  .default-btn {
+    background: #eef1fc;
+    padding: 8px 14px;
+    color: #5181ed;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+</style>

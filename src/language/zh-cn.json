@@ -1,0 +1,26 @@
+{
+    "header": {
+        "hello": "您好",
+        "personal": "个人中心",
+        "help": "帮助",
+        "logout": "退出登录",
+        "changePassword": "修改密码",
+        "currentPassword": "当前密码：",
+        "currentPasswordPlaceholder": "请输入当前密码",
+        "newPassword": "新密码：",
+        "newPasswordPlaceholder": "请输入新密码",
+        "confirmPassword": "确认新密码",
+        "confirmPasswordPlaceholder": "请输入新密码"
+    },
+    "rules": {
+        "require": "不能为空"
+    },
+    "asset": {
+        "standing-book": {
+           "title": "台账管理"
+        },
+        "water-level": {
+            "title": "水位检测器"
+        }
+    }
+}

@@ -1,0 +1,155 @@
+<template>
+  <div class="content-right">
+    <div class="title-header">
+      <div class="title-header-content">
+        <span>{{title}}</span>
+      </div>
+      <slot name="add"></slot>
+    </div>
+    <div class="search-header">
+      <div class="search-header-content">
+        <form class="form-inline default-form">
+          <slot name="search"></slot>
+          <list-search-btns-component @search="search" @clearSearchParams="clearSearchParams" @refresh="pagingEvent"></list-search-btns-component>
+        </form>
+        <div class="control-content">
+          <slot name="control"></slot>
+        </div>
+      </div>
+    </div>
+    <el-table
+        :data="list"
+        tooltip-effect="dark"
+        @selection-change="handleSelectionChange"
+        class="my-table"
+        :ref="tableRef">
+      <el-table-column v-if="multiple" type="selection" width="55" :selectable="isSelectable"></el-table-column>
+      <slot name="table"></slot>
+    </el-table>
+    <el-row style="padding: 25px 0" type="flex" justify="end" v-if="paginationShow">
+      <el-pagination
+          background
+          :current-page="searchParams.pageNum"
+          layout="total, prev, pager, next, jumper"
+          :page-size="searchParams.pageSize"
+          @current-change="pagingEvent"
+          :total="searchParams.total">
+      </el-pagination>
+    </el-row>
+  </div>
+</template>
+<script>
+    import Config from "../config";
+    import CommonConstant from "../constants/common";
+    export default {
+        name: 'listContent',
+        data() {
+            return {
+                searchParams: {},
+                defaultPaging: {
+                    pageSize: Config.DEFAULT_PAGE_SIZE,
+                    pageNum: 1
+                },
+                list: [],
+                selectionList: [],
+                selectionDeviceIds: [],
+                selectionIds: [],
+                companies: [],
+                tableRef: 'my-table',
+                paginationShow: false,
+            }
+        },
+        props: {
+            service: Object,
+            title: String,
+            multiple: true
+        },
+        created() {
+//            this.initList();
+//            this.initCompanies();
+        },
+        methods: {
+            initList() {
+                this.findList(this.defaultPaging);
+            },
+            initCompanies() {
+                this.$globalCache.companies.then(companies => {
+                    this.companies = companies;
+                })
+            },
+            findList(params) {
+                this.service.findList(params).then(data => {
+                    this.paginationShow = false;
+                    this.$nextTick(() => {
+                        if (data.pages) {
+                            this.paginationShow = true
+                        }
+                    });
+                    this.searchParams.pageNum = data.pageNum;
+                    this.searchParams.pages = data.pages;
+                    this.searchParams.pageSize = data.pageSize;
+                    this.searchParams.total = data.total;
+                    this.list = data.list;
+                })
+            },
+            refreshPage() {
+                this.service.findList(this.searchParams).then(data => {
+                    this.list.forEach(item => {
+                        data.list.forEach(i => {
+                            if (i.sn == item.sn) {
+                                Object.assign(item, i);
+                            }
+                        })
+                    })
+                })
+            },
+            search: function () {
+                this.findList(Object.assign(this.searchParams, this.defaultPaging));
+            },
+            pagingEvent(pageNumber) {
+                if (pageNumber) this.searchParams.pageNum = pageNumber;
+                this.findList(this.searchParams);
+            },
+            clearSearchParams: function (e) {
+                this.searchParams = {};
+                this.initList();
+            },
+            handleSelectionChange(val) {
+                this.selectionList = val;
+                this.selectionDeviceIds = [];
+                val.forEach(item => {
+                    this.selectionDeviceIds.push(item.deviceId);
+                });
+            },
+            isSelectable(row,index) {
+                return row.status != 1
+            }
+        }
+    }
+</script>
+<style lang="less" scoped>
+  .content-right {
+    .title-header{
+      margin-bottom: 20px;
+      .title-header-content {
+        span {
+          display: inline-block;
+          height: 30px;
+          line-height: 30px;
+          padding: 0 20px;
+          border-left: 5px solid #5181ed;
+          font-size: 14px;
+          font-weight: bolder;
+          color: #323232;
+          letter-spacing: 1px;
+        }
+      }
+    }
+    .search-header {
+      background: #fff;
+      padding: 20px 45px;
+      margin-bottom: 22px;
+      box-shadow: 0 0 5px #ccc;
+    }
+  }
+</style>
