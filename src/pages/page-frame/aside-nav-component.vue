@@ -30,7 +30,7 @@
             </div>
             <div class="panel panel-default" v-else>
               <div class="panel-heading">
-                <h4 class="panel-title" :class="{active: index==currNavIndex}" @click="clickNav(index)">
+                <h4 class="panel-title" @click="clickNav(index)">
                   <router-link :class="nav.ename" :to="nav.url" >
                     <div class="nav-icon"></div>
                     {{nav.modulename}}
@@ -127,7 +127,6 @@
                 this.$emit('initCollapse', nav)
             },
             clickNav(index) {
-                console.log(index)
                 this.currNavIndex = index;
             },
             clickNavChild(url) {
@@ -136,7 +135,13 @@
         },
         watch: {
             '$route'(to,from) {
-//                this.initMenus()
+                if (this.isRoot(to.path)) {
+                    if (to.matched[1] == from.matched[1]) {
+                        this.go(from.path)
+                    } else {
+                        this.initMenus()
+                    }
+                }
             }
         }
     }
@@ -166,10 +171,26 @@
             .panel-title {
               margin-top: 0;
               margin-bottom: 0;
+              &.active,
+              &:hover{
+                a {
+                  background-color: #5181ed;
+                  color: #fff;
+                  &.equipment {
+                    .nav-icon {
+                      background-image: url("../../assets/home/asset-active.png");
+                    }
+                  }
+                }
+              }
               a {
                 font-size: 16px;
                 height: 65px;
                 &.standing-book,
+                &.log,
+                &.project,
+                &.role,
+                &.user,
                 &.equipment {
                   .nav-icon {
                     display: inline-block;
@@ -177,12 +198,23 @@
                     margin-left: 50px;
                     background-size: contain;
                   }
+                  &:hover,
+                  &.router-link-active {
+                    background-color: #5181ed;
+                    color: #fff;
+                  }
                 }
                 &.standing-book{
                   .nav-icon {
                     background-image: url("../../assets/home/machine-account.png");
                     width: 20px;
                     height: 25px;
+                  }
+                  &:hover,
+                  &.router-link-active {
+                    .nav-icon {
+                      background-image: url("../../assets/home/machine-account-active.png");
+                    }
                   }
                 }
                 &.equipment{
@@ -192,20 +224,55 @@
                     height: 24px;
                   }
                 }
-              }
-              &.active,
-              &:hover{
-                a {
-                  background-color: #5181ed;
-                  color: #fff;
-                  &.standing-book{
+                &.log{
+                  .nav-icon {
+                    background-image: url("../../assets/home/log.png");
+                    width: 22px;
+                    height: 24px;
+                  }
+                  &:hover,
+                  &.router-link-active {
                     .nav-icon {
-                      background-image: url("../../assets/home/machine-account-active.png");
+                      background-image: url("../../assets/home/log-active.png");
                     }
                   }
-                  &.equipment{
+                }
+                &.project{
+                  .nav-icon {
+                    background-image: url("../../assets/home/project.png");
+                    width: 23px;
+                    height: 23px;
+                  }
+                  &:hover,
+                  &.router-link-active {
                     .nav-icon {
-                      background-image: url("../../assets/home/asset-active.png");
+                      background-image: url("../../assets/home/project-active.png");
+                    }
+                  }
+                }
+                &.role{
+                  .nav-icon {
+                    background-image: url("../../assets/home/role.png");
+                    width: 23px;
+                    height: 22px;
+                  }
+                  &:hover,
+                  &.router-link-active {
+                    .nav-icon {
+                      background-image: url("../../assets/home/role-active.png");
+                    }
+                  }
+                }
+                &.user{
+                  .nav-icon {
+                    background-image: url("../../assets/home/user.png");
+                    width: 23px;
+                    height: 24px;
+                  }
+                  &:hover,
+                  &.router-link-active {
+                    .nav-icon {
+                      background-image: url("../../assets/home/user-active.png");
                     }
                   }
                 }

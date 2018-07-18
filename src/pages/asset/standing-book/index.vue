@@ -1,6 +1,7 @@
 <template>
   <list-content-component :title="title" :service="service">
-    <template slot="table">
+    <template slot="table" slot-scope="{isSelectable}">
+      <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
       <el-table-column prop="deviceName" label="设备名称"></el-table-column>
       <el-table-column prop="sn" label="设备ID"></el-table-column>
       <el-table-column prop="deviceModel" label="设备型号"></el-table-column>
@@ -48,7 +49,7 @@
         data() {
             return {
                 service: {},
-                title: this.$t("asset.standing-book.title")
+                title: this.$t("asset.standingBook.title")
             }
         },
         methods: {

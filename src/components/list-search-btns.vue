@@ -1,8 +1,7 @@
 <template>
   <div style="display: inline">
-    <div @click="search" class="form-group default-btn">查询</div>
-    <div @click="clearSearchParams" class="form-group default-btn">清空</div>
-    <div @click="refresh" class="form-group default-btn">刷新</div>
+    <div @click="search" class="form-group default-btn" style="margin-right: 10px">{{$t("common.search")}}</div>
+    <div @click="clearSearchParams" class="form-group default-btn">{{$t("common.reset")}}</div>
   </div>
 </template>
 <script>
@@ -28,10 +27,11 @@
 <style scoped lang="less">
   .default-btn {
     background: #eef1fc;
-    padding: 8px 14px;
+    padding: 9px 14px;
     color: #5181ed;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
     &:hover {
       transform: scale(1.05);
     }

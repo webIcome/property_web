@@ -6,6 +6,7 @@ import Config from "../config";
 class GlobalCache {
     constructor() {
         this._companies;
+        this._projects;
     }
     refleshCompanies() {
         this._companies = null;
@@ -29,6 +30,20 @@ class GlobalCache {
             })
         }
         return this._companies;
+    }
+    get projects() {
+        if (!this._projects) {
+            this._projects = HttpClient.get('company/list', {baseURL: Config.URL_API}).then(res => {
+                if (!res.data.data) {
+                    this._projects = null;
+                } else {
+                    return res.data.data.companies;
+                }
+            }).catch(err => {
+                this._projects = null;
+            })
+        }
+        return this._projects;
     }
 }
 

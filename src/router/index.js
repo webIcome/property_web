@@ -8,6 +8,12 @@ import AsideNavJustTime from "../pages/page-frame/aside-nav-just-time.vue"
 
 const WaterLevel = () => import(/* webpackChunkName: "asset" */'../pages/asset/water-level/index.vue');
 const StandingBook = () => import(/* webpackChunkName: "asset" */'../pages/asset/standing-book/index.vue');
+//system
+const Log = () => import(/* webpackChunkName: "sys" */'../pages/system/log/index.vue');
+const Role = () => import(/* webpackChunkName: "sys" */'../pages/system/role/index.vue');
+const Project = () => import(/* webpackChunkName: "sys" */'../pages/system/project/index.vue');
+const User = () => import(/* webpackChunkName: "sys" */'../pages/system/user/index.vue');
+
 
 Vue.use(Router);
 import StoreUser from "../store/user"
@@ -27,7 +33,10 @@ let router = new Router({
                 {path: 'water-level', name: 'waterLevel', component: WaterLevel},
             ]},
             {path: 'system', name: 'system', component: AsideNavSystem, children: [
-                {path: 'water-level', name: 'waterLevel', component: WaterLevel},
+                {path: 'log', name: 'log', component: Log},
+                {path: 'role', name: 'role', component: Role},
+                {path: 'project', name: 'project', component: Project},
+                {path: 'user', name: 'user', component: User},
             ]},
         ]},
     ]

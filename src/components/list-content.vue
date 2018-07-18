@@ -9,7 +9,7 @@
     <div class="search-header">
       <div class="search-header-content">
         <form class="form-inline default-form">
-          <slot name="search"></slot>
+          <slot name="search" :searchParams="searchParams"></slot>
           <list-search-btns-component @search="search" @clearSearchParams="clearSearchParams" @refresh="pagingEvent"></list-search-btns-component>
         </form>
         <div class="control-content">
@@ -23,8 +23,7 @@
         @selection-change="handleSelectionChange"
         class="my-table"
         :ref="tableRef">
-      <el-table-column v-if="multiple" type="selection" width="55" :selectable="isSelectable"></el-table-column>
-      <slot name="table"></slot>
+      <slot name="table" :isSelectable="isSelectable"></slot>
     </el-table>
     <el-row style="padding: 25px 0" type="flex" justify="end" v-if="paginationShow">
       <el-pagination
@@ -62,7 +61,6 @@
         props: {
             service: Object,
             title: String,
-            multiple: true
         },
         created() {
 //            this.initList();
@@ -150,6 +148,32 @@
       padding: 20px 45px;
       margin-bottom: 22px;
       box-shadow: 0 0 5px #ccc;
+      .search-header-content {
+        .default-form {
+          display: inline-block;
+          font-size: 14px;
+          label {
+            font-weight: bold;
+            color: #787878;
+            margin-right: 10px;
+          }
+          .el-input {
+            width: 180px;
+            &.el-date-editor--datetime {
+              width: 200px;
+            }
+          }
+          .el-select {
+            width: 200px;
+            .el-input {
+              width: 100%;
+            }
+          }
+          .form-group {
+            margin-right: 25px;
+          }
+        }
+      }
     }
   }
 </style>
