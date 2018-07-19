@@ -23,7 +23,7 @@
         @selection-change="handleSelectionChange"
         class="my-table"
         :ref="tableRef">
-      <slot name="table" :isSelectable="isSelectable"></slot>
+      <slot name="table" :isSelectable="isSelectable" :pagingEvent="pagingEvent"></slot>
     </el-table>
     <el-row style="padding: 25px 0" type="flex" justify="end" v-if="paginationShow">
       <el-pagination
@@ -63,7 +63,7 @@
             title: String,
         },
         created() {
-//            this.initList();
+            this.initList();
 //            this.initCompanies();
         },
         methods: {
@@ -122,6 +122,8 @@
             isSelectable(row,index) {
                 return row.status != 1
             }
+        },
+        destroyed() {
         }
     }
 </script>

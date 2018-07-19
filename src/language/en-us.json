@@ -1,15 +1,128 @@
 {
+  "title": "ne",
+  "common": {
+    "operation": "操作",
+    "search": "查询",
+    "reset": "重置",
+    "input": "请输入",
+    "select": "请选择"
+  },
+  "constants": {
+    "commercialType": [
+      {"value": 1, "text": "酒店"},
+      {"value": 2, "text": "办公"},
+      {"value": 3, "text": "商业"},
+      {"value": 4, "text": "住宅"},
+      {"value": 5, "text": "文化"}
+    ]
+  },
+  "login": {
+    "title": "ne",
+    "user": "请输入用户名",
+    "password": "请输入密码",
+    "code": "请输入验证码",
+    "confirm": "登录",
+    "savePassword": "记住密码",
+    "notSavePassword": "不保存密码",
+    "description": {
+      "first": "连接智能",
+      "end": "无处不在"
+    }
+  },
   "header": {
-    "hello": "hello",
-    "personal": "personal",
-    "help": "help",
-    "logout": "logout",
-    "changePassword": "change-password",
-    "currentPassword": "current-password：",
-    "currentPasswordPlaceholder": "current password",
-    "newPassword": "new-password：",
-    "newPasswordPlaceholder": "new password：",
-    "confirmPasswordPlaceholder": "confirm password",
-    "confirmPassword": "confirm-password"
+    "hello": "您好",
+    "personal": "个人中心",
+    "help": "帮助",
+    "logout": "退出登录",
+    "changePassword": "修改密码",
+    "currentPassword": "当前密码：",
+    "currentPasswordPlaceholder": "请输入当前密码",
+    "newPassword": "新密码：",
+    "newPasswordPlaceholder": "请输入新密码",
+    "confirmPassword": "确认新密码",
+    "confirmPasswordPlaceholder": "请输入新密码"
+  },
+  "rules": {
+    "require": "不能为空"
+  },
+  "system": {
+    "log": {
+      "title": "操作日志",
+      "operationTime": "操作时间",
+      "operation": "操作内容",
+      "compName": "归属项目",
+      "username": "操作人",
+      "to": "至"
+    },
+    "role": {
+      "companyTitle": "企业信息",
+      "roleTitle": "角色信息",
+      "limitTitle": "权限分配",
+      "add": "添加",
+      "edit": "修改",
+      "frozen": "冻结",
+      "activate": "激活",
+      "copyEdit": "复制编辑",
+      "confirm": "确定",
+      "zhName": "中文名称",
+      "enName": "英文名称",
+      "roleName": "角色名称",
+      "createdName": "创建人",
+      "createdTime": "创建时间",
+      "direction": "说明"
+    },
+    "project": {
+      "title": "项目管理",
+      "zhName": "中文名称",
+      "enName": "英文名称",
+      "address": "项目位置",
+      "city": "所在城市",
+      "area": "建筑面积/m²",
+      "height": "建筑高度/m",
+      "completionTime": "建成年份",
+      "handover": "接管日期",
+      "projectLeader": "项目负责人",
+      "email": "邮编",
+      "type": "业态"
+    },
+    "user": {
+      "title": "用户管理",
+      "zhName": "中文名",
+      "enName": "英文名",
+      "name": "姓名",
+      "projects": "管理项目",
+      "role": "权限",
+      "job": "职位",
+      "phone": "联系电话",
+      "email": "邮箱"
+    }
+  },
+  "asset": {
+    "standingBook": {
+      "title": "台账管理"
+    },
+    "waterLevel": {
+      "title": "水位检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "运行状态",
+        "currentLevel": "当前水位/cm",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "range": "量程/m",
+        "standardValue": "校准值/cm",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/cm",
+        "collectCycle": "采集周期/s"
+      }
+    }
   }
 }

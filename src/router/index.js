@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Login from "../pages/login.vue"
 import PageFrame from '../pages/page-frame/index.vue';
 import AsideNavAnalyze from "../pages/page-frame/aside-nav-analyze.vue"
 import AsideNavAsset from "../pages/page-frame/aside-nav-asset.vue"
@@ -20,7 +21,7 @@ import StoreUser from "../store/user"
 
 let router = new Router({
     routes: [
-        // {path: '/login', name: 'login', component: login},
+        {path: '/login', name: 'login', component: Login},
         {path: '/', name: 'home', component: PageFrame, children: [
             {path: 'analyze', name: 'analyze', component: AsideNavAnalyze, children: [
                 {path: 'water-level', name: 'waterLevel', component: WaterLevel},
