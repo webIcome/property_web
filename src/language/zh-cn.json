@@ -5,7 +5,10 @@
         "search": "查询",
         "reset": "重置",
         "input": "请输入",
-        "select": "请选择"
+        "select": "请选择",
+        "add": "新增",
+        "edit": "编辑",
+        "bulkImport": "批量导入"
     },
     "constants": {
         "commercialType": [
@@ -19,6 +22,18 @@
     "dialog": {
         "title": "确认操作",
         "confirm": "确认"
+    },
+    "detail": {
+        "basic": "基础信息",
+        "manufacturers": "厂家信息",
+        "serviceCondition": "使用情况",
+        "maintenance": "维护信息",
+        "equipment": "物联设备",
+        "status": "设备状态",
+        "belong": "归属信息",
+        "alarm": "告警信息",
+        "others": "其他信息",
+        "remark": "备注"
     },
     "login": {
         "title": "新物业",
@@ -90,6 +105,8 @@
             "type": "业态"
         },
         "user": {
+            "add": "添加用户",
+            "edit": "编辑用户",
             "title": "用户管理",
             "zhName": "中文名",
             "enName": "英文名",
@@ -103,10 +120,36 @@
     },
     "asset": {
         "standingBook": {
-           "title": "台账管理"
+           "title": "台账管理",
+            "delete": "您确认要删除此台帐吗？",
+            "device": {
+                "assetCode": "资产编号",
+                "assetName": "资产名称",
+                "assetType": "资产类型",
+                "address": "安装地点",
+                "addressType": "地点类型",
+                "manufacturer": "生产厂家",
+                "model": "规格型号",
+                "equipment": "物联设备",
+                "belongSystem": "归属系统",
+                "status": "使用状况",
+                "trademark": "品牌",
+                "productionTime": "出厂日期",
+                "useTime": "投入使用",
+                "durableYears": "使用年限",
+                "productionCode": "出厂编号",
+                "deviceCode": "设备编号",
+                "quantity": "数量",
+                "price": "单价",
+                "sum": "金额",
+                "maintenanceUnit": "维保单位",
+                "chargePerson": "责任人",
+                "remark": "备注"
+            }
         },
         "waterLevel": {
             "title": "水位检测器",
+            "delete": "您确认要删除此设备吗？",
             "device": {
                 "sn": "设备ID",
                 "deviceModel": "设备型号",

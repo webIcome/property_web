@@ -28,9 +28,10 @@
       <el-table-column prop="username" :label='$t("system.user.job")'></el-table-column>
       <el-table-column prop="username" :label='$t("system.user.phone")'></el-table-column>
       <el-table-column prop="username" :label='$t("system.user.email")'></el-table-column>
-      <el-table-column :label='$t("common.operation")' width="170">
+      <el-table-column :label='$t("common.operation")' width="200">
         <template slot-scope="scope">
           <el-row type="flex" justify="space-between">
+            <oper-component :edit="true" :user="scope.row" @initCurrentPaging="pagingEvent"></oper-component>
             <delete-component :id="scope.row.objectid" @initCurrentPaging="pagingEvent"></delete-component>
             <reset-password-component :id="scope.row.objectid" @initCurrentPaging="pagingEvent"></reset-password-component>
           </el-row>
@@ -44,8 +45,9 @@
     import Service from "../../../services/user";
     import DeleteComponent from "./delete-component";
     import ResetPasswordComponent from "./reset-password-component";
+    import OperComponent from "./oper-component";
     export default {
-        components: {ResetPasswordComponent, DeleteComponent},
+        components: {OperComponent, ResetPasswordComponent, DeleteComponent},
         name: 'userPage',
         data() {
             return {

@@ -1,54 +1,66 @@
 <template>
   <list-content-component :title="title" :service="service">
+    <template slot="add" slot-scope="{initList}">
+      <oper-component @initPaging="initList"></oper-component>
+    </template>
+    <template slot="search" slot-scope="{searchParams}">
+      <div class="form-group">
+        <label>{{$t("asset.standingBook.device.assetName")}}</label>
+        <el-input type="text" v-model="searchParams.assetName" :placeholder='$t("common.input")' clearable/>
+      </div>
+      <div class="form-group">
+        <label>{{$t("asset.standingBook.device.address")}}</label>
+        <el-input type="text" v-model="searchParams.address" :placeholder='$t("common.input")' clearable/>
+      </div>
+      <div class="form-group">
+        <label>{{$t("asset.standingBook.device.manufacturer")}}</label>
+        <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
+      </div>
+      <div class="form-group">
+        <label>{{$t("asset.standingBook.device.belongSystem")}}</label>
+        <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
+      </div>
+    </template>
     <template slot="table" slot-scope="{isSelectable}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
-      <el-table-column prop="deviceName" label="设备名称"></el-table-column>
-      <el-table-column prop="sn" label="设备ID"></el-table-column>
-      <el-table-column prop="deviceModel" label="设备型号"></el-table-column>
-      <el-table-column prop="compName" label="归属项目"></el-table-column>
-      <el-table-column label="运行状态">
-        <template slot-scope="scope">
-          <span
-              :class="{'running-success': scope.row.status == 0, 'running-fail': scope.row.status != 0}">
-            <span class="running-icon"></span>{{scope.row.statusName}}
-          </span>
-        </template>
-      </el-table-column>
-      <el-table-column min-width="105" prop="currentLevel" label="当前水位/cm"></el-table-column>
-      <el-table-column prop="alarmThreshold" label="告警阈值"></el-table-column>
-      <el-table-column prop="voltage" label="电压V"></el-table-column>
-      <el-table-column prop="belongLightId" label="归属灯ID"></el-table-column>
-      <el-table-column min-width="90" prop="belongApId" label="归属基站ID"></el-table-column>
-      <el-table-column label="地理位置">
-        <template slot-scope="scope">
-          <show-position :device='scope.row'></show-position>
-        </template>
-      </el-table-column>
-      <el-table-column label="上报时间">
-        <template slot-scope="scope">
-          <template>{{scope.row.uploadTime | formDate}}</template>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" width="100">
-        <template slot-scope="scope">
-          <el-row type="flex">
+      <el-table-column prop="sn" :label='$t("asset.standingBook.device.assetCode")'></el-table-column>
+      <el-table-column prop="deviceModel" :label='$t("asset.standingBook.device.assetName")'></el-table-column>
+      <el-table-column prop="currentLevel" :label='$t("asset.standingBook.device.assetType")'></el-table-column>
+      <el-table-column prop="compName" :label='$t("asset.standingBook.device.address")'></el-table-column>
+      <el-table-column prop="asset" :label='$t("asset.standingBook.device.addressType")'></el-table-column>
+      <el-table-column prop="address" :label='$t("asset.standingBook.device.manufacturer")'></el-table-column>
+      <el-table-column prop="alarmThreshold" :label='$t("asset.standingBook.device.model")'></el-table-column>
+      <el-table-column prop="alarmDuty" :label='$t("asset.standingBook.device.equipment")'></el-table-column>
+      <el-table-column prop="alarmType" :label='$t("asset.standingBook.device.belongSystem")'></el-table-column>
+      <el-table-column prop="electricQuantity" :label='$t("asset.standingBook.device.status")'></el-table-column>
 
+      <el-table-column :label='$t("common.operation")' width="87">
+        <template slot-scope="scope">
+          <el-row type="flex" justify="space-between">
+            <oper-component :id="scope.row.id" :edit="true"></oper-component>
+            <delete-component :id="scope.row.id"></delete-component>
           </el-row>
         </template>
       </el-table-column>
       <el-table-column type="expand">
         <template slot-scope="scope">
+          <detail-component :id="scope.row.id"></detail-component>
         </template>
       </el-table-column>
     </template>
   </list-content-component>
 </template>
 <script>
+    import OperComponent from "./oper-component";
+    import Service from "../../../services/standing-book"
+    import DetailComponent from "./detail-component";
+    import DeleteComponent from "./delete-component";
     export default {
-        name: 'standingBook',
+        components: {DeleteComponent, DetailComponent, OperComponent},
+        name: 'standingBookPage',
         data() {
             return {
-                service: {},
+                service: Service,
                 title: this.$t("asset.standingBook.title")
             }
         },

@@ -16,7 +16,7 @@
                 </h4>
               </div>
               <el-collapse-transition>
-                <div class="panel-collapse" role="tabpanel" :class="{collapse: nav.isActive}">
+                <div class="panel-collapse" role="tabpanel" :class="{collapse:!nav.isActive}">
                   <template v-for="child in nav.children">
                     <div class="panel-body" @click="clickNav(index)">
                       <router-link v-if="child.url" :to="child.url" class="panel-body" :class="child.ename" >

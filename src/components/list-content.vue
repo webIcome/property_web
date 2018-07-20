@@ -4,7 +4,7 @@
       <div class="title-header-content">
         <span>{{title}}</span>
       </div>
-      <slot name="add"></slot>
+      <slot name="add" :initList="initList"></slot>
     </div>
     <div class="search-header">
       <div class="search-header-content">
@@ -130,7 +130,9 @@
 <style lang="less" scoped>
   .content-right {
     .title-header{
-      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
       .title-header-content {
         span {
           display: inline-block;
