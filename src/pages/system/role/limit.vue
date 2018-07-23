@@ -138,16 +138,31 @@
     background: #fff;
     border-radius: 4px;
     padding: 10px 9px 25px;
-    font-size: 16px;
+    font-size: 14px;
     max-width: 298px;
+    height: 600px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 10px;
+      cursor: pointer;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #5181ed;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
     .limits {
       .limits-parent {
-        color: #8FABD2;
+        color: #323232;
+        font-weight: bold;
         display: flex;
         align-items: center;
       }
       .limits-children {
-        color: #fff;
+        color: #787878;
         display: flex;
         flex-wrap: wrap;
         padding-left: 20px;

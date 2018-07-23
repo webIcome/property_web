@@ -1,5 +1,8 @@
 <template>
   <list-content-component :title="title" :service="service">
+    <template slot="add" slot-scope="{initList}">
+      <oper-component @initPaging="initList"></oper-component>
+    </template>
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
         <label>{{$t("system.project.zhName")}}</label>
@@ -34,6 +37,14 @@
       <el-table-column prop="city" :label='$t("system.project.projectLeader")'></el-table-column>
       <el-table-column prop="city" :label='$t("system.project.email")'></el-table-column>
       <el-table-column prop="city" :label='$t("system.project.type")'></el-table-column>
+      <el-table-column :label='$t("common.operation")' width="87">
+        <template slot-scope="scope">
+          <el-row type="flex" justify="space-between">
+            <oper-component :id="scope.row.id" :edit="true"></oper-component>
+            <delete-component :id="scope.row.id"></delete-component>
+          </el-row>
+        </template>
+      </el-table-column>
     </template>
   </list-content-component>
 
@@ -41,7 +52,10 @@
 <script>
     import Service from "../../../services/project";
     import Constants from "../../../constants/common"
+    import OperComponent from "./oper-component";
+    import DeleteComponent from "./delete-component";
     export default {
+        components: {DeleteComponent, OperComponent},
         name: 'projectPage',
         data() {
             return {

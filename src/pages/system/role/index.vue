@@ -1,7 +1,7 @@
 <template>
   <div class="content-right">
     <transition-group name="slide-fade">
-      <company-component :key="1" v-model="currentCompany"></company-component>
+      <company-component :key="1" v-if="showCompany" v-model="currentCompany"></company-component>
       <post-component :key="2" v-show="currentCompanyId" :company="currentCompany" v-model="currentPost"></post-component>
       <limitComponent :key="3" v-show="currentPostId" :postId="currentPostId"></limitComponent>
     </transition-group>
@@ -13,6 +13,7 @@
   import companyComponent from "./company.vue"
   import postComponent from "./post.vue"
   import limitComponent from "./limit.vue"
+  import Storage from '../../../store/user';
   export default {
       name: 'organizePage',
       components: {
@@ -27,13 +28,18 @@
           }
       },
       computed: {
+          showCompany: function () {
+              return Storage.state.user.postid == 1
+          },
           currentCompanyId: function () {
-              return true
-//              return this.currentCompany.objectid;
+              if (this.showCompany) {
+                  return this.currentCompany.objectid;
+              } else {
+                  return Storage.state.user.companyid
+              }
           },
           currentPostId: function () {
-              return true
-//              return this.currentPost.objectid;
+              return this.currentPost.objectid;
           }
       },
       created() {},
@@ -114,14 +120,14 @@
       &::-webkit-scrollbar-thumb {
         border-radius: 10px;
         box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-        background-color: #2ca1b9;
+        background-color: #5181ed;
       }
       &::-webkit-scrollbar-track {
         background-color: transparent;
       }
       .table-tr{
         margin-bottom: 10px;
-        background-color: #25273E;
+        background-color: #fff;
         border-radius: 4px;
         display: flex;
         align-items: center;
@@ -131,13 +137,17 @@
         }
         &:hover,
         &.current-row {
-          background-color: #317BD3;
+          background-color: #618ced;
+          .table-td{
+            color: #fff;
+          }
         }
         cursor: pointer;
         .table-td{
-          padding: 19px 0 19px 10px;
+          padding: 19px 10px;
           color: #787878;
           flex: 1;
+          text-align: center;
         }
       }
     }

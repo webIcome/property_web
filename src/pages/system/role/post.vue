@@ -9,14 +9,18 @@
     </div>
     <div class="table-div">
       <div class="table-thead">
-        <div class="table-th">岗位名称</div>
-        <div class="table-th">说明</div>
+        <div class="table-th">{{$t("system.role.belongCompany")}}</div>
+        <div class="table-th">{{$t("system.role.roleName")}}</div>
+        <div class="table-th">{{$t("system.role.createdName")}}</div>
+        <div class="table-th">{{$t("system.role.createdTime")}}</div>
       </div>
       <div class="table-body">
         <div class="table-tr" v-for="item in list" @click="handleCurrentChange(item)"
              :class="{'current-row': item.objectid == currentRow.objectid, 'frozen-row': item.flag == 1}">
           <div class="table-td">{{item.postname}}</div>
-          <div class="table-td">{{item.description}}</div>
+          <div class="table-td">{{item.postname}}</div>
+          <div class="table-td">{{item.postname}}</div>
+          <div class="table-td">{{item.createtime | formDate}}</div>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@
       <div class="text-center">
         <div class="dialog-warning"></div>
       </div>
-      <p class="title">您确认要删除此账号吗？</p>
+      <p class="title">{{$t("system.user.delete")}}</p>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="deleteDevice">{{$t("dialog.confirm")}}</el-button>
       </span>

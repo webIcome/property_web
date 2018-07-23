@@ -4,39 +4,49 @@
     <div v-else class="icon-item" @click="showModal"><i class="el-icon-plus"></i>{{$t("common.add")}}</div>
     <el-dialog :title="title" :visible.sync="visible" center :width="'500px'">
       <el-form label-width="140px" :model="data" :rules="Rules" :ref="ref" class="el-form-default">
-        <el-form-item :label='$t("system.user.zhName")' prop="loginname">
+        <el-form-item :label='$t("system.project.zhName")' prop="loginname">
           <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.user.enName")' prop="loginname">
+        <el-form-item :label='$t("system.project.enName")' prop="loginname">
           <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.user.role")' prop="postid">
+        <el-form-item :label='$t("system.project.area")' prop="loginname">
+          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        </el-form-item>
+        <el-form-item :label='$t("system.project.height")' prop="loginname">
+          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        </el-form-item>
+        <el-form-item :label='$t("system.project.completionTime")' prop="completionTime">
+          <el-date-picker v-model="data.completionTime"  type="datetime" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
+        </el-form-item>
+        <el-form-item :label='$t("system.project.handover")' prop="handover">
+          <el-date-picker v-model="data.handover"  type="datetime" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
+        </el-form-item>
+        <el-form-item :label='$t("system.project.projectLeader")' prop="phonev">
+          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        </el-form-item>
+        <el-form-item :label='$t("system.project.email")' prop="email">
+          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        </el-form-item>
+        <el-form-item :label='$t("system.project.type")' prop="postid">
           <el-select v-model="data.postid" :placeholder='$t("common.select")' clearable style="width: 100%;">
-            <el-option v-for="post in posts"
-                       :value="post.objectid" :key="post.objectid" :label="post.postname"></el-option>
+            <el-option v-for="type in commercialType"
+                       :value="type.value" :key="type.value" :label="type.text"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item :label='$t("system.user.job")' prop="job">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
-        </el-form-item>
-        <el-form-item :label='$t("system.user.phone")' prop="phone">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
-        </el-form-item>
-        <el-form-item :label='$t("system.user.email")' prop="email">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.project.address")' prop="address">
+          <select-position v-model="data.position"></select-position>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-      <el-button type="primary" @click="operate">{{$t("dialog.confirm")}}</el-button>
+         <el-button type="primary" @click="operate">{{$t("dialog.confirm")}}</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 <script>
-    import Service from '../../../services/user'
-    import SystemService from "../../../services/system"
-    import CommonConstant from "../../../constants/common";
-    import Storage from '../../../store/user';
+    import Service from '../../../services/project'
+    import Constants from "../../../constants/common";
     import moment from 'moment'
     export default {
         name: 'operComponent',
@@ -45,7 +55,7 @@
                 visible: false,
                 data: {},
                 ref: 'edit',
-                posts: [],
+                commercialType: Constants.commercialType,
                 Rules: {
                     companyid: [
                         {required: true, message: '请选择企业'}
@@ -56,7 +66,7 @@
                     loginname: [
                         {required: true, message: '请填写登入名'}
                     ],
-                    username: [
+                    projectname: [
                         {required: true, message: '请填写姓名'}
                     ],
                     email: [
@@ -67,19 +77,10 @@
             }
         },
         props: {
-            user: {
-                default: function () {
-                    return {}
-                }
-            },
             edit: {
                 default: false
             },
-            companies: {
-                default: function () {
-                    return []
-                }
-            }
+           id: ''
         },
         created() {
             this.initData();
@@ -87,58 +88,56 @@
         computed: {
             title: function () {
                 if (this.edit) {
-                    return this.$t("system.user.edit");
+                    return this.$t("common.edit");
                 } else {
-                    return this.$t("system.user.add")
+                    return this.$t("common.add")
                 }
             },
-            endTimeOptions() {
-                let date = new Date();
-                return {
-                    disabledDate(time) {
-                        return time <= date || time > moment(Storage.state.expiretime, 'YYYY-MM-DD HH:mm:ss');
-                    }
-                }
-            }
         },
         methods: {
             initData() {
             },
             operate() {
-                this.data.companyid = Storage.state.user.companyid;
-                if (this.edit) {
-                    this.editDevice()
-                } else {
-                    this.add()
-                }
-            },
-            add() {
                 this.$refs[this.ref].validate(valid => {
                     if (valid) {
-                        Service.addUser(this.data).then(res => {
-                            this.emitAddEvent();
+                        this.service.operate(this.getTransformDataToSend(this.data)).then(res => {
+                            this.emitEvent();
                             this.hideModal();
                         });
                     }
-                })
-            },
-            editDevice() {
-                this.$refs[this.ref].validate(valid => {
-                    if (valid) {
-                        Service.editUser(this.data).then(res => {
-                            this.emitEditEvent();
-                            this.hideModal();
-                        });
-                    }
-                })
-            },
-            getPosts() {
-                SystemService.getPosts(Storage.state.user.companyid).then(list => {
-                    this.posts = list;
                 })
             },
             getDetail() {
-                this.data = this.user;
+                Service.getDetail(this.id).then(data => {
+                    this.data = this.getTransformDataToUse(data);
+                })
+            },
+            getTransformDataToSend(data) {
+                data = this.$common.copyObj(data);
+                let position = data.position;
+                delete data.position;
+                data = Object.assign(data, position)
+                data.longitude = data.lng;
+                data.latitude = data.lat;
+                data.address = data.position;
+                delete data.position;
+                delete data.lng;
+                delete data.lat;
+                return data;
+            },
+            getTransformDataToUse(data) {
+                data.position = this.getPosition(data);
+                return data;
+            },
+            getPosition(position){
+                return {
+                    position: position.address,
+                    lng: position.longitude,
+                    lat: position.latitude,
+                    province: position.province,
+                    city: position.city,
+                    district: position.district
+                };
             },
             clearValidate() {
                 if (this.$refs[this.ref]) this.$refs[this.ref].clearValidate();
@@ -159,8 +158,7 @@
         watch: {
             visible: function (newValue, oldValue) {
                 if (newValue) {
-                    this.getPosts();
-                    if (this.edit) this.getDetail();
+//                    if (this.edit) this.getDetail();
                     this.clearValidate();
                 } else {
                     this.data = {}

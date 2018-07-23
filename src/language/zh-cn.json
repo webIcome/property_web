@@ -17,6 +17,10 @@
             {"value": 3, "text": "商业"},
             {"value": 4, "text": "住宅"},
             {"value": 5, "text": "文化"}
+        ],
+        "flag": [
+            {"value": 0, "text": "激活"},
+            {"value": 1, "text": "冻结"}
         ]
     },
     "dialog": {
@@ -74,21 +78,29 @@
             "to": "至"
         },
         "role": {
-            "companyTitle": "企业信息",
             "roleTitle": "角色信息",
             "limitTitle": "权限分配",
             "add": "添加",
             "edit": "修改",
+            "status": "状态",
             "frozen": "冻结",
             "activate": "激活",
             "copyEdit": "复制编辑",
             "confirm": "确定",
-            "zhName": "中文名称",
-            "enName": "英文名称",
+            "belongCompany": "归属企业",
             "roleName": "角色名称",
             "createdName": "创建人",
-            "createdTime": "创建时间",
-            "direction": "说明"
+            "createdTime": "创建时间"
+        },
+        "company": {
+            "title": "企业信息",
+            "zhName": "中文名称",
+            "enName": "英文名称",
+            "managerEnName": "管理员英文名",
+            "managerZhName": "管理员中文名",
+            "post": "职位",
+            "phone": "联系电话",
+            "email": "邮箱"
         },
         "project": {
             "title": "项目管理",
@@ -102,7 +114,8 @@
             "handover": "接管日期",
             "projectLeader": "项目负责人",
             "email": "邮编",
-            "type": "业态"
+            "type": "业态",
+            "delete": "您确认要删除此项目吗？"
         },
         "user": {
             "add": "添加用户",
@@ -112,10 +125,13 @@
             "enName": "英文名",
             "name": "姓名",
             "projects": "管理项目",
-            "role": "权限",
+            "role": "角色",
             "job": "职位",
             "phone": "联系电话",
-            "email": "邮箱"
+            "email": "邮箱",
+            "delete": "您确认要删除此账号吗？",
+            "resetWarning": "（密码重置成功后， 将发送密码至您所设置的邮箱）",
+            "resetContent": "您确认要重置密码吗？"
         }
     },
     "asset": {
@@ -165,6 +181,267 @@
                 "signalQuality": "信号质量/dBm",
                 "range": "量程/m",
                 "standardValue": "校准值/cm",
+                "heartbeatCycle": "心跳包周期/h",
+                "alarmCycle": "告警周期/min",
+                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "collectCycle": "采集周期/s"
+            }
+        },
+        "door": {
+            "title": "智能门磁检测器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "运行状态",
+                "doorStatusName": "当前门状态",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "heartbeatCycle": "心跳包周期/h"
+            }
+        },
+        "shake": {
+            "title": "前端分析振动检测器",
+            "device": {
+                "sn": "设备ID",
+                "statusName": "运行状态",
+                "acceleratedSpeed": "最新加速度",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "initValue": "初始值/g",
+                "heartbeatCycle": "心跳包周期/h",
+                "alarmCycle": "告警/预警周期/min",
+                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "collectCycle": "采集周期/s"
+            }
+        },
+        "meterReading": {
+            "title": "抄表终端",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "power": "最新电能",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "heartbeatCycle": "心跳包周期/h",
+                "collectLoop": "采集回路&方向",
+                "addressCode": "地址码"
+            }
+        },
+        "currentProbe": {
+            "title": "电流检测器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "运行状态",
+                "currents": "当前电流/A",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "range": "量程/m",
+                "standardValue": "校准值/cm",
+                "heartbeatCycle": "心跳包周期/h",
+                "alarmCycle": "告警周期/min",
+                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "collectCycle": "采集周期/s",
+                "startThreshold": "设备启停电流判断值/A"
+            }
+        },
+        "illuminanceProbe": {
+            "title": "光照度检测器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "illuminance": "当前照度/lux",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "heartbeatCycle": "心跳包周期/h",
+                "alarmCycle": "告警周期/min",
+                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "collectCycle": "采集周期/s"
+            }
+        },
+        "inundateProbe": {
+            "title": "浸水检测器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "最新状态",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "alarmCycle": "告警周期/min",
+                "collectCycle": "采集周期/s"
+            }
+        },
+        "bodyProbe": {
+            "title": "人体感应器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "最新状态",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "peopleJudge": "有人判定/s",
+                "noOneJudge": "无人判定/s"
+            }
+        },
+        "waterGage": {
+            "title": "水压检测器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "运行状态",
+                "currentGage": "当前水压",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "range": "量程/m",
+                "standardValue": "校准值/cm",
+                "heartbeatCycle": "心跳包周期/h",
+                "alarmCycle": "告警周期/min",
+                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "collectCycle": "采集周期/s"
+            }
+        },
+        "temperatureProbe": {
+            "title": "温度检测器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "运行状态",
+                "currentTemperature": "当前温度",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "heartbeatCycle": "心跳包周期/h",
+                "alarmCycle": "告警周期/min",
+                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "collectCycle": "采集周期/s"
+            }
+        },
+        "temperatureHumidityProbe": {
+            "title": "温湿度检测器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "运行状态",
+                "currentTemperatureHumidity": "当前温湿度",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "heartbeatCycle": "心跳包周期/h",
+                "alarmCycle": "告警周期/min",
+                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "collectCycle": "采集周期/s"
+            }
+        },
+        "flowProbe": {
+            "title": "水流检测器",
+            "delete": "您确认要删除此设备吗？",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "运行状态",
+                "currentSpeed": "当前流速 m/s",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量/V",
+                "signalQuality": "信号质量/dBm",
+                "range": "量程/m",
+                "standardValue": "校准值/cm",
+                "heartbeatCycle": "心跳包周期/h",
+                "alarmCycle": "告警周期/min",
+                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "collectCycle": "采集周期/s"
+            }
+        },
+        "dryContactProbe": {
+            "title": "干接点检测器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "最新状态",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
+                "alarmCycle": "告警周期/min",
+                "collectCycle": "采集周期/s",
+                "electricalLevel": "通断电平"
+            }
+        },
+        "soundProbe": {
+            "title": "前端声音识别器",
+            "device": {
+                "sn": "设备ID",
+                "deviceModel": "设备型号",
+                "statusName": "最新状态",
+                "currentDb": "当前分贝数",
+                "compName": "归属项目",
+                "assetName": "归属资产",
+                "address": "安装地点",
+                "electricQuantity": "电量",
+                "signalQuality": "信号质量/dBm",
+                "alarmThreshold": "告警阈值",
+                "alarmDuty": "告警使能",
+                "alarmType": "告警类型",
                 "heartbeatCycle": "心跳包周期/h",
                 "alarmCycle": "告警周期/min",
                 "relieveAlarmThreshold": "告警解除阈值/cm",

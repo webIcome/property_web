@@ -1,7 +1,7 @@
 <template>
   <div style="margin-right: 25px;">
-    <el-button :disabled="!post.objectid" v-if="!isFrozen" @click="frozen(1)" class="edit-btn">冻结</el-button>
-    <el-button v-else @click="frozen(0)" class="edit-btn">激活</el-button>
+    <el-button :disabled="!post.objectid" v-if="!isFrozen" @click="frozen(1)" class="edit-btn">{{$t("system.role.frozen")}}</el-button>
+    <el-button v-else @click="frozen(0)" class="edit-btn">{{$t("system.role.activate")}}</el-button>
   </div>
 </template>
 <script>

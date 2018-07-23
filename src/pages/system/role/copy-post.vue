@@ -4,21 +4,17 @@
     <el-dialog :title="title" :visible.sync="visible" center :width="'450px'">
       <el-form label-width="120px" :model="data" :rules="Rules" :ref="ref" class="el-form-default"
                :validate-on-rule-change="false">
-        <el-form-item label="岗位名称：" prop="postname">
-          <el-input v-model.trim="data.postname" placeholder="请输入岗位名称"></el-input>
+        <el-form-item :label='$t("system.role.roleName")' prop="postname">
+          <el-input v-model.trim="data.postname" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item label="岗位描述：" prop="description">
-          <el-input v-model.trim="data.description" placeholder="请输入岗位描述"></el-input>
-        </el-form-item>
-        <el-form-item label="状态：" prop="lightControllerType">
-          <el-select v-model="data.flag" placeholder="选择状态" clearable style="width: 100%;">
-            <el-option v-for="type in companyFlag" :value="type.value" :key="type.value"
-                       :label="type.text"></el-option>
+        <el-form-item :label='$t("system.role.status")' prop="flag">
+          <el-select v-model="data.flag" :placeholder='$t("common.select")' clearable style="width: 100%;">
+            <el-option v-for="type in flag" :value="type.value" :key="type.value" :label="type.text"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="add">确 定</el-button>
+         <el-button type="primary" @click="add">{{$t("dialog.confirm")}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -33,12 +29,12 @@
                 visible: false,
                 data: {},
                 ref: 'edit',
-                companyFlag: CommonConstant.companyFlag,
+                flag: CommonConstant.flag,
                 Rules: {
                     postname: [
                         {required: true, message: '请输入岗位名称'}
                     ],
-                    description: [
+                    flag: [
                         {required: true, message: '请输入岗位描述'}
                     ],
                 }
@@ -56,7 +52,7 @@
         },
         computed: {
             title: function () {
-                return '编辑岗位';
+                return this.$t("system.role.copyEdit")
             },
         },
         methods: {
@@ -76,7 +72,6 @@
                 this.data.copyid = this.post.objectid;
                 this.data.companyid = this.post.companyid;
                 this.data.postname = this.post.postname;
-                this.data.description = this.post.description;
                 this.data.flag = this.post.flag;
             },
             clearValidate() {

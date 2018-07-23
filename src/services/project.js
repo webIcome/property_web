@@ -21,7 +21,12 @@ export default {
             }
         })
     },
-    addUser(body) {
+    getDetail(id) {
+        return HttpClient.get('video/findInfoByDeviceId/' + id, option).then(res => {
+            return res.data.data;
+        })
+    },
+    operate(body) {
         return HttpClient.post('user/add', body, option).then(res => {
             showSuccess(res)
             return res;

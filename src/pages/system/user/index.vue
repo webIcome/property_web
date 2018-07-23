@@ -1,5 +1,8 @@
 <template>
   <list-content-component :title="title" :service="service" v-if="visible">
+    <template slot="add" slot-scope="{initList}">
+      <oper-component @initPaging="initList"></oper-component>
+    </template>
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
         <label>{{$t("system.user.name")}}</label>

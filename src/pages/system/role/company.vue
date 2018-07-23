@@ -1,6 +1,6 @@
 <template>
   <div class="organize-content">
-    <div class="organize-title">{{$t("system.role.companyTitle")}} </div>
+    <div class="organize-title">{{$t("system.company.title")}} </div>
     <div class="organize-btns">
       <oper-company-component @initPaging="initList"></oper-company-component>
       <oper-company-component @initPaging="initList" :edit="true" :company="currentRow"></oper-company-component>
@@ -8,13 +8,23 @@
     </div>
     <div class="table-div">
       <div class="table-thead">
-        <div class="table-th">{{$t("system.role.zhName")}}</div>
-        <div class="table-th">{{$t("system.role.enName")}}</div>
+        <div class="table-th">{{$t("system.company.zhName")}}</div>
+        <div class="table-th">{{$t("system.company.enName")}}</div>
+        <div class="table-th">{{$t("system.company.managerEnName")}}</div>
+        <div class="table-th">{{$t("system.company.managerZhName")}}</div>
+        <div class="table-th">{{$t("system.company.post")}}</div>
+        <div class="table-th">{{$t("system.company.phone")}}</div>
+        <div class="table-th">{{$t("system.company.email")}}</div>
       </div>
       <div class="table-body">
         <div class="table-tr" v-for="item in list" @click="handleCurrentChange(item)"
              :class="{'current-row': item.objectid == currentRow.objectid, 'frozen-row': item.flag == 1}">
           <div class="table-td">{{item.companyname}}</div>
+          <div class="table-td">{{item.parentname}}</div>
+          <div class="table-td">{{item.parentname}}</div>
+          <div class="table-td">{{item.parentname}}</div>
+          <div class="table-td">{{item.parentname}}</div>
+          <div class="table-td">{{item.parentname}}</div>
           <div class="table-td">{{item.parentname}}</div>
         </div>
       </div>
@@ -39,7 +49,7 @@
             }
         },
         created() {
-//            this.initList();
+            this.initList();
         },
         methods: {
             initList() {

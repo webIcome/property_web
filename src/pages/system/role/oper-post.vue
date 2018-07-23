@@ -1,26 +1,21 @@
 <template>
   <div style="margin-right: 25px;">
-    <el-button :disabled="!post.objectid" v-if="edit" @click="showModal" class="edit-btn">修改</el-button>
-    <el-button v-else @click="showModal" class="add-btn">添加</el-button>
+    <el-button :disabled="!post.objectid" v-if="edit" @click="showModal" class="edit-btn">{{$t("system.role.edit")}}</el-button>
+    <el-button v-else @click="showModal" class="add-btn">{{$t("system.role.add")}}</el-button>
     <el-dialog :title="title" :visible.sync="visible" center :width="'450px'">
       <el-form label-width="120px" :model="data" :rules="Rules" :ref="ref" class="el-form-default"
                :validate-on-rule-change="false">
-        <el-form-item label="岗位名称：" prop="postname">
-          <el-input v-model.trim="data.postname" placeholder="请输入岗位名称"></el-input>
+        <el-form-item :label='$t("system.role.roleName")' prop="postname">
+          <el-input v-model.trim="data.postname" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item label="岗位描述：" prop="description">
-          <el-input v-model.trim="data.description" placeholder="请输入岗位描述"></el-input>
-        </el-form-item>
-        <el-form-item label="状态：" prop="lightControllerType">
-          <el-select v-model="data.flag" placeholder="选择状态" clearable style="width: 100%;">
-            <el-option v-for="type in companyFlag" :value="type.value" :key="type.value"
-                       :label="type.text"></el-option>
+        <el-form-item :label='$t("system.role.status")' prop="flag">
+          <el-select v-model="data.flag" :placeholder='$t("common.select")' clearable style="width: 100%;">
+            <el-option v-for="type in flag" :value="type.value" :key="type.value" :label="type.text"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
         <span slot="footer" class="dialog-footer">
-          <el-button v-if="edit" type="primary" @click="editDevice">确 定</el-button>
-          <el-button v-else type="primary" @click="add">确 定</el-button>
+         <el-button type="primary" @click="operate">{{$t("dialog.confirm")}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -37,12 +32,13 @@
                     flag: 0
                 },
                 ref: 'edit',
-                companyFlag: CommonConstant.companyFlag,
+                flag: CommonConstant.flag,
+                companies: [],
                 Rules: {
                     postname: [
                         {required: true, message: '请输入岗位名称'}
                     ],
-                    description: [
+                    flag: [
                         {required: true, message: '请输入岗位描述'}
                     ],
                 }
@@ -69,19 +65,29 @@
         computed: {
             title: function () {
                 if (this.edit) {
-                    return '编辑岗位';
+                    return this.$t("common.edit");
                 } else {
-                    return '创建岗位'
+                    return this.$t("common.add");
                 }
             },
         },
         methods: {
             initData() {
+                this.$globalCache.companies.then(data => {
+                    this.companies = data;
+                })
+            },
+            operate() {
+                if (this.edit) {
+                    this.editDevice()
+                } else {
+                    this.add()
+                }
             },
             add() {
                 this.$refs[this.ref].validate(valid => {
                     if (valid) {
-                        this.data.companyid = this.company.objectid;
+                        if (this.company.objectid) this.data.companyid = this.company.objectid;
                         Service.addPost(this.data).then(res => {
                             this.emitEvent();
                             this.hideModal();

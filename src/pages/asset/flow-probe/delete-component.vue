@@ -1,12 +1,13 @@
 <template>
   <div class="oper-component" @click.stop="">
-    <div class="icon-item"><span @click="showModal" class="icon-text">{{$t("dialog.title")}}</span></div>
-    <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center :width="'500px'">
+    <div class="icon-item">
+      <span @click="showModal" class="delete-icon"></span>
+    </div>
+    <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center :width="'400px'">
       <div class="text-center">
         <div class="dialog-warning"></div>
       </div>
-      <p class="warning">{{$t("system.user.resetWarning")}}</p>
-      <p class="title">{{$t("system.user.resetContent")}}</p>
+      <p class="title">{{$t("asset.flowProbe.delete")}}</p>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="deleteDevice">{{$t("dialog.confirm")}}</el-button>
       </span>
@@ -14,9 +15,9 @@
   </div>
 </template>
 <script>
-    import Service from '../../../services/user'
+    import Service from '../../../services/flow-probe'
     export default {
-        name: 'resetPasswordComponent',
+        name: 'deleteComponent',
         data() {
             return {
                 visible: false
@@ -29,7 +30,7 @@
         },
         methods: {
             deleteDevice() {
-                Service.resetPassword({objectid: this.id}).then(res => {
+                Service.deleteUser({objectid: this.id}).then(res => {
                     this.hideModal();
                     this.$emit('initCurrentPaging')
                 })
