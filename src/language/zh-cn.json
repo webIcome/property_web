@@ -479,5 +479,29 @@
                 "collectCycle": "采集周期/s"
             }
         }
+    },
+    "statistics": {
+        "statisticalStatement": {
+            "project": "项目：",
+            "data": "统计数据：",
+            "method": "统计方式：",
+            "type": "统计类型：",
+            "dimensionality": "统计维度：",
+            "scope": "统计范围：",
+            "standingBook": "台帐资产",
+            "asset": "物联设备",
+            "system": "按系统",
+            "alarm": "按告警类型",
+            "current": "当前",
+            "history": "历史",
+            "day": "日",
+            "month": "月",
+            "year": "年",
+            "startTime": "起始时间",
+            "endTime": "结束时间",
+            "normal": "正常",
+            "normalAlarm": "普通告警",
+            "urgentAlarm": "紧急告警"
+        }
     }
 }

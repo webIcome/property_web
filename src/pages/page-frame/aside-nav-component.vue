@@ -191,6 +191,8 @@
                 &.project,
                 &.role,
                 &.user,
+                &.statistical-statement,
+                &.data-analysis,
                 &.equipment {
                   .nav-icon {
                     display: inline-block;
@@ -202,6 +204,32 @@
                   &.router-link-active {
                     background-color: #5181ed;
                     color: #fff;
+                  }
+                }
+                &.data-analysis {
+                  .nav-icon {
+                    background-image: url("../../assets/home/data-analysis.png");
+                    width: 22px;
+                    height: 22px;
+                  }
+                  &:hover,
+                  &.router-link-active {
+                    .nav-icon {
+                      background-image: url("../../assets/home/data-analysis-active.png");
+                    }
+                  }
+                }
+                &.statistical-statement {
+                  .nav-icon {
+                    background-image: url("../../assets/home/statistical-statement.png");
+                    width: 22px;
+                    height: 22px;
+                  }
+                  &:hover,
+                  &.router-link-active {
+                    .nav-icon {
+                      background-image: url("../../assets/home/statistical-statement-active.png");
+                    }
                   }
                 }
                 &.standing-book{

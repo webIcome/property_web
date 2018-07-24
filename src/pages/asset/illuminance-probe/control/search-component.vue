@@ -29,7 +29,7 @@
 
 <script>
     import Service from "../../../../services/illuminance-probe";
-    import ControlSearchMixin from "../../../mixins/control-search-mixin"
+    import ControlSearchMixin from "../../../../mixins/control-search-mixin"
     export default {
         mixins: [ControlSearchMixin],
         data() {

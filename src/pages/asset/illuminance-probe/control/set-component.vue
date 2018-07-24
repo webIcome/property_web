@@ -59,7 +59,7 @@
 
 <script>
     import Service from "../../../../services/illuminance-probe";
-    import controlSetMixin from "../../../mixins/control-set-mixin"
+    import controlSetMixin from "../../../../mixins/control-set-mixin"
     export default {
         mixins: [controlSetMixin],
         data() {

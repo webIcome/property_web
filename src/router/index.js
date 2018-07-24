@@ -17,6 +17,8 @@ const Log = () => import(/* webpackChunkName: "sys" */'../pages/system/log/index
 const Role = () => import(/* webpackChunkName: "sys" */'../pages/system/role/index.vue');
 const Project = () => import(/* webpackChunkName: "sys" */'../pages/system/project/index.vue');
 const User = () => import(/* webpackChunkName: "sys" */'../pages/system/user/index.vue');
+//statistics
+const StatisticalStatement = () => import(/* webpackChunkName: "statistics" */'../pages/statistics/statistical-statement/index.vue');
 
 
 Vue.use(Router);
@@ -27,7 +29,7 @@ let router = new Router({
         {path: '/login', name: 'login', component: Login},
         {path: '/', name: 'home', component: PageFrame, children: [
             {path: 'analyze', name: 'analyze', component: AsideNavAnalyze, children: [
-                {path: 'water-level', name: 'waterLevel', component: WaterLevel},
+                {path: 'statistical-statement', name: 'statisticalStatement', component: StatisticalStatement},
             ]},
             {path: 'asset', name: 'asset', component: AsideNavAsset, children: [
                 {path: 'water-level', name: 'waterLevel', component: WaterLevel},

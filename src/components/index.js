@@ -9,6 +9,8 @@ import listSearchBtns from "./list-search-btns.vue"
 import batchCreateData from './batch-create-data.vue'
 import listContent from './list-content.vue'
 import SelectLanguage from "./select-language.vue"
+import lineEchart from "./line-echart.vue"
+import pieEchart from "./pie-echart.vue"
 export default {
     'header-component': headerComponent,
     'select-position': selectPosition,
@@ -17,4 +19,6 @@ export default {
     'batch-create-data': batchCreateData,
     'list-content-component': listContent,
     'select-language-component': SelectLanguage,
+    'line-echart-component': lineEchart,
+    'pie-echart-component': pieEchart,
 }
