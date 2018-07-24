@@ -20,12 +20,12 @@
         <div class="table-tr" v-for="item in list" @click="handleCurrentChange(item)"
              :class="{'current-row': item.objectid == currentRow.objectid, 'frozen-row': item.flag == 1}">
           <div class="table-td">{{item.companyname}}</div>
-          <div class="table-td">{{item.parentname}}</div>
-          <div class="table-td">{{item.parentname}}</div>
-          <div class="table-td">{{item.parentname}}</div>
-          <div class="table-td">{{item.parentname}}</div>
-          <div class="table-td">{{item.parentname}}</div>
-          <div class="table-td">{{item.parentname}}</div>
+          <div class="table-td">{{item.companynameEn}}</div>
+          <div class="table-td">{{item.adminnameEn}}</div>
+          <div class="table-td">{{item.adminname}}</div>
+          <div class="table-td">{{item.job}}</div>
+          <div class="table-td">{{item.telphone}}</div>
+          <div class="table-td">{{item.email}}</div>
         </div>
       </div>
     </div>

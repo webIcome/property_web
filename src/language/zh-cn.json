@@ -8,7 +8,8 @@
         "select": "请选择",
         "add": "新增",
         "edit": "编辑",
-        "bulkImport": "批量导入"
+        "bulkImport": "批量导入",
+        "download": "模板下载"
     },
     "constants": {
         "commercialType": [
@@ -38,6 +39,36 @@
         "alarm": "告警信息",
         "others": "其他信息",
         "remark": "备注"
+    },
+    "control": {
+        "search": "查询",
+        "set": "设置",
+        "searchStatus": "查询状态",
+        "searchStatusTip": "您确认要查询状态吗？",
+        "heartbeatCycle": "心跳包周期",
+        "alarmCycle": "告警周期",
+        "relieveAlarmThreshold": "告警解除阈值",
+        "collectCycle": "采集周期",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "heartbeatCycleTip": "您确认要查询心跳包周期吗？",
+        "alarmCycleTip": "您确认要查询告警周期吗？",
+        "relieveAlarmThresholdTip": "您确认要查询解除告警阈值吗？",
+        "collectCycleTip": "您确认要查询采集周期吗？",
+        "alarmThresholdTip": "您确认要查询告警阈值吗？",
+        "alarmDutyTip": "您确认要查询告警使能吗？",
+        "setHeartbeatCycle": "心跳包周期/h",
+        "setAlarmCycle": "告警周期/min",
+        "setAlarmThresholdMin": "告警阈值下限/0.1lux",
+        "setAlarmThresholdMax": "告警阈值上限/0.1lux",
+        "setRelieveAlarmThreshold": "解除告警阈值/0.1lux",
+        "setAlarmDuty": "告警使能",
+        "setCollectCycle": "采集周期/s",
+        "open": "开启",
+        "close": "关闭",
+        "setValue": "设置值",
+        "none": "无"
+
     },
     "login": {
         "title": "新物业",

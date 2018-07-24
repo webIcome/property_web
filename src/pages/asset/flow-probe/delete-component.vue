@@ -30,7 +30,7 @@
         },
         methods: {
             deleteDevice() {
-                Service.deleteUser({objectid: this.id}).then(res => {
+                Service.deleteDevice(this.id).then(res => {
                     this.hideModal();
                     this.$emit('initCurrentPaging')
                 })

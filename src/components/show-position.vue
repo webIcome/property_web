@@ -7,6 +7,9 @@
       <div class="lng">经度：{{device.longitude}}</div>；
       <div class="lng">位置：{{device.position || device.address}}</div>
       <div style=" width: 100%; height: 500px;" :ref="mapId"></div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="confirm">确 定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
@@ -16,11 +19,17 @@
             return {
                 visible: false,
                 map: '',
-                mapId: 'my-map'
+                mapId: 'my-map',
+                address: {}
             }
         },
         props: {
             device: {
+                default: function () {
+                    return {}
+                }
+            },
+            service: {
                 default: function () {
                     return {}
                 }
@@ -57,11 +66,36 @@
                 this.map.enableScrollWheelZoom();//启用地图滚轮放大缩小
                 this.map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
                 this.map.enableKeyboard();//启用键盘上下左右键移动地图
+                this.map.addEventListener('click', this.selectPoint);
+            },
+            selectPoint(e) {
+                this.pointer.lng = e.point.lng;
+                this.pointer.lat = e.point.lat;
+                this.showPosition(e.point)
+            },
+            showPosition(point) {
+                (new BMap.Geocoder()).getLocation(point, rs => {
+                    this.address.longitude = point.lng;
+                    this.address.latitude = point.lat;
+                    this.address.province = rs.addressComponents.province;
+                    this.address.city = rs.addressComponents.city;
+                    this.address.district = rs.addressComponents.district
+                })
+                this.addMarker(point)
             },
             addMarker(point) {
                 this.map.clearOverlays();
                 let marker = new BMap.Marker(point);
                 this.map.addOverlay(marker);
+            },
+            confirm() {
+                this.service.operate(Object.assign(Object.assign({},this.device), this.address)).then(res => {
+                    this.emitEditEvent();
+                    this.hideModal();
+                });
+            },
+            emitEditEvent() {
+                this.$emit('initCurrentPaging')
             },
             showModal() {
                 if ((this.device.longitude == 0 && this.device.latitude == 0) || !this.device.longitude  ) return;

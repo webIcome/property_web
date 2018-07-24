@@ -23,6 +23,7 @@
 <script>
     import Service from '../../../services/system'
     import CommonConstant from "../../../constants/common";
+    import Storage from '../../../store/user';
     export default {
         name: 'operPostComponent',
         data() {
@@ -87,7 +88,11 @@
             add() {
                 this.$refs[this.ref].validate(valid => {
                     if (valid) {
-                        if (this.company.objectid) this.data.companyid = this.company.objectid;
+                        if (this.company.objectid) {
+                            this.data.companyid = this.company.objectid;
+                        } else {
+                            this.data.companyid = Storage.state.user.companyid;
+                        }
                         Service.addPost(this.data).then(res => {
                             this.emitEvent();
                             this.hideModal();

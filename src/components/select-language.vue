@@ -5,8 +5,7 @@
   </el-select>
 </template>
 <script>
-    import Cookie from "../utils/cookie"
-    import Type from "../store/types"
+    import Language from "../utils/language"
     export default {
         name: 'selectLanguageComponent',
         data() {
@@ -15,12 +14,11 @@
             }
         },
         created() {
-            this.language = Cookie.getCookie(Type.LANGUAGE)
+            this.language = Language.getLanguage()
         },
         methods: {
             selectLanguage(value) {
-                Cookie.setCookie(Type.LANGUAGE, value, 365);
-                location.reload()
+                Language.setLanguage(value, 365)
             }
         }
     }

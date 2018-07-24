@@ -21,7 +21,7 @@
         <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
       </div>
     </template>
-    <template slot="table" slot-scope="{isSelectable}">
+    <template slot="table" slot-scope="{isSelectable,pagingEvent}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
       <el-table-column prop="sn" :label='$t("asset.flowProbe.device.sn")'></el-table-column>
       <el-table-column prop="deviceModel" :label='$t("asset.flowProbe.device.deviceModel")'></el-table-column>
@@ -57,8 +57,8 @@
       <el-table-column :label='$t("common.operation")' width="87">
         <template slot-scope="scope">
           <el-row type="flex" justify="space-between">
-            <oper-component :id="scope.row.id" :edit="true"></oper-component>
-            <delete-component :id="scope.row.id"></delete-component>
+            <oper-component :id="scope.row.id" :edit="true" @initCurrentPaging="pagingEvent"></oper-component>
+            <delete-component :id="scope.row.id" @initCurrentPaging="pagingEvent"></delete-component>
           </el-row>
         </template>
       </el-table-column>

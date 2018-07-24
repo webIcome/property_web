@@ -23,11 +23,11 @@
         </el-select>
       </div>
     </template>
-    <template slot="table">
+    <template slot="table" slot-scope="{pagingEvent}">
       <el-table-column prop="operationtime" :label='$t("system.project.zhName")'></el-table-column>
       <el-table-column prop="operationtime" :label='$t("system.project.enName")'></el-table-column>
       <el-table-column prop="address" :label='$t("system.project.address")'>
-        <template slot-scope="scope"><show-position :device='scope.row' :service="service"></show-position></template>
+        <template slot-scope="scope"><show-position :device='scope.row' :service="service" @initCurrentPaging="pagingEvent"></show-position></template>
       </el-table-column>
       <el-table-column prop="city" :label='$t("system.project.city")'></el-table-column>
       <el-table-column prop="city" :label='$t("system.project.area")'></el-table-column>
@@ -40,8 +40,8 @@
       <el-table-column :label='$t("common.operation")' width="87">
         <template slot-scope="scope">
           <el-row type="flex" justify="space-between">
-            <oper-component :id="scope.row.id" :edit="true"></oper-component>
-            <delete-component :id="scope.row.id"></delete-component>
+            <oper-component :id="scope.row.id" :edit="true" @initCurrentPaging="pagingEvent"></oper-component>
+            <delete-component :id="scope.row.id" @initCurrentPaging="pagingEvent"></delete-component>
           </el-row>
         </template>
       </el-table-column>

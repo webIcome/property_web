@@ -17,10 +17,12 @@
       <div class="table-body">
         <div class="table-tr" v-for="item in list" @click="handleCurrentChange(item)"
              :class="{'current-row': item.objectid == currentRow.objectid, 'frozen-row': item.flag == 1}">
+          <div v-if="!isEn" class="table-td">{{item.companyname}}</div>
+          <div v-else class="table-td">{{item.companynameEn}}</div>
           <div class="table-td">{{item.postname}}</div>
-          <div class="table-td">{{item.postname}}</div>
-          <div class="table-td">{{item.postname}}</div>
-          <div class="table-td">{{item.createtime | formDate}}</div>
+          <div v-if="!isEn" class="table-td">{{item.createman}}</div>
+          <div v-else class="table-td">{{item.createmanEn}}</div>
+          <div class="table-td">{{item.createtime | formDate('YYYY-MM-DD')}}</div>
         </div>
       </div>
     </div>
@@ -32,6 +34,7 @@
     import operPostComponent from "./oper-post.vue"
     import FrozenPostComponent from "./frozen-post";
     import CopyPostComponent from "./copy-post";
+    import Language from '../../../utils/language'
     export default {
         name: 'postComponent',
         components: {
@@ -41,7 +44,8 @@
             return {
                 list: [],
                 currentRow: {},
-                tableRef: 'my-table'
+                tableRef: 'my-table',
+                isEn: Language.isEn()
             }
         },
         props: {

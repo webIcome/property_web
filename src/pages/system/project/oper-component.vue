@@ -17,10 +17,10 @@
           <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
         <el-form-item :label='$t("system.project.completionTime")' prop="completionTime">
-          <el-date-picker v-model="data.completionTime"  type="datetime" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
+          <el-date-picker v-model="data.completionTime"  type="date" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
         </el-form-item>
         <el-form-item :label='$t("system.project.handover")' prop="handover">
-          <el-date-picker v-model="data.handover"  type="datetime" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
+          <el-date-picker v-model="data.handover"  type="date" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
         </el-form-item>
         <el-form-item :label='$t("system.project.projectLeader")' prop="phonev">
           <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>

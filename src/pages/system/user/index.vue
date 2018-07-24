@@ -24,13 +24,13 @@
       </div>
     </template>
     <template slot="table" slot-scope="{pagingEvent}">
-      <el-table-column prop="operationtime" :label='$t("system.user.zhName")'></el-table-column>
-      <el-table-column prop="operation" :label='$t("system.user.enName")'></el-table-column>
+      <el-table-column prop="username" :label='$t("system.user.zhName")'></el-table-column>
+      <el-table-column prop="usernameEn" :label='$t("system.user.enName")'></el-table-column>
       <el-table-column prop="companyname" :label='$t("system.user.projects")'></el-table-column>
-      <el-table-column prop="username" :label='$t("system.user.role")'></el-table-column>
-      <el-table-column prop="username" :label='$t("system.user.job")'></el-table-column>
-      <el-table-column prop="username" :label='$t("system.user.phone")'></el-table-column>
-      <el-table-column prop="username" :label='$t("system.user.email")'></el-table-column>
+      <el-table-column prop="postname" :label='$t("system.user.role")'></el-table-column>
+      <el-table-column prop="job" :label='$t("system.user.job")'></el-table-column>
+      <el-table-column prop="linkphone" :label='$t("system.user.phone")'></el-table-column>
+      <el-table-column prop="email" :label='$t("system.user.email")'></el-table-column>
       <el-table-column :label='$t("common.operation")' width="200">
         <template slot-scope="scope">
           <el-row type="flex" justify="space-between">

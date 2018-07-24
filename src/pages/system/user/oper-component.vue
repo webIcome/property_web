@@ -4,11 +4,11 @@
     <div v-else class="icon-item" @click="showModal"><i class="el-icon-plus"></i>{{$t("common.add")}}</div>
     <el-dialog :title="title" :visible.sync="visible" center :width="'500px'">
       <el-form label-width="140px" :model="data" :rules="Rules" :ref="ref" class="el-form-default">
-        <el-form-item :label='$t("system.user.zhName")' prop="loginname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.user.zhName")' prop="username">
+          <el-input v-model.trim="data.username" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.user.enName")' prop="loginname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.user.enName")' prop="usernameEn">
+          <el-input v-model.trim="data.usernameEn" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
         <el-form-item :label='$t("system.user.role")' prop="postid">
           <el-select v-model="data.postid" :placeholder='$t("common.select")' clearable style="width: 100%;">
@@ -17,13 +17,13 @@
           </el-select>
         </el-form-item>
         <el-form-item :label='$t("system.user.job")' prop="job">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+          <el-input v-model.trim="data.job" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.user.phone")' prop="phone">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.user.phone")' prop="linkphone">
+          <el-input v-model.trim="data.linkphone" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
         <el-form-item :label='$t("system.user.email")' prop="email">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+          <el-input v-model.trim="data.email" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -106,6 +106,7 @@
             },
             operate() {
                 this.data.companyid = Storage.state.user.companyid;
+                this.data.loginname = this.data.linkphone;
                 if (this.edit) {
                     this.editDevice()
                 } else {

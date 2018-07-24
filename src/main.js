@@ -14,7 +14,6 @@ Es6Promise.polyfill();
 import VueI18n from 'vue-i18n'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
-import Type from "./store/types"
 Vue.use(VueI18n)
 
 Vue.use(ElementUI,{i18n:(key,value) =>i18n.t(key,value)});
@@ -22,8 +21,8 @@ Vue.use(HttpClient);
 initPlugins(Plugins);
 initPipe(Pipes);
 initComponent(Components);
-import Cookie from "./utils/cookie"
-const language = Cookie.getCookie(Type.LANGUAGE) || 'zh';
+import Language from "./utils/language"
+const language = Language.getLanguage() || 'zh';
 const i18n = new VueI18n({
     locale: language,
     messages: {

@@ -4,7 +4,9 @@
       <div class="title-header-content">
         <span>{{title}}</span>
       </div>
-      <slot name="add" :initList="initList"></slot>
+      <div class="title-btn">
+        <slot name="add" :initList="initList"></slot>
+      </div>
     </div>
     <div class="search-header">
       <div class="search-header-content">
@@ -13,7 +15,7 @@
           <list-search-btns-component @search="search" @clearSearchParams="clearSearchParams" @refresh="pagingEvent"></list-search-btns-component>
         </form>
         <div class="control-content">
-          <slot name="control"></slot>
+          <slot name="control" :refreshPage="refreshPage" :ids="selectionDeviceIds"></slot>
         </div>
       </div>
     </div>
@@ -146,6 +148,9 @@
           letter-spacing: 1px;
         }
       }
+      .title-btn {
+        display: flex;
+      }
     }
     .search-header {
       background: #fff;
@@ -175,6 +180,12 @@
           }
           .form-group {
             margin-right: 25px;
+          }
+        }
+        .control-content {
+          .control-items {
+            padding-top: 30px;
+            display: flex;
           }
         }
       }

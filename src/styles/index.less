@@ -432,3 +432,37 @@ label {
     }
   }
 }
+
+.control {
+  margin-right: 30px;
+  margin-bottom: 10px;
+  .control-text {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  .control-btn {
+    background: #eef1fc;
+    padding: 9px 14px;
+    color: #5181ed;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: inherit;
+    border: none;
+    &:hover {
+      background: #eef1fc;
+      transform: scale(1.05);
+    }
+    &>span {
+
+    }
+    &.is-disabled {
+      color: #c0c4cc;
+      cursor: not-allowed;
+      border: none;
+      &:hover {
+        transform: scale(1);
+      }
+    }
+  }
+}

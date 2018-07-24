@@ -10,6 +10,8 @@ import AsideNavJustTime from "../pages/page-frame/aside-nav-just-time.vue"
 const WaterLevel = () => import(/* webpackChunkName: "asset" */'../pages/asset/water-level/index.vue');
 const StandingBook = () => import(/* webpackChunkName: "asset" */'../pages/asset/standing-book/index.vue');
 const FlowProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/flow-probe/index.vue');
+const InundateProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/inundate-probe/index.vue');
+const IlluminanceProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/illuminance-probe/index.vue');
 //system
 const Log = () => import(/* webpackChunkName: "sys" */'../pages/system/log/index.vue');
 const Role = () => import(/* webpackChunkName: "sys" */'../pages/system/role/index.vue');
@@ -30,6 +32,8 @@ let router = new Router({
             {path: 'asset', name: 'asset', component: AsideNavAsset, children: [
                 {path: 'water-level', name: 'waterLevel', component: WaterLevel},
                 {path: 'flow-probe', name: 'flowProbe', component: FlowProbe},
+                {path: 'inundate-probe', name: 'inundateProbe', component: InundateProbe},
+                {path: 'illuminance-probe', name: 'illuminanceProbe', component: IlluminanceProbe},
                 {path: 'standing-book', name: 'standingBook', component: StandingBook},
             ]},
             {path: 'just-time', name: 'justTime', component: AsideNavJustTime, children: [

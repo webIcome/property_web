@@ -1,12 +1,11 @@
 /**
  * Created by spring on 2018/4/8.
  */
-import Cookie from '../utils/cookie'
-import Type from "../store/types"
+import Language from '../utils/language'
 const zhCn = require("../language/zh-cn.json").constants
 const enUs = require("../language/en-us.json").constants
 let language = zhCn;
-if (Cookie.getCookie(Type.LANGUAGE) == 'en') {
+if (Language.isEn()) {
     language = enUs;
 }
 export default language

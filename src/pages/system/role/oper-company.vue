@@ -5,25 +5,25 @@
     <el-dialog :title="title" :visible.sync="visible" center :width="'500px'">
       <el-form label-width="120px" :model="data" :rules="Rules" :ref="ref" class="el-form-default" :validate-on-rule-change="false">
         <el-form-item :label='$t("system.company.zhName")' prop="companyname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+          <el-input v-model.trim="data.companyname" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.company.enName")' prop="companyname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.company.enName")' prop="companynameEn">
+          <el-input v-model.trim="data.companynameEn" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.company.managerEnName")' prop="companyname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.company.managerEnName")' prop="adminnameEn">
+          <el-input v-model.trim="data.adminnameEn" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.company.managerZhName")' prop="companyname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.company.managerZhName")' prop="adminname">
+          <el-input v-model.trim="data.adminname" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.company.post")' prop="companyname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.company.post")' prop="job">
+          <el-input v-model.trim="data.job" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.company.phone")' prop="companyname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.company.phone")' prop="telphone">
+          <el-input v-model.trim="data.telphone" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("system.company.email")' prop="companyname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("system.company.email")' prop="email">
+          <el-input v-model.trim="data.email" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">

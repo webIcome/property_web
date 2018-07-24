@@ -2,14 +2,14 @@
   <div class="batch-component">
     <el-dropdown @command="handleCommand" trigger="click">
          <el-button type="warning">
-           批量导入<i class="el-icon-arrow-down el-icon--right"></i>
+           {{$t("common.bulkImport")}}<i class="el-icon-arrow-down el-icon--right"></i>
          </el-button>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="download">模板下载</el-dropdown-item>
-        <el-dropdown-item command="upload">批量导入</el-dropdown-item>
+        <el-dropdown-item command="download">{{$t("common.download")}}</el-dropdown-item>
+        <el-dropdown-item command="upload"> {{$t("common.bulkImport")}}</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
-    <el-dialog title="批量导入" :visible.sync="visible" center :width="'600px'">
+    <el-dialog :title='$t("common.bulkImport")' :visible.sync="visible" center :width="'600px'">
       <el-upload
           class="upload-demo"
           ref="upload"
@@ -49,6 +49,7 @@
     import ExcelFileClass from '../utils/excel-file-class'
     import CommonConstant from "../constants/common";
     import Storage from '../store/user';
+    import Config from "../config"
     export default {
         name: 'batchCreateDataComponent',
         data() {
@@ -90,13 +91,13 @@
                 fn();
             },
             getExcel() {
-                ExcelFileClass.getExcel(this.baseUrl, this.downloadUrl, this.fileName)
+                ExcelFileClass.getExcel(this.getBaseUrl(), this.downloadUrl, this.fileName)
             },
             uploadExcel() {
                 this.$refs.upload.submit();
             },
             upload(content) {
-                ExcelFileClass.uploadExcel(this.baseUrl, this.uploadUrl, {file: content.file, opType: this.type}).then(res => {
+                ExcelFileClass.uploadExcel(this.getBaseUrl(), this.uploadUrl, {file: content.file, opType: this.type}).then(res => {
                     if (res.data.success) {
                         content.onSuccess(res)
                     } else {
@@ -105,6 +106,13 @@
                 }).catch(err => {
                     console.log(err)
                 })
+            },
+            getBaseUrl() {
+                if (this.baseUrl) {
+                    return this.baseUrl
+                } else {
+                    return Config.WELL_URL_API;
+                }
             },
             showModal() {
                 this.visible = true;
@@ -115,16 +123,6 @@
             showFaultModal() {
                 this.faultVisible = true;
             },
-          /*  setHeaders(storage) {
-                let headers = {};
-                if (storage.user.objectid) {
-                    headers['access_token'] = storage.token;
-                    headers['user_name'] = storage.user.loginname;
-                    headers['user_id'] = storage.user.objectid.toString();
-                    headers['company_id'] = storage.user.companyid.toString();
-                }
-                this.headers = headers
-            },*/
             success(response, file, fileList) {
                 this.$refs.upload.clearFiles();
                 this.hideModal();
@@ -142,12 +140,17 @@
 </script>
 <style lang="less">
   .batch-component {
-    margin-right: 25px;
+    margin-left: 25px;
     .el-button--warning {
+      background: #5181ed;
+      padding: 12px 10px 12px 30px;
       color: #fff;
-      background-color: #FF854A;
-      border-color: #FF854A;
-      padding: 9px 5px 9px 19px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      line-height: inherit;
+      border: none;
+      border-radius: inherit;
     }
     input[type="file"] {
       display: none;

@@ -5,27 +5,27 @@
     </template>
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
-        <label>{{$t("asset.waterLevel.device.sn")}}</label>
-        <el-input type="text" v-model="searchParams.assetName" :placeholder='$t("common.input")' clearable/>
-      </div>
-      <div class="form-group">
-        <label>{{$t("asset.waterLevel.device.deviceModel")}}</label>
+        <label>{{$t("asset.temperatureProbe.device.compName")}}</label>
         <el-input type="text" v-model="searchParams.address" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
-        <label>{{$t("asset.waterLevel.device.assetName")}}</label>
+        <label>{{$t("asset.temperatureProbe.device.sn")}}</label>
+        <el-input type="text" v-model="searchParams.assetName" :placeholder='$t("common.input")' clearable/>
+      </div>
+      <div class="form-group">
+        <label>{{$t("asset.temperatureProbe.device.assetName")}}</label>
         <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
-        <label>{{$t("asset.waterLevel.device.address")}}</label>
+        <label>{{$t("asset.temperatureProbe.device.address")}}</label>
         <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
       </div>
     </template>
-    <template slot="table" slot-scope="{isSelectable, pagingEvent}">
+    <template slot="table" slot-scope="{isSelectable,pagingEvent}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
-      <el-table-column prop="sn" :label='$t("asset.waterLevel.device.sn")'></el-table-column>
-      <el-table-column prop="deviceModel" :label='$t("asset.waterLevel.device.deviceModel")'></el-table-column>
-      <el-table-column :label='$t("asset.waterLevel.device.statusName")'>
+      <el-table-column prop="sn" :label='$t("asset.temperatureProbe.device.sn")'></el-table-column>
+      <el-table-column prop="deviceModel" :label='$t("asset.temperatureProbe.device.deviceModel")'></el-table-column>
+      <el-table-column :label='$t("asset.temperatureProbe.device.statusName")'>
         <template slot-scope="scope">
           <span
               :class="{'running-success': scope.row.status == 0, 'running-fail': scope.row.status != 0}">
@@ -33,21 +33,20 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column min-width="105" prop="currentLevel" :label='$t("asset.waterLevel.device.currentLevel")'></el-table-column>
-      <el-table-column prop="compName" :label='$t("asset.waterLevel.device.compName")'></el-table-column>
-      <el-table-column prop="asset" :label='$t("asset.waterLevel.device.assetName")'></el-table-column>
-      <el-table-column prop="address" :label='$t("asset.waterLevel.device.address")'></el-table-column>
-      <el-table-column prop="alarmThreshold" :label='$t("asset.waterLevel.device.alarmThreshold")'></el-table-column>
-      <el-table-column prop="alarmDuty" :label='$t("asset.waterLevel.device.alarmDuty")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.waterLevel.device.alarmType")'></el-table-column>
-      <el-table-column :label='$t("asset.waterLevel.device.electricQuantity")'>
+      <el-table-column prop="compName" :label='$t("asset.temperatureProbe.device.currentTemperature")'></el-table-column>
+      <el-table-column prop="compName" :label='$t("asset.temperatureProbe.device.compName")'></el-table-column>
+      <el-table-column prop="asset" :label='$t("asset.temperatureProbe.device.assetName")'></el-table-column>
+      <el-table-column prop="address" :label='$t("asset.temperatureProbe.device.address")'></el-table-column>
+      <el-table-column prop="alarmThreshold" :label='$t("asset.temperatureProbe.device.alarmThreshold")'></el-table-column>
+      <el-table-column prop="alarmType" :label='$t("asset.temperatureProbe.device.alarmType")'></el-table-column>
+      <el-table-column :label='$t("asset.temperatureProbe.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricQuantity)">
             <span class="icon"></span>
           </span>
         </template>
       </el-table-column>
-      <el-table-column min-width="120" :label='$t("asset.waterLevel.device.signalQuality")'>
+      <el-table-column min-width="120" :label='$t("asset.temperatureProbe.device.signalQuality")'>
         <template slot-scope="scope">
           <span :class="getSignalClass(scope.row.signalQuality)">
             <span class="icon"></span>
@@ -73,16 +72,16 @@
 </template>
 <script>
     import DetailComponent from "./detail-component";
-    import Service from "../../../services/water-level"
+    import Service from "../../../services/temperature-probe"
     import OperComponent from "./oper-component";
     import DeleteComponent from "./delete-component";
     export default {
         components: {DeleteComponent, DetailComponent, OperComponent},
-        name: 'waterLevel',
+        name: 'temperatureProbe',
         data() {
             return {
                 service: Service,
-                title: this.$t("asset.waterLevel.title")
+                title: this.$t("asset.temperatureProbe.title")
             }
         },
         methods: {
