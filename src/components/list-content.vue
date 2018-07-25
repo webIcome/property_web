@@ -5,7 +5,7 @@
         <span>{{title}}</span>
       </div>
       <div class="title-btn">
-        <slot name="add" :initList="initList"></slot>
+        <slot name="add" :initList="initList" :table="$refs[tableRef]" :list="list" :selectionList="selectionList"></slot>
       </div>
     </div>
     <div class="search-header">
@@ -180,11 +180,12 @@
           }
           .form-group {
             margin-right: 25px;
+            margin-bottom: 30px;
           }
         }
         .control-content {
           .control-items {
-            padding-top: 30px;
+            /*padding-top: 30px;*/
             display: flex;
           }
         }

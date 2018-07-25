@@ -502,6 +502,27 @@
             "normal": "正常",
             "normalAlarm": "普通告警",
             "urgentAlarm": "紧急告警"
+        },
+        "dataAnalyse": {
+            "title": "数据分析",
+            "type": "数据类型",
+            "belongAsset": "归属资产",
+            "assetName": "资产名称",
+            "belongSys": "归属系统",
+            "address": "安装地点",
+            "deviceType": "设备类型",
+            "dataContent": "数据内容",
+            "sn": "设备ID",
+            "belongProject": "归属项目",
+            "uploadTime": "上报时间",
+            "export": "批量导出"
         }
+    },
+    "justTime": {
+        "drainage": "给排水",
+        "powerDistribution": "供配电",
+        "elevator": "电梯",
+        "airConditioner": "暖通空调",
+        "others": "其他"
     }
 }

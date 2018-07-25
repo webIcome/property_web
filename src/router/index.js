@@ -19,6 +19,9 @@ const Project = () => import(/* webpackChunkName: "sys" */'../pages/system/proje
 const User = () => import(/* webpackChunkName: "sys" */'../pages/system/user/index.vue');
 //statistics
 const StatisticalStatement = () => import(/* webpackChunkName: "statistics" */'../pages/statistics/statistical-statement/index.vue');
+const DataAnalyse = () => import(/* webpackChunkName: "statistics" */'../pages/statistics/data-analyse/index.vue');
+//justTime
+const JustTime = () => import(/* webpackChunkName: "justTime" */'../pages/just-time/index.vue');
 
 
 Vue.use(Router);
@@ -30,6 +33,7 @@ let router = new Router({
         {path: '/', name: 'home', component: PageFrame, children: [
             {path: 'analyze', name: 'analyze', component: AsideNavAnalyze, children: [
                 {path: 'statistical-statement', name: 'statisticalStatement', component: StatisticalStatement},
+                {path: 'data-analysis', name: 'dataAnalyse', component: DataAnalyse},
             ]},
             {path: 'asset', name: 'asset', component: AsideNavAsset, children: [
                 {path: 'water-level', name: 'waterLevel', component: WaterLevel},
@@ -38,9 +42,7 @@ let router = new Router({
                 {path: 'illuminance-probe', name: 'illuminanceProbe', component: IlluminanceProbe},
                 {path: 'standing-book', name: 'standingBook', component: StandingBook},
             ]},
-            {path: 'just-time', name: 'justTime', component: AsideNavJustTime, children: [
-                {path: 'water-level', name: 'waterLevel', component: WaterLevel},
-            ]},
+            {path: 'just-time', name: 'justTime', component: JustTime},
             {path: 'system', name: 'system', component: AsideNavSystem, children: [
                 {path: 'log', name: 'log', component: Log},
                 {path: 'role', name: 'role', component: Role},

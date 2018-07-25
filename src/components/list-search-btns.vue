@@ -1,7 +1,7 @@
 <template>
-  <div style="display: inline">
-    <div @click="search" class="form-group default-btn" style="margin-right: 10px">{{$t("common.search")}}</div>
-    <div @click="clearSearchParams" class="form-group default-btn">{{$t("common.reset")}}</div>
+  <div class="form-group">
+    <div @click="search" class=" default-btn" style="margin-right: 10px">{{$t("common.search")}}</div>
+    <div @click="clearSearchParams" class=" default-btn">{{$t("common.reset")}}</div>
   </div>
 </template>
 <script>
@@ -25,7 +25,14 @@
   }
 </script>
 <style scoped lang="less">
+  .form-group {
+    margin-right: 25px;
+    margin-bottom: 30px;
+    display: inline-block;
+    vertical-align: middle;
+  }
   .default-btn {
+    display: inline-block;
     background: #eef1fc;
     padding: 9px 14px;
     color: #5181ed;
