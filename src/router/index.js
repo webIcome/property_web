@@ -12,6 +12,8 @@ const StandingBook = () => import(/* webpackChunkName: "asset" */'../pages/asset
 const FlowProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/flow-probe/index.vue');
 const InundateProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/inundate-probe/index.vue');
 const IlluminanceProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/illuminance-probe/index.vue');
+const TemperatureHumidityProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/temperature-humidity-probe/index.vue');
+const TemperatureProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/temperature-probe/index.vue');
 //system
 const Log = () => import(/* webpackChunkName: "sys" */'../pages/system/log/index.vue');
 const Role = () => import(/* webpackChunkName: "sys" */'../pages/system/role/index.vue');
@@ -40,6 +42,8 @@ let router = new Router({
                 {path: 'flow-probe', name: 'flowProbe', component: FlowProbe},
                 {path: 'inundate-probe', name: 'inundateProbe', component: InundateProbe},
                 {path: 'illuminance-probe', name: 'illuminanceProbe', component: IlluminanceProbe},
+                {path: 'temperature-humidity-probe', name: 'temperatureHumidityProbe', component: TemperatureHumidityProbe},
+                {path: 'temperature-probe', name: 'temperatureProbe', component: TemperatureProbe},
                 {path: 'standing-book', name: 'standingBook', component: StandingBook},
             ]},
             {path: 'just-time', name: 'justTime', component: JustTime},

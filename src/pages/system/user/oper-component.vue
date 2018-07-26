@@ -47,21 +47,24 @@
                 ref: 'edit',
                 posts: [],
                 Rules: {
-                    companyid: [
-                        {required: true, message: '请选择企业'}
+                    username: [
+                        {required: true, message: this.$t("rules.require")}
+                    ],
+                    usernameEn: [
+                        {required: true, message: this.$t("rules.require")}
                     ],
                     postid: [
-                        {required: true, message: '请选择岗位'}
+                        {required: true, message: this.$t("rules.require")}
                     ],
-                    loginname: [
-                        {required: true, message: '请填写登入名'}
+                    job: [
+                        {required: true, message: this.$t("rules.require")}
                     ],
-                    username: [
-                        {required: true, message: '请填写姓名'}
+                    linkphone: [
+                        {required: true, message: this.$t("rules.require")}
                     ],
                     email: [
-                        {required: true, message: '请填写邮箱'},
-                        { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change'}
+                        {required: true, message: this.$t("rules.require")},
+                        { type: 'email', message: this.$t("rules.error"), trigger: ["blur","change"]}
                     ],
                 }
             }

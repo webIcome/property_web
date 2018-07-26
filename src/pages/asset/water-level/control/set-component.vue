@@ -22,12 +22,12 @@
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType ==3">
-          <el-form-item :label='$t("control.setAlarmThresholdMin") + "/0.1lux"' prop="operateValueMin">
+          <el-form-item :label='$t("control.setAlarmThresholdMin") + "/m"' prop="operateValueMin">
             <el-radio v-model="operData.min" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.min" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.min == 1" type="text" v-model.trim.number="operData.operateValueMin" clearable></el-input>
           </el-form-item>
-          <el-form-item :label='$t("control.setAlarmThresholdMax") + "/0.1lux"' prop="operateValueMax">
+          <el-form-item :label='$t("control.setAlarmThresholdMax") + "/m"' prop="operateValueMax">
             <el-radio v-model="operData.max" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.max" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.max == 1" type="text" v-model.trim.number="operData.operateValueMax" clearable></el-input>
@@ -49,6 +49,16 @@
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
+        <template v-else-if="operData.operateType == 7">
+          <el-form-item :label='$t("control.setRange")' prop="operateValue">
+            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+          </el-form-item>
+        </template>
+        <template v-else-if="operData.operateType == 8">
+          <el-form-item :label='$t("control.setStandValue")' prop="operateValue">
+            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+          </el-form-item>
+        </template>
       </el-form>
       <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="control">{{$t("dialog.confirm")}}</el-button>
@@ -58,7 +68,7 @@
 </template>
 
 <script>
-    import Service from "../../../../services/illuminance-probe";
+    import Service from "../../../../services/water-level";
     import controlSetMixin from "../../../../mixins/control-set-mixin"
     export default {
         mixins: [controlSetMixin],
@@ -71,6 +81,8 @@
                     {value: 4, text: this.$t("control.relieveAlarmThreshold")},
                     {value: 5, text: this.$t("control.alarmDuty")},
                     {value: 6, text: this.$t("control.collectCycle")},
+                    {value: 7, text: this.$t("control.range")},
+                    {value: 8, text: this.$t("control.standValue")},
                 ],
                 operData: {operateType: '',operateValueMin: '',operateValueMax: ''}
             }
@@ -101,7 +113,7 @@
                     if (this.operData.max == 1) {
                         rules.operateValueMax = [
                             {required: true, message: this.$t("rules.require")},
-                            {type: 'number', message: this.$t("rules.range") + this.$t("control.setAlarmThresholdMin") + '~16777215', min: this.operData.operateValueMin, max: 16777215},
+                            {type: 'number', message: this.$t("rules.range") + this.$t("control.setAlarmThresholdMin") + '~16777215', min: this.operData.operateValueMin, max: 65535},
                             {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                         ]
                     }
@@ -121,6 +133,18 @@
                         {required: true, message: this.$t("rules.require")},
                         {type: 'number', message: this.$t("rules.range") + '0~65535', min: 0, max: 65535},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
+                    ]
+                } else if (this.operData.operateType == 7) {
+                    rules.operateValue = [
+                        {required: true, message: this.$t("rules.require")},
+                        {type: 'number', message: this.$t("rules.range") + '0~255', min: 0, max: 255},
+                        {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
+                    ]
+                } else if (this.operData.operateType == 8) {
+                    rules.operateValue = [
+                        {required: true, message: this.$t("rules.require")},
+                        {type: 'number', message: this.$t("rules.range") + '-127~127', min: -127, max: 127},
+                        {pattern: /^[-+]?[0-9]+$/, message: this.$t("rules.integer")}
                     ]
                 }
                 return rules
@@ -148,6 +172,12 @@
                     case 6:
                         fn = Service.controlSetGatherPeriod;
                         break;
+                    case 7:
+                        fn = Service.controlSetRange;
+                        break;
+                    case 8:
+                        fn = Service.controlSetResetData;
+                        break;
                 }
                 return fn
             },
@@ -162,7 +192,7 @@
                 if (newVal) {
                     this.operData.operateValueMin = ''
                 } else {
-                    this.operData.operateValueMin = 16777215;
+                    this.operData.operateValueMin = 65535;
                     this.validateField('operateValueMin')
                 }
             },
@@ -170,7 +200,7 @@
                 if (newVal) {
                     this.operData.operateValueMax = ''
                 } else {
-                    this.operData.operateValueMax = 16777215
+                    this.operData.operateValueMax = 65535
                     this.validateField('operateValueMax')
                 }
             },

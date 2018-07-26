@@ -8,16 +8,13 @@ import Config from "../config";
 const option = {baseURL: Config.WELL_URL_API};
 export default {
     findList(params) {
-        /* return HttpClient.get('waterLevel/findPage', Object.assign({params: params},option)).then(res => {
+         return HttpClient.get('waterLevel/findPage', Object.assign({params: params},option)).then(res => {
          if (res.data && res.data.data) {
          return res.data.data;
          } else {
          return {};
          }
-         })*/
-        return new Promise(function (resolve) {
-            resolve ({list: [{object: 1}]})
-        })
+         })
     },
     getList(params) {
         return HttpClient.get('waterLevel/findList', Object.assign({params: params},option)).then(res => {

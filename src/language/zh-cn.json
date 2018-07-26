@@ -51,18 +51,24 @@
         "collectCycle": "采集周期",
         "alarmThreshold": "告警阈值",
         "alarmDuty": "告警使能",
+        "range": "量程",
+        "standValue": "初始化校准",
         "heartbeatCycleTip": "您确认要查询心跳包周期吗？",
         "alarmCycleTip": "您确认要查询告警周期吗？",
         "relieveAlarmThresholdTip": "您确认要查询解除告警阈值吗？",
         "collectCycleTip": "您确认要查询采集周期吗？",
         "alarmThresholdTip": "您确认要查询告警阈值吗？",
         "alarmDutyTip": "您确认要查询告警使能吗？",
+        "rangeTip": "您确认要查询量程吗？",
+        "standValueTip": "您确认要查询初始化校准吗？",
         "setHeartbeatCycle": "心跳包周期/h",
         "setAlarmCycle": "告警周期/min",
-        "setAlarmThresholdMin": "告警阈值下限/0.1lux",
-        "setAlarmThresholdMax": "告警阈值上限/0.1lux",
-        "setRelieveAlarmThreshold": "解除告警阈值/0.1lux",
+        "setAlarmThresholdMin": "告警阈值下限",
+        "setAlarmThresholdMax": "告警阈值上限",
+        "setRelieveAlarmThreshold": "解除告警阈值",
         "setAlarmDuty": "告警使能",
+        "setStandValue": "初始化校准",
+        "setRange": "量程/m",
         "setCollectCycle": "采集周期/s",
         "open": "开启",
         "close": "关闭",
@@ -97,7 +103,12 @@
         "confirmPasswordPlaceholder": "请输入新密码"
     },
     "rules": {
-        "require": "不能为空"
+        "require": "不能为空",
+        "error": "请输入正确的格式",
+        "range": "范围",
+        "positiveInteger": "必须为正整数",
+        "integer": "必须为整数"
+
     },
     "system": {
         "log": {
@@ -151,6 +162,7 @@
         "user": {
             "add": "添加用户",
             "edit": "编辑用户",
+            "resetPassword": "重置密码",
             "title": "用户管理",
             "zhName": "中文名",
             "enName": "英文名",
@@ -523,6 +535,16 @@
         "powerDistribution": "供配电",
         "elevator": "电梯",
         "airConditioner": "暖通空调",
-        "others": "其他"
+        "others": "其他",
+        "coolingTower": "冷却塔",
+        "compressor": "压缩机",
+        "transformer": "变压器",
+        "tractor": "曳引机",
+        "waterPump": "水泵",
+        "waterTank": "水箱",
+        "carPlatform": "轿厢",
+        "switchBox": "配电箱",
+        "boiler": "锅炉",
+        "draughtFan": "风机"
     }
 }

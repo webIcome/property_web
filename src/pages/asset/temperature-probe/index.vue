@@ -21,6 +21,9 @@
         <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
       </div>
     </template>
+    <template slot="control" slot-scope="{ids, refreshPage}">
+      <control-component :deviceIds="ids" @refreshPage="refreshPage"></control-component>
+    </template>
     <template slot="table" slot-scope="{isSelectable,pagingEvent}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
       <el-table-column prop="sn" :label='$t("asset.temperatureProbe.device.sn")'></el-table-column>
@@ -75,8 +78,9 @@
     import Service from "../../../services/temperature-probe"
     import OperComponent from "./oper-component";
     import DeleteComponent from "./delete-component";
+    import ControlComponent from "./control/index.vue"
     export default {
-        components: {DeleteComponent, DetailComponent, OperComponent},
+        components: {DeleteComponent, DetailComponent, OperComponent, ControlComponent},
         name: 'temperatureProbe',
         data() {
             return {

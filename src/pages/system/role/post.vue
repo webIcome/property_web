@@ -52,6 +52,7 @@
             company: '',
         },
         created() {
+            this.getPost(this.company.objectid)
         },
         methods: {
             refreshPost() {

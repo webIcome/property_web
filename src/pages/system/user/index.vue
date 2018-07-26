@@ -6,21 +6,21 @@
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
         <label>{{$t("system.user.name")}}</label>
-        <el-input type="text" v-model="searchParams.userinname" :placeholder='$t("common.input")' clearable/>
+        <el-input type="text" v-model="searchParams.prousername" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
         <label>{{$t("system.user.projects")}}</label>
-        <el-select v-model="searchParams.type" :placeholder='$t("common.select")' clearable>
+        <el-select v-model="searchParams.projectid" :placeholder='$t("common.select")' clearable>
           <el-option v-for="type in projects" :value="type.value" :key="type.value" :label="type.text"></el-option>
         </el-select>
       </div>
       <div class="form-group">
         <label>{{$t("system.user.job")}}</label>
-        <el-input type="text" v-model="searchParams.userinname" :placeholder='$t("common.input")' clearable/>
+        <el-input type="text" v-model="searchParams.job" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
         <label>{{$t("system.user.phone")}}</label>
-        <el-input type="text" v-model="searchParams.userinname" :placeholder='$t("common.input")' clearable/>
+        <el-input type="text" v-model="searchParams.linkphone" :placeholder='$t("common.input")' clearable/>
       </div>
     </template>
     <template slot="table" slot-scope="{pagingEvent}">

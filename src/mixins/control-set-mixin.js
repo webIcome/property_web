@@ -20,7 +20,7 @@ export default {
         },
     },
     methods: {
-        controlSetDevice() {
+        control() {
             this.$refs[this.ref].validate(valid => {
                 if (valid) {
                     let data = this.operData;

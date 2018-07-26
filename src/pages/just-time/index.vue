@@ -29,13 +29,17 @@
           </div>
         </div>
         <div class="just-time-content">
-          <div class="content-item">
-            <div class="content-item-title">你好</div>
-            <div class="content-item-body">
-              <div class="content-item-img"></div>
-              <div class="content-item-text"></div>
+          <template v-for="item in data">
+            <div class="content-item">
+              <div class="content-item-content">
+                <div class="content-item-title">{{item.title}}</div>
+                <div class="content-item-body" :class="item.ename">
+                  <div class="content-item-img"></div>
+                  <div class="content-item-text">1111111111</div>
+                </div>
+              </div>
             </div>
-          </div>
+          </template>
         </div>
       </div>
     </div>
@@ -55,6 +59,18 @@
                   {name: this.$t("justTime.airConditioner"), ename: 'air-conditioner', isActive: false},
                   {name: this.$t("justTime.others"), ename: 'others', isActive: false},
               ],
+              data: [
+                  {title: "生活用水泵", ename: 'water-pump'},
+                  {title: "生活用水泵", ename: 'boiler'},
+                  {title: "生活用水泵", ename: 'car-platform'},
+                  {title: "生活用水泵", ename: 'compressor'},
+                  {title: "生活用水泵", ename: 'cooling-tower'},
+                  {title: "生活用水泵", ename: 'draught-fan'},
+                  {title: "生活用水泵", ename: 'switch-box'},
+                  {title: "生活用水泵", ename: 'tractor'},
+                  {title: "生活用水泵", ename: 'transformer'},
+                  {title: "生活用水泵", ename: 'water-pump'},
+              ]
           }
       },
       created(){},
@@ -216,17 +232,110 @@
         }
         .just-time-content{
           background: #fff;
-          padding: 20px 45px;
+          padding: 20px 0px;
           margin-bottom: 22px;
           box-shadow: 0 0 5px #ccc;
+          display: flex;
+          flex-wrap: wrap;
           .content-item {
+            padding: 30px 0;
+            width: 320px;
+            .content-item-content{
+              border-right: 0.1px solid rgb(200,200,200, 0.1);
+              height: 175px;
+              display: flex;
+              flex-direction: column;
+            }
             .content-item-title {
               font-weight: bold;
               color: #323232;
+              text-align: center;
+              width: 180px;
             }
             .content-item-body {
-              .content-item-img {}
-              .content-item-text{}
+              display: flex;
+              flex: 1;
+              justify-content: space-between;
+              align-items: center;
+              .content-item-img {
+                flex: 9;
+                display: inline-block;
+                background-repeat: no-repeat;
+                background-position:center;
+              }
+              .content-item-text{
+                flex: 7;
+              }
+              &.boiler {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/boiler.png");
+                  width: 112px;
+                  height: 66px;
+                }
+              }
+              &.car-platform {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/car-platform.png");
+                  width: 73px;
+                  height: 106px;
+                }
+              }
+              &.compressor {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/compressor.png");
+                  width: 97px;
+                  height: 70px;
+                }
+              }
+              &.cooling-tower {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/cooling-tower.png");
+                  width: 81px;
+                  height: 90px;
+                }
+              }
+              &.draught-fan {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/draught-fan.png");
+                  width: 97px;
+                  height: 79px;
+                }
+              }
+              &.switch-box {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/switch-box.png");
+                  width: 88px;
+                  height: 89px;
+                }
+              }
+              &.tractor {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/tractor.png");
+                  width: 112px;
+                  height: 70px;
+                }
+              }
+              &.transformer {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/transformer.png");
+                  width: 77px;
+                  height: 85px;
+                }
+              }
+              &.water-pump {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/water-pump.png");
+                  width: 97px;
+                  height: 76px;
+                }
+              }
+              &.water-tank {
+                .content-item-img {
+                  background-image: url("../../assets/just-time/water-tank.png");
+                  width: 94px;
+                  height: 88px;
+                }
+              }
             }
           }
         }

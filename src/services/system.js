@@ -1,9 +1,6 @@
 /**
  * Created by spring on 2018/7/17.
  */
-/**
- * Created by spring on 2018/5/7.
- */
 import HttpClient from 'axios'
 import Config from "../config";
 import {Message} from 'element-ui'

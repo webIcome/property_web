@@ -22,12 +22,12 @@
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType ==3">
-          <el-form-item :label='$t("control.setAlarmThresholdMin") + "/0.1lux"' prop="operateValueMin">
+          <el-form-item :label='$t("control.setAlarmThresholdMin") + "/℃"' prop="operateValueMin">
             <el-radio v-model="operData.min" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.min" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.min == 1" type="text" v-model.trim.number="operData.operateValueMin" clearable></el-input>
           </el-form-item>
-          <el-form-item :label='$t("control.setAlarmThresholdMax") + "/0.1lux"' prop="operateValueMax">
+          <el-form-item :label='$t("control.setAlarmThresholdMax") + "/℃"' prop="operateValueMax">
             <el-radio v-model="operData.max" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.max" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.max == 1" type="text" v-model.trim.number="operData.operateValueMax" clearable></el-input>
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-    import Service from "../../../../services/illuminance-probe";
+    import Service from "../../../../services/temperature-humidity-probe";
     import controlSetMixin from "../../../../mixins/control-set-mixin"
     export default {
         mixins: [controlSetMixin],
