@@ -4,7 +4,7 @@
       <params-component v-model="params"></params-component>
     </div>
     <div class="statistical-content">
-      <chart-component :params="params"></chart-component>
+      <chart-component :params="params" :isLine="isLine"></chart-component>
     </div>
   </div>
 </template>
@@ -20,6 +20,11 @@
           }
       },
       created() {},
+      computed: {
+          isLine: function () {
+              return true
+          }
+      },
       methods: {
 
       },

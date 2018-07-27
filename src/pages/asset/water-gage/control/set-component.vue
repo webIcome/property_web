@@ -22,19 +22,19 @@
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType ==3">
-          <el-form-item :label='$t("control.setAlarmThresholdMin") + "/m"' prop="operateValueMin">
+          <el-form-item :label='$t("control.setAlarmThresholdMin") + "/Mpa"' prop="operateValueMin">
             <el-radio v-model="operData.min" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.min" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.min == 1" type="text" v-model.trim.number="operData.operateValueMin" clearable></el-input>
           </el-form-item>
-          <el-form-item :label='$t("control.setAlarmThresholdMax") + "/m"' prop="operateValueMax">
+          <el-form-item :label='$t("control.setAlarmThresholdMax") + "/Mpa"' prop="operateValueMax">
             <el-radio v-model="operData.max" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.max" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.max == 1" type="text" v-model.trim.number="operData.operateValueMax" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 4">
-          <el-form-item :label='$t("control.setRelieveAlarmThreshold") + "/m"' prop="operateValue">
+          <el-form-item :label='$t("control.setRelieveAlarmThreshold") + "/Mpa"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>

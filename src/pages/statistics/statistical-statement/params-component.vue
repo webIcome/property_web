@@ -29,34 +29,34 @@
         </div>
         <div class="form-group">
           <label>{{$t("statistics.statisticalStatement.method")}}</label>
-          <el-radio-group v-model="params.data">
+          <el-radio-group v-model="params.method">
             <el-radio :label="1">{{$t("statistics.statisticalStatement.system")}}</el-radio>
             <el-radio :label="2">{{$t("statistics.statisticalStatement.alarm")}}</el-radio>
           </el-radio-group>
         </div>
         <div class="form-group">
           <label>{{$t("statistics.statisticalStatement.type")}}</label>
-          <el-radio-group v-model="params.data">
+          <el-radio-group v-model="params.type">
             <el-radio :label="1">{{$t("statistics.statisticalStatement.current")}}</el-radio>
             <el-radio :label="2">{{$t("statistics.statisticalStatement.history")}}</el-radio>
           </el-radio-group>
         </div>
         <div class="form-group">
           <label>{{$t("statistics.statisticalStatement.dimensionality")}}</label>
-          <el-radio-group v-model="params.data" class="small">
+          <el-radio-group :disabled="isDisabled" v-model="params.timetype" class="small">
             <el-radio :label="1">{{$t("statistics.statisticalStatement.day")}}</el-radio>
             <el-radio :label="2">{{$t("statistics.statisticalStatement.month")}}</el-radio>
-            <el-radio :label="2">{{$t("statistics.statisticalStatement.year")}}</el-radio>
+            <el-radio :label="3">{{$t("statistics.statisticalStatement.year")}}</el-radio>
           </el-radio-group>
         </div>
         <div class="form-group">
           <label>{{$t("statistics.statisticalStatement.scope")}}</label>
           <span style="margin-right: 10px">{{$t("statistics.statisticalStatement.startTime")}}</span>
-          <el-date-picker id="date-start" v-model="params.operationtimelow" type="date" :value-format="'yyyy-MM-dd'"
-                          :placeholder='$t("common.select")'></el-date-picker>
+          <el-date-picker :disabled="isDisabled" v-model="params.starttime" :type="dateType" :value-format="dateFormat"
+                          :placeholder='$t("common.select")' :picker-options="startTimeOptions"></el-date-picker>
           <span  style="margin-right: 10px; margin-left: 10px">{{$t("statistics.statisticalStatement.endTime")}}</span>
-          <el-date-picker id="date-start" v-model="params.operationtimelow" type="date" :value-format="'yyyy-MM-dd'"
-                          :placeholder='$t("common.select")'></el-date-picker>
+          <el-date-picker :disabled="isDisabled" v-model="params.endtime" :type="dateType" :value-format="dateFormat"
+                          :placeholder='$t("common.select")'  :picker-options="endTimeOptions"></el-date-picker>
         </div>
       </div>
       <div @click="confirm" class="form-group default-btn" style="align-self: flex-end;margin-left: 40px">{{$t("dialog.confirm")}}</div>
@@ -64,19 +64,124 @@
   </div>
 </template>
 <script>
+  import moment from "moment"
     export default {
         name: 'paramsComponent',
         data() {
             return {
-                params: {},
+                params: {
+                    timetype: '',
+                    starttime: '',
+                    endtime: ''
+                },
                 projects: []
             }
         },
         created(){
         },
+        computed: {
+            isDisabled: function () {
+                return this.params.type == 2;
+            },
+            startTimeOptions: function () {
+                let endTime = this.params.endtime;
+                if (endTime) {
+                    if (this.params.timetype == 1) {
+                        return {
+                            disabledDate(time) {
+                                return time.getTime() > moment(endTime, "YYYYMMDD") || time.getTime() < moment(endTime, "YYYYMMDD").startOf('month');
+                            }
+                        }
+                    } else if (this.params.timetype == 2) {
+                        return {
+                            disabledDate(time) {
+                                return time.getTime() > moment(endTime, "YYYYMM").startOf('month') || time.getTime() < moment(endTime,"YYYYMM").startOf('year');
+                            }
+                        }
+                    } else {
+                        return {
+                            disabledDate(time) {
+                                return time.getTime() > moment(endTime, 'YYYY');
+                            }
+                        }
+                    }
+                }else {
+                    return {
+                        disabledDate(time) {
+                            return false;
+                        }
+                    }
+                }
+
+            },
+            endTimeOptions: function () {
+                let startTime = this.params.starttime;
+                if (startTime) {
+                    if (this.params.timetype == 1) {
+                        return {
+                            disabledDate(time) {
+                                return time.getTime() < moment(startTime, "YYYYMMDD") || time.getTime() > moment(startTime, "YYYYMMDD").endOf('month');
+                            }
+                        }
+                    } else if (this.params.timetype == 2) {
+                        return {
+                            disabledDate(time) {
+                                return time.getTime() < moment(startTime, "YYYYMM").startOf('month') || time.getTime() >= moment(startTime, "YYYYMM").endOf('year');
+                            }
+                        }
+                    } else {
+                        return {
+                            disabledDate(time) {
+                                return moment(time, 'YYYY') < moment(startTime, 'YYYY');
+                            }
+                        }
+                    }
+                }else {
+                    return {
+                        disabledDate(time) {
+                            return false;
+                        }
+                    }
+                }
+
+            },
+            dateFormat: function () {
+                if (this.params.timetype == 1) {
+                    return 'yyyyMMdd'
+                } else if (this.params.timetype == 2) {
+                    return 'yyyyMM'
+                } else {
+                    return 'yyyy'
+                }
+            },
+            dateType: function () {
+                let type;
+                switch (this.params.timetype) {
+                    case 1:
+                        type = 'date';
+                        break;
+                    case 2:
+                        type = 'month';
+                        break;
+                    case 3:
+                        type = 'year';
+                        break;
+                    default:
+                        type = 'date';
+                        break;
+                }
+                return type;
+            }
+        },
         methods: {
             confirm() {
                 this.$emit('input', this.params)
+            }
+        },
+        watch: {
+            ['params.timetype']: function () {
+                this.params.starttime = '';
+                this.params.endtime = '';
             }
         }
     }

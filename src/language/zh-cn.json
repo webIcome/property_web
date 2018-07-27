@@ -73,7 +73,19 @@
         "open": "开启",
         "close": "关闭",
         "setValue": "设置值",
-        "none": "无"
+        "none": "无",
+        "collectLoop": "采集回路&方向",
+        "collectLoopTime": "采集次数",
+        "oneTime": "一次",
+        "twoTime": "二次",
+        "collectLoopDirection": "采集方向",
+        "forwardDirection": "正向",
+        "reverseDirection": "反向",
+        "collectLoopTip": "您确认要查询采集回路&方向吗？",
+        "addressCode": "地址码",
+        "addressCodeTip": "您确认要查询地址码吗？",
+        "alarmBase": "告警基数/min",
+        "alarmMultiple": "告警倍数"
 
     },
     "login": {
@@ -300,11 +312,11 @@
                 "address": "安装地点",
                 "electricQuantity": "电量",
                 "signalQuality": "信号质量/dBm",
-                "range": "量程/m",
-                "standardValue": "校准值/cm",
+                "range": "量程/A",
+                "standardValue": "校准值/A",
                 "heartbeatCycle": "心跳包周期/h",
                 "alarmCycle": "告警周期/min",
-                "relieveAlarmThreshold": "告警解除阈值/cm",
+                "relieveAlarmThreshold": "告警解除阈值/A",
                 "collectCycle": "采集周期/s",
                 "startThreshold": "设备启停电流判断值/A"
             }

@@ -22,7 +22,7 @@
                         {modulename: '电流', url: 'current-probe',ename: 'current-probe'},
                         {modulename: '浸水', url: 'inundate-probe',ename: 'inundate-probe'},
                         {modulename: '抄表', url: 'meter-reading',ename: 'meter-reading'},
-                        {modulename: '门禁', url: 'door-probe',ename: 'door-probe'},
+                        {modulename: '门禁', url: 'door',ename: 'door-probe'},
                         {modulename: '人体', url: 'body-sensor',ename: 'body-sensor'},
                         {modulename: '水压', url: 'water-gage',ename: 'water-gage'},
                         {modulename: '振动', url: 'shake-probe',ename: 'shake-probe'},

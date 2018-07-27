@@ -4,15 +4,15 @@
       <div class="detail-title">{{$t("detail.basic")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.sn")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.sn")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.deviceModel")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.deviceModel")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.statusName")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.statusName")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -21,15 +21,15 @@
       <div class="detail-title">{{$t("detail.status")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.currentLevel")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.doorStatusName")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.electricQuantity")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.electricQuantity")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.signalQuality")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.signalQuality")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -38,15 +38,15 @@
       <div class="detail-title">{{$t("detail.belong")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.compName")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.compName")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.assetName")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.assetName")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.address")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.address")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -55,19 +55,19 @@
       <div class="detail-title">{{$t("detail.alarm")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.alarmThreshold")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.alarmThreshold")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.alarmDuty")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.alarmDuty")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.alarmType")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.alarmType")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.alarmCycle")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.alarmCycle")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -76,36 +76,16 @@
       <div class="detail-title">{{$t("detail.others")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.heartbeatCycle")}}：</div>
-          <div class="detail-content-value"></div>
-        </div>
-        <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.collectCycle")}}：</div>
-          <div class="detail-content-value"></div>
-        </div>
-        <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.range")}}：</div>
-          <div class="detail-content-value"></div>
-        </div>
-        <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.standardValue")}}：</div>
+          <div class="detail-content-label">{{$t("asset.door.device.heartbeatCycle")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
     </div>
-    <div class="detail-item">
-      <div class="detail-title">{{$t("detail.remark")}}</div>
-      <div class="detail-content">
-        <div class="detail-content-item">
-        </div>
-      </div>
-    </div>
-
   </div>
 </template>
 
 <script>
-    import Service from '../../../services/water-level'
+    import Service from '../../../services/door'
     export default {
         name: 'detailComponent',
         data() {

@@ -4,15 +4,15 @@
       <div class="detail-title">{{$t("detail.basic")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.sn")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.sn")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.deviceModel")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.deviceModel")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.statusName")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.statusName")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -21,15 +21,15 @@
       <div class="detail-title">{{$t("detail.status")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.currentLevel")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.currentGage")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.electricQuantity")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.electricQuantity")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.signalQuality")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.signalQuality")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -38,15 +38,15 @@
       <div class="detail-title">{{$t("detail.belong")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.compName")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.compName")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.assetName")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.assetName")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.address")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.address")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -55,19 +55,19 @@
       <div class="detail-title">{{$t("detail.alarm")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.alarmThreshold")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.alarmThreshold")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.alarmDuty")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.alarmDuty")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.alarmType")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.alarmType")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.alarmCycle")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.alarmCycle")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -76,19 +76,19 @@
       <div class="detail-title">{{$t("detail.others")}}</div>
       <div class="detail-content">
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.heartbeatCycle")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.heartbeatCycle")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.collectCycle")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.collectCycle")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.range")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.range")}}：</div>
           <div class="detail-content-value"></div>
         </div>
         <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.waterLevel.device.standardValue")}}：</div>
+          <div class="detail-content-label">{{$t("asset.waterGage.device.standardValue")}}：</div>
           <div class="detail-content-value"></div>
         </div>
       </div>
@@ -105,7 +105,7 @@
 </template>
 
 <script>
-    import Service from '../../../services/water-level'
+    import Service from '../../../services/water-gage'
     export default {
         name: 'detailComponent',
         data() {
