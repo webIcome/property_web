@@ -5,52 +5,44 @@
     </template>
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
-        <label>{{$t("asset.currentProbe.device.compName")}}</label>
-        <select-projects-component v-model="searchParams.projectIds"></select-projects-component>
+        <label>{{$t("asset.shake.device.compName")}}</label>
+        <el-input type="text" v-model="searchParams.projectName" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
-        <label>{{$t("asset.currentProbe.device.sn")}}</label>
-        <el-input type="text" v-model="searchParams.assetName" :placeholder='$t("common.input")' clearable/>
+        <label>{{$t("asset.shake.device.sn")}}</label>
+        <el-input type="text" v-model="searchParams.sn" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
         <label>{{$t("asset.shake.device.assetName")}}</label>
-        <select-asset-component v-model="searchParams.assetManageIds"></select-asset-component>
+        <el-input type="text" v-model="searchParams.assetManageName" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
-        <label>{{$t("asset.currentProbe.device.address")}}</label>
+        <label>{{$t("asset.shake.device.address")}}</label>
         <el-input type="text" v-model="searchParams.address" :placeholder='$t("common.input")' clearable/>
       </div>
     </template>
     <template slot="control" slot-scope="{ids, refreshPage}">
       <control-component :deviceIds="ids" @refreshPage="refreshPage"></control-component>
     </template>
-    <template slot="table" slot-scope="{isSelectable, pagingEvent}">
+    <template slot="table" slot-scope="{isSelectable,pagingEvent}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
-      <el-table-column prop="sn" :label='$t("asset.currentProbe.device.sn")'></el-table-column>
-      <el-table-column prop="deviceModel" :label='$t("asset.currentProbe.device.deviceModel")'></el-table-column>
-      <el-table-column :label='$t("asset.currentProbe.device.statusName")'>
-        <template slot-scope="scope">
-          <span
-              :class="{'running-success': scope.row.status == 0, 'running-fail': scope.row.status != 0}">
-            <span class="running-icon"></span>{{scope.row.statusName}}
-          </span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="currentValue" :label='$t("asset.currentProbe.device.currents")'></el-table-column>
-      <el-table-column prop="projectName" :label='$t("asset.currentProbe.device.compName")'></el-table-column>
-      <el-table-column prop="assetManageName" :label='$t("asset.currentProbe.device.assetName")'></el-table-column>
-      <el-table-column prop="address" :label='$t("asset.currentProbe.device.address")'></el-table-column>
-      <el-table-column prop="alarmThreshold" :label='$t("asset.waterGage.device.alarmThreshold")'></el-table-column>
-      <el-table-column prop="alarmDuty" :label='$t("asset.currentProbe.device.alarmDuty")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.currentProbe.device.alarmType")'></el-table-column>
-      <el-table-column :label='$t("asset.currentProbe.device.electricQuantity")'>
+      <el-table-column prop="sn" :label='$t("asset.shake.device.sn")'></el-table-column>
+      <el-table-column prop="deviceModal" :label='$t("asset.shake.device.deviceModal")'></el-table-column>
+      <el-table-column prop="statusName" :label='$t("asset.shake.device.statusName")'></el-table-column>
+      <el-table-column prop="currentSpeed" :label='$t("asset.shake.device.acceleratedSpeed")'></el-table-column>
+      <el-table-column prop="projectName" :label='$t("asset.shake.device.compName")'></el-table-column>
+      <el-table-column prop="assetManageName" :label='$t("asset.shake.device.assetName")'></el-table-column>
+      <el-table-column prop="address" :label='$t("asset.shake.device.address")'></el-table-column>
+      <el-table-column prop="alarmThreshold" :label='$t("asset.shake.device.alarmThreshold")'></el-table-column>
+      <el-table-column prop="alarmType" :label='$t("asset.shake.device.alarmType")'></el-table-column>
+      <el-table-column :label='$t("asset.shake.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">
             <span class="icon"></span>
           </span>
         </template>
       </el-table-column>
-      <el-table-column min-width="120" :label='$t("asset.currentProbe.device.signalQuality")'>
+      <el-table-column min-width="120" :label='$t("asset.shake.device.signalQuality")'>
         <template slot-scope="scope">
           <span :class="getSignalClass(scope.row.signalLevel)">
             <span class="icon"></span>
@@ -76,17 +68,17 @@
 </template>
 <script>
     import DetailComponent from "./detail-component";
-    import Service from "../../../services/current-probe"
+    import Service from "../../../services/shake"
     import OperComponent from "./oper-component";
     import DeleteComponent from "./delete-component";
     import ControlComponent from "./control/index.vue"
     export default {
         components: {DeleteComponent, DetailComponent, OperComponent, ControlComponent},
-        name: 'currentProbe',
+        name: 'shake',
         data() {
             return {
                 service: Service,
-                title: this.$t("asset.currentProbe.title")
+                title: this.$t("asset.shake.title")
             }
         },
         methods: {

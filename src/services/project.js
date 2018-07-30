@@ -10,10 +10,10 @@
 import HttpClient from 'axios'
 import Config from "../config";
 import {Message} from 'element-ui'
-const option = {baseURL: Config.URL_API};
+const option = {baseURL: Config.WELL_URL_API};
 export default {
     findList(params) {
-        return HttpClient.get('operationLogs/getList', Object.assign({params: params}, option)).then(res => {
+        return HttpClient.get('project/findPage', Object.assign({params: params}, option)).then(res => {
             if (res.data && res.data.data) {
                 return res.data.data;
             } else {
@@ -21,20 +21,15 @@ export default {
             }
         })
     },
-    getDetail(id) {
-        return HttpClient.get('video/findInfoByDeviceId/' + id, option).then(res => {
-            return res.data.data;
-        })
-    },
     operate(body) {
-        return HttpClient.post('user/add', body, option).then(res => {
-            showSuccess(res)
+        return HttpClient.post('project/saveOrUpdate', body, option).then(res => {
+            showSuccess(res);
             return res;
         })
     },
-    deletePost(body) {
-        return HttpClient.post('post/delete', body, option).then(res => {
-            showSuccess(res)
+    deleteProject(ids) {
+        return HttpClient.post('project/removeBatchByIds','', Object.assign({params: {ids: ids}},option)).then(res => {
+            showSuccess(res);
             return res;
         })
     },

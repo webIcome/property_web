@@ -17,6 +17,7 @@ const TemperatureProbe = () => import(/* webpackChunkName: "asset" */'../pages/a
 const CurrentProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/current-probe/index.vue');
 const Door = () => import(/* webpackChunkName: "asset" */'../pages/asset/door/index.vue');
 const WaterGage = () => import(/* webpackChunkName: "asset" */'../pages/asset/water-gage/index.vue');
+const DryContactProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/dry-contact-probe/index.vue');
 //system
 const Log = () => import(/* webpackChunkName: "sys" */'../pages/system/log/index.vue');
 const Role = () => import(/* webpackChunkName: "sys" */'../pages/system/role/index.vue');
@@ -50,6 +51,7 @@ let router = new Router({
                 {path: 'current-probe', name: 'currentProbe', component: CurrentProbe},
                 {path: 'door', name: 'door', component: Door},
                 {path: 'water-gage', name: 'waterGage', component: WaterGage},
+                {path: 'dry-contact-probe', name: 'dryContactProbe', component: DryContactProbe},
                 {path: 'standing-book', name: 'standingBook', component: StandingBook},
             ]},
             {path: 'just-time', name: 'justTime', component: JustTime},

@@ -12,18 +12,16 @@
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="500px">
       <el-form label-width="170px" :model="operData" :ref="ref" :rules="Rules" class="el-form-default" :validate-on-rule-change="false">
         <template v-if="operData.operateType == 1">
-          <el-form-item :label='$t("control.setHeartbeatCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setSecond")' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 2">
-          <el-form-item :label='$t("control.collectLoop")' prop="baseValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+          <el-form-item :label='$t("control.setSecond")' prop="value1">
+            <el-input type="text" v-model.trim.number="operData.value1" clearable></el-input>
           </el-form-item>
-        </template>
-        <template v-else-if="operData.operateType == 3">
-          <el-form-item :label='$t("control.addressCode")' prop="operateValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+          <el-form-item :label='$t("control.setTime")' prop="value2">
+            <el-input type="text" v-model.trim.number="operData.value2" clearable></el-input>
           </el-form-item>
         </template>
       </el-form>
@@ -35,16 +33,15 @@
 </template>
 
 <script>
-    import Service from "../../../../services/meter-reading";
+    import Service from "../../../../services/body-probe";
     import controlSetMixin from "../../../../mixins/control-set-mixin"
     export default {
         mixins: [controlSetMixin],
         data() {
             return {
                 setItems: [
-                    {value: 1, text: this.$t("control.heartbeatCycle")},
-                    {value: 2, text: this.$t("control.collectLoop")},
-                    {value: 3, text: this.$t("control.addressCode")},
+                    {value: 1, text: this.$t("control.noOneJudge")},
+                    {value: 2, text: this.$t("control.peopleJudge")},
                 ],
                 operData: {}
             }
@@ -59,15 +56,18 @@
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 2) {
-                    rules.operateValue = [
+                    rules = {
+                        value1: [
+                            {required: true, message: this.$t("rules.require")},
+                            {type: 'number', message: this.$t("rules.range") + '0~255', min:0, max: 255},
+                            {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
+                        ],
+                        value2: [
                             {required: true, message: this.$t("rules.require")},
                             {type: 'number', message: this.$t("rules.range") + '0~255', min:0, max: 255},
                             {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                         ]
-                } else if (this.operData.operateType == 3) {
-                    rules.operateValue = [
-                        {required: true, message: this.$t("rules.require")},
-                    ]
+                    }
                 }
                 return rules
             }

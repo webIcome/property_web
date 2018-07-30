@@ -7,35 +7,32 @@ import Config from "../config";
 const option = {baseURL: Config.WELL_URL_API};
 export default {
     findList(params) {
-       /* return HttpClient.get('video/findPage', Object.assign({params: params},option)).then(res => {
+        return HttpClient.get('assetManage/findPage', Object.assign({params: params}, option)).then(res => {
             if (res.data && res.data.data) {
                 return res.data.data;
             } else {
                 return {};
             }
-        })*/
-        return new Promise(function (resolve) {
-            resolve ({list: [{object: 1}]})
         })
     },
     getList(params) {
-        return HttpClient.get('video/findList', Object.assign({params: params},option)).then(res => {
+        return HttpClient.get('assetManage/findList', Object.assign({params: params}, option)).then(res => {
             return res.data.data;
         })
     },
     getDetail(id) {
-        return HttpClient.get('video/findInfoByDeviceId/' + id, option).then(res => {
+        return HttpClient.get('assetManage/findInfoById/' + id, option).then(res => {
             return res.data.data;
         })
     },
     operate(body) {
-        return HttpClient.post('video/saveOrUpdate', body,option).then(res => {
+        return HttpClient.post('assetManage/saveOrUpdate', body, option).then(res => {
             showSuccess(res);
             return res;
         })
     },
     deleteDevice(ids) {
-        return HttpClient.post('video/removeBatchByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('assetManage/removeBatchByIds', '', Object.assign({params: {ids: ids}}, option)).then(res => {
             showSuccess(res);
             return res;
         })
@@ -44,7 +41,7 @@ export default {
 
 function showSuccess(res, msg) {
     if (res && res.data && res.data.code == 0) {
-        msg = msg? msg : '操作成功';
+        msg = msg ? msg : '操作成功';
         Message({
             message: msg,
             type: 'success',

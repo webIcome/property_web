@@ -55,7 +55,6 @@
                 selectionList: [],
                 selectionDeviceIds: [],
                 selectionIds: [],
-                companies: [],
                 tableRef: 'my-table',
                 paginationShow: false,
             }
@@ -66,16 +65,10 @@
         },
         created() {
             this.initList();
-//            this.initCompanies();
         },
         methods: {
             initList() {
                 this.findList(this.defaultPaging);
-            },
-            initCompanies() {
-                this.$globalCache.companies.then(companies => {
-                    this.companies = companies;
-                })
             },
             findList(params) {
                 this.service.findList(params).then(data => {

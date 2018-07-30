@@ -5,20 +5,20 @@
     </template>
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
-        <label>{{$t("asset.standingBook.device.assetName")}}</label>
-        <el-input type="text" v-model="searchParams.assetName" :placeholder='$t("common.input")' clearable/>
+        <label>{{$t("asset.standingBook.device.project")}}</label>
+        <select-projects-component v-model="searchParams.projectIds"></select-projects-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.standingBook.device.address")}}</label>
         <el-input type="text" v-model="searchParams.address" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
-        <label>{{$t("asset.standingBook.device.manufacturer")}}</label>
-        <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
+        <label>{{$t("asset.standingBook.device.assetName")}}</label>
+        <el-input type="text" v-model="searchParams.assetManageName" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
         <label>{{$t("asset.standingBook.device.belongSystem")}}</label>
-        <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
+       <select-system-component v-model="searchParams.sysCodes"></select-system-component>
       </div>
     </template>
     <template slot="table" slot-scope="{isSelectable,pagingEvent}">

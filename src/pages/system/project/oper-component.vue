@@ -2,41 +2,68 @@
   <div class="oper-component">
     <div v-if="edit" class="icon-item"><span class="edit-icon" @click="showModal"></span></div>
     <div v-else class="icon-item" @click="showModal"><i class="el-icon-plus"></i>{{$t("common.add")}}</div>
-    <el-dialog :title="title" :visible.sync="visible" center :width="'500px'">
+    <el-dialog :title="title" :visible.sync="visible" center :width="'800px'">
       <el-form label-width="140px" :model="data" :rules="Rules" :ref="ref" class="el-form-default">
-        <el-form-item :label='$t("system.project.zhName")' prop="loginname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.enName")' prop="loginname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.area")' prop="loginname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.height")' prop="loginname">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.completionTime")' prop="completionTime">
-          <el-date-picker v-model="data.completionTime"  type="date" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.handover")' prop="handover">
-          <el-date-picker v-model="data.handover"  type="date" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.projectLeader")' prop="phonev">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.email")' prop="email">
-          <el-input v-model.trim="data.deviceName" :placeholder='$t("common.input")'></el-input>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.type")' prop="postid">
-          <el-select v-model="data.postid" :placeholder='$t("common.select")' clearable style="width: 100%;">
-            <el-option v-for="type in commercialType"
-                       :value="type.value" :key="type.value" :label="type.text"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item :label='$t("system.project.address")' prop="address">
-          <select-position v-model="data.position"></select-position>
-        </el-form-item>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.zhName")' prop="projectNameCn">
+              <el-input v-model.trim="data.projectNameCn" :placeholder='$t("common.input")'></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.enName")' prop="projectNameEn">
+              <el-input v-model.trim="data.projectNameEn" :placeholder='$t("common.input")'></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.address")' prop="address">
+              <select-position v-model="data.address"></select-position>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.area")' prop="floorArea">
+              <el-input v-model.trim.number="data.floorArea" :placeholder='$t("common.input")'></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.height")' prop="floorHight">
+              <el-input v-model.trim.number="data.floorHight" :placeholder='$t("common.input")'></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.completionTime")' prop="bulidYear">
+              <el-date-picker v-model="data.bulidYear"  type="date" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.handover")' prop="catchTime">
+              <el-date-picker v-model="data.catchTime"  type="date" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.handover")' prop="catchTime">
+              <el-date-picker v-model="data.catchTime"  type="date" :value-format="'yyyy-MM-dd'" :placeholder='$t("common.select")'></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.projectLeader")' prop="userName">
+              <el-input v-model.trim="data.userName" :placeholder='$t("common.input")'></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.email")' prop="zipCode">
+              <el-input v-model.trim.number="data.zipCode" :placeholder='$t("common.input")'></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item :label='$t("system.project.type")' prop="businessType">
+              <el-select v-model="data.businessType" :placeholder='$t("common.select")' clearable style="width: 100%;">
+                <el-option v-for="type in commercialType"
+                           :value="type.value" :key="type.value" :label="type.text"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
       <span slot="footer" class="dialog-footer">
          <el-button type="primary" @click="operate">{{$t("dialog.confirm")}}</el-button>
@@ -57,21 +84,11 @@
                 ref: 'edit',
                 commercialType: Constants.commercialType,
                 Rules: {
-                    companyid: [
-                        {required: true, message: '请选择企业'}
+                    projectNameCn: [
+                        {required: true, message: this.$t("rules.require")},
                     ],
-                    postid: [
-                        {required: true, message: '请选择岗位'}
-                    ],
-                    loginname: [
-                        {required: true, message: '请填写登入名'}
-                    ],
-                    projectname: [
-                        {required: true, message: '请填写姓名'}
-                    ],
-                    email: [
-                        {required: true, message: '请填写邮箱'},
-                        { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change'}
+                    address: [
+                        {required: true, message: this.$t("rules.require")},
                     ],
                 }
             }
@@ -80,7 +97,11 @@
             edit: {
                 default: false
             },
-           id: ''
+           project: {
+               default: function () {
+                   return {}
+               }
+           }
         },
         created() {
             this.initData();
@@ -108,9 +129,7 @@
                 })
             },
             getDetail() {
-                Service.getDetail(this.id).then(data => {
-                    this.data = this.getTransformDataToUse(data);
-                })
+                this.data = this.getTransformDataToUse(this.$common.copyObj(this.project));
             },
             getTransformDataToSend(data) {
                 data = this.$common.copyObj(data);
@@ -119,14 +138,14 @@
                 data = Object.assign(data, position)
                 data.longitude = data.lng;
                 data.latitude = data.lat;
-                data.address = data.position;
+                data.address = data.address;
                 delete data.position;
                 delete data.lng;
                 delete data.lat;
                 return data;
             },
             getTransformDataToUse(data) {
-                data.position = this.getPosition(data);
+                data.address = this.getPosition(data);
                 return data;
             },
             getPosition(position){
@@ -158,7 +177,7 @@
         watch: {
             visible: function (newValue, oldValue) {
                 if (newValue) {
-//                    if (this.edit) this.getDetail();
+                    if (this.edit) this.getDetail();
                     this.clearValidate();
                 } else {
                     this.data = {}

@@ -11,6 +11,9 @@ import listContent from './list-content.vue'
 import SelectLanguage from "./select-language.vue"
 import lineEchart from "./line-echart.vue"
 import pieEchart from "./pie-echart.vue"
+import selectProjects from './select-projects.vue'
+import selectSystem from './select-system.vue'
+import selectAsset from './select-asset.vue'
 export default {
     'header-component': headerComponent,
     'select-position': selectPosition,
@@ -21,4 +24,7 @@ export default {
     'select-language-component': SelectLanguage,
     'line-echart-component': lineEchart,
     'pie-echart-component': pieEchart,
+    'select-projects-component': selectProjects,
+    'select-system-component': selectSystem,
+    'select-asset-component': selectAsset,
 }

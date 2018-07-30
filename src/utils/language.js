@@ -11,6 +11,13 @@ export default {
     getLanguage() {
         return Cookie.getCookie(Type.LANGUAGE)
     },
+    getLanguageValue() {
+        if (this.getLanguage() == 'en') {
+            return 1
+        } else {
+            return 0
+        }
+    },
     setLanguage(value, time) {
         Cookie.setCookie(Type.LANGUAGE, value, time);
         location.reload()

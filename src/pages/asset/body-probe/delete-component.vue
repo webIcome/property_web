@@ -7,7 +7,7 @@
       <div class="text-center">
         <div class="dialog-warning"></div>
       </div>
-      <p class="title">{{$t("system.project.delete")}}</p>
+      <p class="title">{{$t("asset.waterLevel.delete")}}</p>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="deleteDevice">{{$t("dialog.confirm")}}</el-button>
       </span>
@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-    import Service from '../../../services/project'
+    import Service from '../../../services/body-probe'
     export default {
         name: 'deleteComponent',
         data() {
@@ -30,7 +30,7 @@
         },
         methods: {
             deleteDevice() {
-                Service.deleteProject(this.id).then(res => {
+                Service.deleteDevice(this.id).then(res => {
                     this.hideModal();
                     this.$emit('initCurrentPaging')
                 })

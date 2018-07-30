@@ -16,16 +16,6 @@
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
-        <template v-else-if="operData.operateType == 2">
-          <el-form-item :label='$t("control.collectLoop")' prop="baseValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
-          </el-form-item>
-        </template>
-        <template v-else-if="operData.operateType == 3">
-          <el-form-item :label='$t("control.addressCode")' prop="operateValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
-          </el-form-item>
-        </template>
       </el-form>
       <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="control">{{$t("dialog.confirm")}}</el-button>
@@ -35,7 +25,7 @@
 </template>
 
 <script>
-    import Service from "../../../../services/meter-reading";
+    import Service from "../../../../services/door";
     import controlSetMixin from "../../../../mixins/control-set-mixin"
     export default {
         mixins: [controlSetMixin],
@@ -43,8 +33,6 @@
             return {
                 setItems: [
                     {value: 1, text: this.$t("control.heartbeatCycle")},
-                    {value: 2, text: this.$t("control.collectLoop")},
-                    {value: 3, text: this.$t("control.addressCode")},
                 ],
                 operData: {}
             }
@@ -58,16 +46,6 @@
                         {type: 'number', message: this.$t("rules.range") + '1~24', min: 1, max: 24},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
-                } else if (this.operData.operateType == 2) {
-                    rules.operateValue = [
-                            {required: true, message: this.$t("rules.require")},
-                            {type: 'number', message: this.$t("rules.range") + '0~255', min:0, max: 255},
-                            {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
-                        ]
-                } else if (this.operData.operateType == 3) {
-                    rules.operateValue = [
-                        {required: true, message: this.$t("rules.require")},
-                    ]
                 }
                 return rules
             }
@@ -78,12 +56,6 @@
                 switch (operateType) {
                     case 1:
                         fn = Service.controlSetHeartPeriod;
-                        break;
-                    case 2:
-                        fn = Service.controlSetAlarmValue;
-                        break;
-                    case 3:
-                        fn = Service.controlSetAlarmEnabled;
                         break;
                 }
                 return fn

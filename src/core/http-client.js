@@ -6,6 +6,7 @@ import axios from 'axios'
 import {Loading, Message} from 'element-ui'
 import router from '../router';
 import Storage from '../store/user';
+import Language from "../utils/language"
 let loading
 let pending = []
 let cancelToken = axios.CancelToken
@@ -73,6 +74,7 @@ function getHeaders(storage) {
         headers['user_name'] = storage.user.loginname;
         headers['user_id'] = storage.user.objectid.toString();
         headers['company_id'] = storage.user.companyid.toString();
+        headers['language_type'] = Language.getLanguageValue();
         return headers;
     }
 }
