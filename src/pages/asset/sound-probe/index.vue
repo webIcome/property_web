@@ -6,15 +6,15 @@
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
         <label>{{$t("asset.soundProbe.device.compName")}}</label>
-        <el-input type="text" v-model="searchParams.projectName" :placeholder='$t("common.input")' clearable/>
+        <select-projects-component v-model="searchParams.projectIds"></select-projects-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.soundProbe.device.sn")}}</label>
-        <el-input type="text" v-model="searchParams.sn" :placeholder='$t("common.input")' clearable/>
+        <el-input type="text" v-model="searchParams.assetName" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
         <label>{{$t("asset.soundProbe.device.assetName")}}</label>
-        <el-input type="text" v-model="searchParams.assetManageName" :placeholder='$t("common.input")' clearable/>
+        <select-asset-component v-model="searchParams.assetManageIds"></select-asset-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.soundProbe.device.address")}}</label>
@@ -24,25 +24,25 @@
     <template slot="control" slot-scope="{ids, refreshPage}">
       <control-component :deviceIds="ids" @refreshPage="refreshPage"></control-component>
     </template>
-    <template slot="table" slot-scope="{isSelectable,pagingEvent}">
+    <template slot="table" slot-scope="{isSelectable,pagingEvent,getSignalClass,getPowerClass}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
-      <el-table-column prop="sn" :label='$t("asset.door.device.sn")'></el-table-column>
-      <el-table-column prop="deviceModel" :label='$t("asset.door.device.deviceModel")'></el-table-column>
-      <el-table-column prop="statusName" :label='$t("asset.door.device.statusName")'></el-table-column>
-      <el-table-column prop="currentValue" :label='$t("asset.door.device.currentDb")'></el-table-column>
-      <el-table-column prop="projectName" :label='$t("asset.door.device.compName")'></el-table-column>
-      <el-table-column prop="assetManageName" :label='$t("asset.door.device.assetName")'></el-table-column>
-      <el-table-column prop="address" :label='$t("asset.door.device.address")'></el-table-column>
-      <el-table-column prop="alarmThreshold" :label='$t("asset.door.device.alarmThreshold")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.door.device.alarmType")'></el-table-column>
-      <el-table-column :label='$t("asset.door.device.electricQuantity")'>
+      <el-table-column prop="sn" :label='$t("asset.soundProbe.device.sn")'></el-table-column>
+      <el-table-column prop="deviceModel" :label='$t("asset.soundProbe.device.deviceModel")'></el-table-column>
+      <el-table-column prop="statusName" :label='$t("asset.soundProbe.device.statusName")'></el-table-column>
+      <el-table-column prop="currentValue" :label='$t("asset.soundProbe.device.currentDb")'></el-table-column>
+      <el-table-column prop="projectName" :label='$t("asset.soundProbe.device.compName")'></el-table-column>
+      <el-table-column prop="assetManageName" :label='$t("asset.soundProbe.device.assetName")'></el-table-column>
+      <el-table-column prop="address" :label='$t("asset.soundProbe.device.address")'></el-table-column>
+      <el-table-column prop="alarmThreshold" :label='$t("asset.soundProbe.device.alarmThreshold")'></el-table-column>
+      <el-table-column prop="alarmType" :label='$t("asset.soundProbe.device.alarmType")'></el-table-column>
+      <el-table-column :label='$t("asset.soundProbe.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">
             <span class="icon"></span>
           </span>
         </template>
       </el-table-column>
-      <el-table-column min-width="120" :label='$t("asset.door.device.signalQuality")'>
+      <el-table-column min-width="120" :label='$t("asset.soundProbe.device.signalQuality")'>
         <template slot-scope="scope">
           <span :class="getSignalClass(scope.row.signalLevel)">
             <span class="icon"></span>
@@ -74,36 +74,14 @@
     import ControlComponent from "./control/index.vue"
     export default {
         components: {DeleteComponent, DetailComponent, OperComponent, ControlComponent},
-        name: 'door',
+        name: 'soundProbe',
         data() {
             return {
                 service: Service,
-                title: this.$t("asset.door.title")
+                title: this.$t("asset.soundProbe.title")
             }
         },
         methods: {
-            getPowerClass(value) {
-                if (!value) return;
-                if (value > 3.1) {
-                    return 'full-power'
-                } else if (value > 2.9) {
-                    return 'two-power'
-                } else if (value > 2.7) {
-                    return 'one-power'
-                } else {
-                    return 'no-power'
-                }
-            },
-            getSignalClass(value) {
-                if (!value) return 'no-signal';
-                if (value > 115) {
-                    return 'one-signal'
-                } else if (value > 105) {
-                    return 'two-signal'
-                } else {
-                    return 'full-signal'
-                }
-            },
         }
     }
 </script>

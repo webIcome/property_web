@@ -6,15 +6,15 @@
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
         <label>{{$t("asset.shake.device.compName")}}</label>
-        <el-input type="text" v-model="searchParams.projectName" :placeholder='$t("common.input")' clearable/>
+        <select-projects-component v-model="searchParams.projectIds"></select-projects-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.shake.device.sn")}}</label>
-        <el-input type="text" v-model="searchParams.sn" :placeholder='$t("common.input")' clearable/>
+        <el-input type="text" v-model="searchParams.assetName" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
         <label>{{$t("asset.shake.device.assetName")}}</label>
-        <el-input type="text" v-model="searchParams.assetManageName" :placeholder='$t("common.input")' clearable/>
+        <select-asset-component v-model="searchParams.assetManageIds"></select-asset-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.shake.device.address")}}</label>
@@ -24,10 +24,10 @@
     <template slot="control" slot-scope="{ids, refreshPage}">
       <control-component :deviceIds="ids" @refreshPage="refreshPage"></control-component>
     </template>
-    <template slot="table" slot-scope="{isSelectable,pagingEvent}">
+    <template slot="table" slot-scope="{isSelectable,pagingEvent,getSignalClass,getPowerClass}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
       <el-table-column prop="sn" :label='$t("asset.shake.device.sn")'></el-table-column>
-      <el-table-column prop="deviceModal" :label='$t("asset.shake.device.deviceModal")'></el-table-column>
+      <el-table-column prop="deviceModal" :label='$t("asset.shake.device.deviceModel")'></el-table-column>
       <el-table-column prop="statusName" :label='$t("asset.shake.device.statusName")'></el-table-column>
       <el-table-column prop="currentSpeed" :label='$t("asset.shake.device.acceleratedSpeed")'></el-table-column>
       <el-table-column prop="projectName" :label='$t("asset.shake.device.compName")'></el-table-column>
@@ -82,28 +82,7 @@
             }
         },
         methods: {
-            getPowerClass(value) {
-                if (!value) return;
-                if (value > 3.1) {
-                    return 'full-power'
-                } else if (value > 2.9) {
-                    return 'two-power'
-                } else if (value > 2.7) {
-                    return 'one-power'
-                } else {
-                    return 'no-power'
-                }
-            },
-            getSignalClass(value) {
-                if (!value) return 'no-signal';
-                if (value > 115) {
-                    return 'one-signal'
-                } else if (value > 105) {
-                    return 'two-signal'
-                } else {
-                    return 'full-signal'
-                }
-            },
+
         }
     }
 </script>

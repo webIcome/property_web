@@ -23,16 +23,20 @@
     </template>
     <template slot="table" slot-scope="{isSelectable,pagingEvent}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
-      <el-table-column prop="sn" :label='$t("asset.standingBook.device.assetCode")'></el-table-column>
-      <el-table-column prop="deviceModel" :label='$t("asset.standingBook.device.assetName")'></el-table-column>
-      <el-table-column prop="currentLevel" :label='$t("asset.standingBook.device.assetType")'></el-table-column>
-      <el-table-column prop="compName" :label='$t("asset.standingBook.device.address")'></el-table-column>
-      <el-table-column prop="asset" :label='$t("asset.standingBook.device.addressType")'></el-table-column>
-      <el-table-column prop="address" :label='$t("asset.standingBook.device.manufacturer")'></el-table-column>
-      <el-table-column prop="alarmThreshold" :label='$t("asset.standingBook.device.model")'></el-table-column>
-      <el-table-column prop="alarmDuty" :label='$t("asset.standingBook.device.equipment")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.standingBook.device.belongSystem")'></el-table-column>
-      <el-table-column prop="electricQuantity" :label='$t("asset.standingBook.device.status")'></el-table-column>
+      <el-table-column prop="assetManageSn" :label='$t("asset.standingBook.device.assetCode")'></el-table-column>
+      <el-table-column prop="assetManageName" :label='$t("asset.standingBook.device.assetName")'></el-table-column>
+      <el-table-column prop="deviceTypeName" :label='$t("asset.standingBook.device.assetType")'></el-table-column>
+      <el-table-column prop="address" :label='$t("asset.standingBook.device.address")'></el-table-column>
+      <el-table-column prop="addressType" :label='$t("asset.standingBook.device.addressType")'></el-table-column>
+      <el-table-column prop="vendor" :label='$t("asset.standingBook.device.manufacturer")'></el-table-column>
+      <el-table-column prop="deviceModel" :label='$t("asset.standingBook.device.model")'></el-table-column>
+      <el-table-column :label='$t("asset.standingBook.device.equipment")'>
+        <template slot-scope="scope">
+          <show-equipment-component :id="scope.row.id"></show-equipment-component>
+        </template>
+      </el-table-column>
+      <el-table-column prop="sysCodeName" :label='$t("asset.standingBook.device.belongSystem")'></el-table-column>
+      <el-table-column prop="status" :label='$t("asset.standingBook.device.status")'></el-table-column>
 
       <el-table-column :label='$t("common.operation")' width="87">
         <template slot-scope="scope">
@@ -55,8 +59,9 @@
     import Service from "../../../services/standing-book"
     import DetailComponent from "./detail-component";
     import DeleteComponent from "./delete-component";
+    import ShowEquipmentComponent from "./show-equipment-component";
     export default {
-        components: {DeleteComponent, DetailComponent, OperComponent},
+        components: {ShowEquipmentComponent, DeleteComponent, DetailComponent, OperComponent},
         name: 'standingBookPage',
         data() {
             return {

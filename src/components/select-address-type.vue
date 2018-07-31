@@ -1,16 +1,16 @@
 <template>
-  <el-select v-model="selection" :placeholder='$t("common.select")' clearable @change="change">
+  <el-select v-model="selections" :placeholder='$t("common.select")' clearable @change="change">
     <el-option v-for="item in systemCodes"
                :value="item.code" :key="item.code" :label="item.name"></el-option>
   </el-select>
 </template>
 <script>
     export default {
-        name: "selectSystemComponent",
+        name: "selectAddressTypeComponent",
         data() {
             return {
                 systemCodes: [],
-                selection: ''
+                selections: ''
             }
         },
         props: {
@@ -18,11 +18,10 @@
         },
         created() {
             this.initSystem();
-            this.selection = this.value
         },
         methods: {
             initSystem() {
-                this.$globalCache.system.then(system => {
+                this.$globalCache.addressType.then(system => {
                     this.systemCodes = system;
                 })
             },
@@ -30,10 +29,5 @@
                 this.$emit('input', items.join(','))
             }
         },
-        watch: {
-            value: function (newVal) {
-                this.selection = newVal;
-            }
-        }
     }
 </script>

@@ -3,15 +3,25 @@
     <div v-if="edit" class="icon-item"><span class="edit-icon" @click="showModal"></span></div>
     <div v-else class="icon-item" @click="showModal"><i class="el-icon-plus"></i>{{$t("common.add")}}</div>
     <el-dialog :title="title" :visible.sync="visible" center :width="'500px'">
-      <el-form label-width="170px" :model="data" :rules="Rules" :ref="ref" class="el-form-default" :validate-on-rule-change="false">
+      <el-form label-width="120px" :model="data" :rules="Rules" :ref="ref" class="el-form-default" :validate-on-rule-change="false">
         <el-form-item :label='$t("asset.dryContactProbe.device.sn")' prop="sn">
           <el-input v-model.trim="data.sn" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
-        <el-form-item :label='$t("asset.dryContactProbe.device.compName")' prop="compId">
-          <el-input v-model.trim="data.compId" :placeholder='$t("common.input")'></el-input>
+        <el-form-item :label='$t("asset.dryContactProbe.device.deviceModel")' prop="deviceModel">
+          <el-select v-model="data.deviceModel" :placeholder='$t("common.select")' clearable style="width: 100%;">
+            <el-option v-for="type in deviceModel" :value="type.value" :key="type.value" :label="type.text"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item :label='$t("asset.dryContactProbe.device.alarmType")' prop="alarmType">
+          <el-select v-model="data.alarmType" :placeholder='$t("common.select")' clearable style="width: 100%;">
+            <el-option v-for="type in alarmType" :value="type.value" :key="type.value" :label="type.text"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item :label='$t("asset.dryContactProbe.device.compName")' prop="projectIds">
+          <select-projects-component v-model="data.projectIds" style="width: 100%"></select-projects-component>
         </el-form-item>
         <el-form-item :label='$t("asset.dryContactProbe.device.assetName")' prop="assetManageId">
-          <el-input v-model.trim="data.assetManageId" :placeholder='$t("common.input")'></el-input>
+          <select-asset-component v-model="data.assetManageId" style="width: 100%"></select-asset-component>
         </el-form-item>
         <el-form-item :label='$t("asset.dryContactProbe.device.address")' prop="address">
           <el-input v-model.trim="data.address" :placeholder='$t("common.input")'></el-input>
@@ -32,14 +42,21 @@
         mixins: [operMixin],
         data() {
             return {
-                data: {},
+                data: {
+                    deviceModel: 'WFZ1ZT',
+                    alarmType: 0
+                },
                 service: Service,
-                Rules: [
-
-                ]
+                deviceModel: CommonConstant.dryContactProbe,
             }
         },
         methods: {
+            resetData() {
+                this.data = {
+                    deviceModel: 'WFZ1ZT',
+                    alarmType: 0
+                }
+            }
         }
     }
 </script>

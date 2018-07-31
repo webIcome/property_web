@@ -9,6 +9,7 @@ class GlobalCache {
         this._projects;
         this._system;
         this._assetType;
+        this._addressType;
     }
     refleshCompanies() {
         this._companies = null;
@@ -74,6 +75,20 @@ class GlobalCache {
             })
         }
         return this._assetType;
+    }
+    get addressType() {
+        if (!this._addressType) {
+            this._addressType = HttpClient.get('assetManage/findAddressTypeList', {baseURL: Config.WELL_URL_API}).then(res => {
+                if (!res.data.data) {
+                    this._addressType = null;
+                } else {
+                    return res.data.data;
+                }
+            }).catch(err => {
+                this._addressType = null;
+            })
+        }
+        return this._addressType;
     }
 }
 

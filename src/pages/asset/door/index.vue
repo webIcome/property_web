@@ -6,7 +6,7 @@
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
         <label>{{$t("asset.door.device.compName")}}</label>
-        <el-input type="text" v-model="searchParams.address" :placeholder='$t("common.input")' clearable/>
+        <select-projects-component v-model="searchParams.projectIds"></select-projects-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.door.device.sn")}}</label>
@@ -14,11 +14,11 @@
       </div>
       <div class="form-group">
         <label>{{$t("asset.door.device.assetName")}}</label>
-        <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
+        <select-asset-component v-model="searchParams.assetManageIds"></select-asset-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.door.device.address")}}</label>
-        <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
+        <el-input type="text" v-model="searchParams.address" :placeholder='$t("common.input")' clearable/>
       </div>
     </template>
     <template slot="control" slot-scope="{ids, refreshPage}">
@@ -36,22 +36,22 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column prop="compName" :label='$t("asset.door.device.doorStatusName")'></el-table-column>
-      <el-table-column prop="compName" :label='$t("asset.door.device.compName")'></el-table-column>
-      <el-table-column prop="asset" :label='$t("asset.door.device.assetName")'></el-table-column>
+      <el-table-column prop="currentDoorStateName" :label='$t("asset.door.device.doorStatusName")'></el-table-column>
+      <el-table-column prop="projectName" :label='$t("asset.door.device.compName")'></el-table-column>
+      <el-table-column prop="assetManageName" :label='$t("asset.door.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.door.device.address")'></el-table-column>
       <el-table-column prop="alarmThreshold" :label='$t("asset.door.device.alarmThreshold")'></el-table-column>
       <el-table-column prop="alarmType" :label='$t("asset.door.device.alarmType")'></el-table-column>
       <el-table-column :label='$t("asset.door.device.electricQuantity")'>
         <template slot-scope="scope">
-          <span :class="getPowerClass(scope.row.electricQuantity)">
+          <span :class="getPowerClass(scope.row.electricLevel)">
             <span class="icon"></span>
           </span>
         </template>
       </el-table-column>
       <el-table-column min-width="120" :label='$t("asset.door.device.signalQuality")'>
         <template slot-scope="scope">
-          <span :class="getSignalClass(scope.row.signalQuality)">
+          <span :class="getSignalClass(scope.row.signalLevel)">
             <span class="icon"></span>
           </span>
         </template>
@@ -60,14 +60,14 @@
       <el-table-column :label='$t("common.operation")' width="87">
         <template slot-scope="scope">
           <el-row type="flex" justify="space-between">
-            <oper-component :id="scope.row.id" :edit="true" @initCurrentPaging="pagingEvent"></oper-component>
-            <delete-component :id="scope.row.id" @initCurrentPaging="pagingEvent"></delete-component>
+            <oper-component :id="scope.row.deviceId" :edit="true" @initCurrentPaging="pagingEvent"></oper-component>
+            <delete-component :id="scope.row.deviceId" @initCurrentPaging="pagingEvent"></delete-component>
           </el-row>
         </template>
       </el-table-column>
       <el-table-column type="expand">
         <template slot-scope="scope">
-          <detail-component :id="scope.row.id"></detail-component>
+          <detail-component :id="scope.row.deviceId"></detail-component>
         </template>
       </el-table-column>
     </template>
@@ -90,26 +90,44 @@
         },
         methods: {
             getPowerClass(value) {
-                if (!value) return;
-                if (value > 3.1) {
-                    return 'full-power'
-                } else if (value > 2.9) {
-                    return 'two-power'
-                } else if (value > 2.7) {
-                    return 'one-power'
-                } else {
-                    return 'no-power'
+                let className = '';
+                switch (value) {
+                    case 1:
+                        className = 'full-power';
+                        break;
+                    case 2:
+                        className = 'two-power';
+                        break;
+                    case 3:
+                        className = 'one-power';
+                        break;
+                    case 4:
+                        className = 'no-power';
+                        break;
+                    default:
+                        break;
                 }
+                return className;
             },
             getSignalClass(value) {
-                if (!value) return 'no-signal';
-                if (value > 115) {
-                    return 'one-signal'
-                } else if (value > 105) {
-                    return 'two-signal'
-                } else {
-                    return 'full-signal'
+                let className = '';
+                switch (value) {
+                    case 1:
+                        className = 'full-signal';
+                        break;
+                    case 2:
+                        className = 'two-signal';
+                        break;
+                    case 3:
+                        className = 'one-signal';
+                        break;
+                    case 4:
+                        className = 'no-signal';
+                        break;
+                    default:
+                        break;
                 }
+                return className;
             },
         }
     }

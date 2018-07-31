@@ -7,7 +7,7 @@ import Config from "../config";
 const option = {baseURL: Config.WELL_URL_API};
 export default {
     findList(params) {
-        return HttpClient.get('doortrip/findPage', Object.assign({params: params},option)).then(res => {
+        return HttpClient.get('meterRead/findPage', Object.assign({params: params},option)).then(res => {
             if (res.data && res.data.data) {
                 return res.data.data;
             } else {
@@ -16,65 +16,65 @@ export default {
         })
     },
     getList(params) {
-        return HttpClient.get('doortrip/findList', Object.assign({params: params},option)).then(res => {
+        return HttpClient.get('meterRead/findList', Object.assign({params: params},option)).then(res => {
             return res.data.data;
         })
     },
     getDetail(id) {
-        return HttpClient.get('doortrip/findInfoByDeviceId/' + id, option).then(res => {
+        return HttpClient.get('meterRead/findInfoByDeviceId/' + id, option).then(res => {
             return res.data.data;
         })
     },
     operate(body) {
-        return HttpClient.post('doortrip/saveOrUpdate', body,option).then(res => {
+        return HttpClient.post('meterRead/saveOrUpdate', body,option).then(res => {
             showSuccess(res);
             return res;
         })
     },
     deleteDevice(ids) {
-        return HttpClient.post('doortrip/removeBatchByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('meterRead/removeBatchByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSearchStatus(ids) {
-        return HttpClient.post('doortrip/batchSearchStatusByDeviceIds', '', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('meterRead/batchSearchStatusByDeviceIds', '', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSearchHeartPeriod(ids) {
-        return HttpClient.post('doortrip/batchSearchHeartBeatCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('meterRead/batchSearchHeartBeatCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSearchCollectLoop(ids) {
-        return HttpClient.post('doortrip/batchSearchAlarmDutyByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('meterRead/batchSearchAlarmDutyByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSearchAddressCode(ids) {
-        return HttpClient.post('doortrip/batchSearchThresholdByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('meterRead/batchSearchThresholdByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSetHeartPeriod(body) {
-        return HttpClient.post('doortrip/batchSetHeartBeatCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
+        return HttpClient.post('meterRead/batchSetHeartBeatCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSetCollectLoop(params) {
-        return HttpClient.post('doortrip/batchSetThresholdByDeviceIds','', Object.assign({params: params},option)).then(res => {
+        return HttpClient.post('meterRead/batchSetThresholdByDeviceIds','', Object.assign({params: params},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSetAddressCode(body) {
-        return HttpClient.post('doortrip/batchSetAlarmDutyByDeviceIds', '',Object.assign({params: body}, option)).then(res => {
+        return HttpClient.post('meterRead/batchSetAlarmDutyByDeviceIds', '',Object.assign({params: body}, option)).then(res => {
             showSuccess(res);
             return res;
         })

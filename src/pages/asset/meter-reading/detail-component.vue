@@ -5,11 +5,11 @@
       <div class="detail-content">
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.sn")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.sn}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.deviceModel")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.deviceModel}}</div>
         </div>
       </div>
     </div>
@@ -18,15 +18,15 @@
       <div class="detail-content">
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.power")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.currentValue}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.electricQuantity")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.electricQuantity}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.signalQuality")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.signalQuantity}}</div>
         </div>
       </div>
     </div>
@@ -35,15 +35,15 @@
       <div class="detail-content">
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.compName")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.projectName}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.assetName")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.assetManageName}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.address")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.address}}</div>
         </div>
       </div>
     </div>
@@ -52,15 +52,15 @@
       <div class="detail-content">
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.heartbeatCycle")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.heartbeatCycle}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.collectLoop")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.collectDirection}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.meterReading.device.addressCode")}}：</div>
-          <div class="detail-content-value"></div>
+          <div class="detail-content-value">{{device.addressCode}}</div>
         </div>
       </div>
     </div>

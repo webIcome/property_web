@@ -25,7 +25,7 @@
         @selection-change="handleSelectionChange"
         class="my-table"
         :ref="tableRef">
-      <slot name="table" :isSelectable="isSelectable" :pagingEvent="pagingEvent"></slot>
+      <slot name="table" :isSelectable="isSelectable" :pagingEvent="pagingEvent" :getPowerClass="getPowerClass" :getSignalClass="getSignalClass"></slot>
     </el-table>
     <el-row style="padding: 25px 0" type="flex" justify="end" v-if="paginationShow">
       <el-pagination
@@ -116,7 +116,47 @@
             },
             isSelectable(row,index) {
                 return row.status != 1
-            }
+            },
+            getPowerClass(value) {
+                let className = '';
+                switch (value) {
+                    case 1:
+                        className = 'full-power';
+                        break;
+                    case 2:
+                        className = 'two-power';
+                        break;
+                    case 3:
+                        className = 'one-power';
+                        break;
+                    case 4:
+                        className = 'no-power';
+                        break;
+                    default:
+                        break;
+                }
+                return className;
+            },
+            getSignalClass(value) {
+                let className = '';
+                switch (value) {
+                    case 1:
+                        className = 'full-signal';
+                        break;
+                    case 2:
+                        className = 'two-signal';
+                        break;
+                    case 3:
+                        className = 'one-signal';
+                        break;
+                    case 4:
+                        className = 'no-signal';
+                        break;
+                    default:
+                        break;
+                }
+                return className;
+            },
         },
         destroyed() {
         }

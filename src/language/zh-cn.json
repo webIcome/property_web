@@ -19,12 +19,59 @@
             {"value": 4, "text": "住宅"},
             {"value": 5, "text": "文化"}
         ],
+        "alarmType": [
+            {"value": 0, "text": "普通告警"},
+            {"value": 1, "text": "紧急告警"}
+        ],
+        "assetStatus": [
+            {"value": 0, "text": "未使用"},
+            {"value": 1, "text": "正在使用"}
+        ],
         "flag": [
             {"value": 0, "text": "激活"},
             {"value": 1, "text": "冻结"}
         ],
         "bodyProbe": [
             {"value": "IRZ1ZT", "text": "IRZ1ZT"}
+        ],
+        "currentProbe": [
+            {"value": "WLL2ZT", "text": "WLL2ZT"}
+        ],
+        "door": [
+            {"value": "DMZ1ZT", "text": "DMZ1ZT"}
+        ],
+        "dryContactProbe": [
+            {"value": "WFZ1ZT", "text": "WFZ1ZT"}
+        ],
+        "flowProbe": [
+            {"value": "WFZ1ZT", "text": "WFZ1ZT"}
+        ],
+        "illuminanceProbe": [
+            {"value": "OPZ1ZT", "text": "OPZ1ZT"}
+        ],
+        "inundateProbe": [
+            {"value": "CPS1ZT", "text": "CPS1ZT"}
+        ],
+        "meterReading": [
+            {"value": "DTE7ZT", "text": "DTE7ZT"}
+        ],
+        "shake": [
+            {"value": "DMZ2ZT", "text": "DMZ2ZT"}
+        ],
+        "soundProbe": [
+            {"value": "ASDBZT", "text": "ASDBZT"}
+        ],
+        "temperatureHumidityProbe": [
+            {"value": "TZZ2ZT", "text": "TZZ2ZT"}
+        ],
+        "waterLevel": [
+            {"value": "WLL2ZT", "text": "WLL2ZT"}
+        ],
+        "temperatureProbe": [
+            {"value": "TZZHZT", "text": "TZZHZT"}
+        ],
+        "waterGage": [
+            {"value": "WPZTZT", "text": "WPZTZT"}
         ]
     },
     "dialog": {
@@ -129,8 +176,8 @@
         "error": "请输入正确的格式",
         "range": "范围",
         "positiveInteger": "必须为正整数",
-        "integer": "必须为整数"
-
+        "integer": "必须为整数",
+        "sn": "ID必须为8位16进制字符"
     },
     "system": {
         "log": {
@@ -227,7 +274,10 @@
                 "sum": "金额",
                 "maintenanceUnit": "维保单位",
                 "chargePerson": "责任人",
-                "remark": "备注"
+                "remark": "备注",
+                "sn": "设备编号",
+                "terminalType": "设备类型",
+                "deviceModel": "设备型号"
             }
         },
         "waterLevel": {
@@ -277,6 +327,7 @@
             "device": {
                 "sn": "设备ID",
                 "statusName": "运行状态",
+                "deviceModel": "设备型号",
                 "acceleratedSpeed": "最新加速度",
                 "alarmThreshold": "告警阈值",
                 "alarmDuty": "告警使能",

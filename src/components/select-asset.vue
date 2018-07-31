@@ -1,5 +1,6 @@
 <template>
-  <el-select v-model="selections" multiple
+  <el-select v-model="selections"
+             :multiple="multiple"
              filterable
              reserve-keyword
              :placeholder='$t("common.select")'
@@ -11,7 +12,7 @@
   </el-select>
 </template>
 <script>
-     import Service from "../services/meter-reading"
+     import Service from "../services/standing-book"
      export default {
          name: 'selectAssetComponent',
          data() {
@@ -22,13 +23,14 @@
              }
          },
          props: {
-             value: ''
+             value: '',
+             multiple: false
          },
          methods: {
              remoteMethod(query) {
                  if (query !== '') {
                      this.loading = true;
-                     Service.findList({assetManageName: query}).then(list => {
+                     Service.getList({assetManageName: query}).then(list => {
                          this.loading = false;
                          this.assets = list;
                      })

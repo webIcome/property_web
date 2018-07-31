@@ -6,7 +6,7 @@
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
         <label>{{$t("asset.meterReading.device.compName")}}</label>
-        <el-input type="text" v-model="searchParams.address" :placeholder='$t("common.input")' clearable/>
+        <select-projects-component v-model="searchParams.projectIds"></select-projects-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.meterReading.device.sn")}}</label>
@@ -14,34 +14,34 @@
       </div>
       <div class="form-group">
         <label>{{$t("asset.meterReading.device.assetName")}}</label>
-        <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
+        <select-asset-component v-model="searchParams.assetManageIds"></select-asset-component>
       </div>
       <div class="form-group">
         <label>{{$t("asset.meterReading.device.address")}}</label>
-        <el-input type="text" v-model="searchParams.manufacturer" :placeholder='$t("common.input")' clearable/>
+        <el-input type="text" v-model="searchParams.address" :placeholder='$t("common.input")' clearable/>
       </div>
     </template>
     <template slot="control" slot-scope="{ids, refreshPage}">
       <control-component :deviceIds="ids" @refreshPage="refreshPage"></control-component>
     </template>
-    <template slot="table" slot-scope="{isSelectable,pagingEvent}">
+    <template slot="table" slot-scope="{isSelectable,pagingEvent,getSignalClass,getPowerClass}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
       <el-table-column prop="sn" :label='$t("asset.meterReading.device.sn")'></el-table-column>
       <el-table-column prop="deviceModel" :label='$t("asset.meterReading.device.deviceModel")'></el-table-column>
-      <el-table-column prop="compName" :label='$t("asset.meterReading.device.power")'></el-table-column>
-      <el-table-column prop="compName" :label='$t("asset.meterReading.device.compName")'></el-table-column>
-      <el-table-column prop="asset" :label='$t("asset.meterReading.device.assetName")'></el-table-column>
+      <el-table-column prop="currentValue" :label='$t("asset.meterReading.device.power")'></el-table-column>
+      <el-table-column prop="projectName" :label='$t("asset.meterReading.device.compName")'></el-table-column>
+      <el-table-column prop="assetManageName" :label='$t("asset.meterReading.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.meterReading.device.address")'></el-table-column>
       <el-table-column :label='$t("asset.meterReading.device.electricQuantity")'>
         <template slot-scope="scope">
-          <span :class="getPowerClass(scope.row.electricQuantity)">
+          <span :class="getPowerClass(scope.row.electricLevel)">
             <span class="icon"></span>
           </span>
         </template>
       </el-table-column>
       <el-table-column min-width="120" :label='$t("asset.meterReading.device.signalQuality")'>
         <template slot-scope="scope">
-          <span :class="getSignalClass(scope.row.signalQuality)">
+          <span :class="getSignalClass(scope.row.signalLevel)">
             <span class="icon"></span>
           </span>
         </template>
@@ -50,14 +50,14 @@
       <el-table-column :label='$t("common.operation")' width="87">
         <template slot-scope="scope">
           <el-row type="flex" justify="space-between">
-            <oper-component :id="scope.row.id" :edit="true" @initCurrentPaging="pagingEvent"></oper-component>
-            <delete-component :id="scope.row.id" @initCurrentPaging="pagingEvent"></delete-component>
+            <oper-component :id="scope.row.deviceId" :edit="true" @initCurrentPaging="pagingEvent"></oper-component>
+            <delete-component :id="scope.row.deviceId" @initCurrentPaging="pagingEvent"></delete-component>
           </el-row>
         </template>
       </el-table-column>
       <el-table-column type="expand">
         <template slot-scope="scope">
-          <detail-component :id="scope.row.id"></detail-component>
+          <detail-component :id="scope.row.deviceId"></detail-component>
         </template>
       </el-table-column>
     </template>

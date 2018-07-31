@@ -18,6 +18,10 @@ const CurrentProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset
 const Door = () => import(/* webpackChunkName: "asset" */'../pages/asset/door/index.vue');
 const WaterGage = () => import(/* webpackChunkName: "asset" */'../pages/asset/water-gage/index.vue');
 const DryContactProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/dry-contact-probe/index.vue');
+const MeterReading = () => import(/* webpackChunkName: "asset" */'../pages/asset/meter-reading/index.vue');
+const BodyProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/body-probe/index.vue');
+const Shake = () => import(/* webpackChunkName: "asset" */'../pages/asset/shake/index.vue');
+const SoundProbe = () => import(/* webpackChunkName: "asset" */'../pages/asset/sound-probe/index.vue');
 //system
 const Log = () => import(/* webpackChunkName: "sys" */'../pages/system/log/index.vue');
 const Role = () => import(/* webpackChunkName: "sys" */'../pages/system/role/index.vue');
@@ -52,6 +56,10 @@ let router = new Router({
                 {path: 'door', name: 'door', component: Door},
                 {path: 'water-gage', name: 'waterGage', component: WaterGage},
                 {path: 'dry-contact-probe', name: 'dryContactProbe', component: DryContactProbe},
+                {path: 'meter-reading', name: 'meterReading', component: MeterReading},
+                {path: 'body-sensor', name: 'bodySensor', component: BodyProbe},
+                {path: 'shake-probe', name: 'shake', component: Shake},
+                {path: 'sound-probe', name: 'soundProbe', component: SoundProbe},
                 {path: 'standing-book', name: 'standingBook', component: StandingBook},
             ]},
             {path: 'just-time', name: 'justTime', component: JustTime},

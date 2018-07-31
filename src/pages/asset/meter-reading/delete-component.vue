@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-    import Service from '../../../services/door'
+    import Service from '../../../services/meter-reading'
     export default {
         name: 'deleteComponent',
         data() {

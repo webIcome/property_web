@@ -1,12 +1,26 @@
 /**
  * Created by spring on 2018/7/20.
  */
+import CommonConstant from "../../constants/common";
 export default {
     data() {
         return {
             ref: 'edit',
             visible: false,
             data: {},
+            alarmType: CommonConstant.alarmType,
+            Rules: {
+                sn: [
+                    {required: true, message: this.$t("rules.require")},
+                    {pattern: /^[0-9A-Fa-f]{8}$/, message: this.$t("rules.sn")}
+                ],
+                deviceModel: [
+                    {required: true, message: this.$t("rules.require")},
+                ],
+                alarmType: [
+                    {required: true, message: this.$t("rules.require")},
+                ],
+            }
         }
     },
     props: {

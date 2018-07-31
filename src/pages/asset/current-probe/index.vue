@@ -13,7 +13,7 @@
         <el-input type="text" v-model="searchParams.assetName" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
-        <label>{{$t("asset.shake.device.assetName")}}</label>
+        <label>{{$t("asset.currentProbe.device.assetName")}}</label>
         <select-asset-component v-model="searchParams.assetManageIds"></select-asset-component>
       </div>
       <div class="form-group">

@@ -18,6 +18,7 @@
         },
         methods: {
             selectLanguage(value) {
+                this.$globalCache.clearCache();
                 Language.setLanguage(value, 365)
             }
         }
