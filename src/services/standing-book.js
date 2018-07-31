@@ -20,6 +20,11 @@ export default {
             return res.data.data;
         })
     },
+    getDeviceList(id) {
+        return HttpClient.get('assetManage/findDeviceListById/' + id, option).then(res => {
+            return res.data.data;
+        })
+    },
     getDetail(id) {
         return HttpClient.get('assetManage/findInfoById/' + id, option).then(res => {
             return res.data.data;
