@@ -32,7 +32,8 @@
                         {modulename: '干接点', url: 'dry-contact-probe',ename: 'dry-contact-probe'},
                         {modulename: '声音', url: 'sound-probe',ename: 'sound-probe'},
                     ]
-                },],
+                },
+                    {modulename: "告警管理", ename: 'alarm', url: 'alarm'},],
             }
         },
         created() {

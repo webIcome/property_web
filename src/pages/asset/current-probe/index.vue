@@ -24,7 +24,7 @@
     <template slot="control" slot-scope="{ids, refreshPage}">
       <control-component :deviceIds="ids" @refreshPage="refreshPage"></control-component>
     </template>
-    <template slot="table" slot-scope="{isSelectable, pagingEvent}">
+    <template slot="table" slot-scope="{isSelectable,pagingEvent,getSignalClass,getPowerClass}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
       <el-table-column prop="sn" :label='$t("asset.currentProbe.device.sn")'></el-table-column>
       <el-table-column prop="deviceModel" :label='$t("asset.currentProbe.device.deviceModel")'></el-table-column>
@@ -40,7 +40,7 @@
       <el-table-column prop="projectName" :label='$t("asset.currentProbe.device.compName")'></el-table-column>
       <el-table-column prop="assetManageName" :label='$t("asset.currentProbe.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.currentProbe.device.address")'></el-table-column>
-      <el-table-column prop="alarmThreshold" :label='$t("asset.waterGage.device.alarmThreshold")'></el-table-column>
+      <el-table-column prop="alarmThreshold" :label='$t("asset.currentProbe.device.alarmThreshold")'></el-table-column>
       <el-table-column prop="alarmDuty" :label='$t("asset.currentProbe.device.alarmDuty")'></el-table-column>
       <el-table-column prop="alarmType" :label='$t("asset.currentProbe.device.alarmType")'></el-table-column>
       <el-table-column :label='$t("asset.currentProbe.device.electricQuantity")'>
@@ -90,28 +90,7 @@
             }
         },
         methods: {
-            getPowerClass(value) {
-                if (!value) return;
-                if (value > 3.1) {
-                    return 'full-power'
-                } else if (value > 2.9) {
-                    return 'two-power'
-                } else if (value > 2.7) {
-                    return 'one-power'
-                } else {
-                    return 'no-power'
-                }
-            },
-            getSignalClass(value) {
-                if (!value) return 'no-signal';
-                if (value > 115) {
-                    return 'one-signal'
-                } else if (value > 105) {
-                    return 'two-signal'
-                } else {
-                    return 'full-signal'
-                }
-            },
+
         }
     }
 </script>

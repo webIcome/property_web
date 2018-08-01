@@ -193,6 +193,7 @@
                 &.user,
                 &.statistical-statement,
                 &.data-analysis,
+                &.alarm,
                 &.equipment {
                   .nav-icon {
                     display: inline-block;
@@ -204,6 +205,19 @@
                   &.router-link-active {
                     background-color: #5181ed;
                     color: #fff;
+                  }
+                }
+                &.alarm {
+                  .nav-icon {
+                    background-image: url("../../assets/home/alarm.png");
+                    width: 22px;
+                    height: 24px;
+                  }
+                  &:hover,
+                  &.router-link-active {
+                    .nav-icon {
+                      background-image: url("../../assets/home/alarm-active.png");
+                    }
                   }
                 }
                 &.data-analysis {

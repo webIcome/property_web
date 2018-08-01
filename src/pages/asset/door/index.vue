@@ -24,7 +24,7 @@
     <template slot="control" slot-scope="{ids, refreshPage}">
       <control-component :deviceIds="ids" @refreshPage="refreshPage"></control-component>
     </template>
-    <template slot="table" slot-scope="{isSelectable,pagingEvent}">
+    <template slot="table" slot-scope="{isSelectable,pagingEvent,getSignalClass,getPowerClass}">
       <el-table-column type="selection" width="55" :selectable="isSelectable"></el-table-column>
       <el-table-column prop="sn" :label='$t("asset.door.device.sn")'></el-table-column>
       <el-table-column prop="deviceModel" :label='$t("asset.door.device.deviceModel")'></el-table-column>
@@ -89,7 +89,7 @@
             }
         },
         methods: {
-            getPowerClass(value) {
+           /* getPowerClass(value) {
                 let className = '';
                 switch (value) {
                     case 1:
@@ -128,7 +128,7 @@
                         break;
                 }
                 return className;
-            },
+            },*/
         }
     }
 </script>

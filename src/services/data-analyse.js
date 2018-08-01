@@ -8,7 +8,7 @@ import Config from "../config";
 const option = {baseURL: Config.WELL_URL_API};
 export default {
     findList(params) {
-        return HttpClient.get('report/findReportData', Object.assign({params: params}, option)).then(res => {
+        return HttpClient.get('alarmRecord/findDataAnalysisPage', Object.assign({params: params}, option)).then(res => {
             if (res.data && res.data.data) {
                 return res.data.data;
             } else {
@@ -16,4 +16,14 @@ export default {
             }
         })
     },
+    findReportData(params) {
+        return HttpClient.get('report/findReportData', Object.assign({params: params}, option)).then(res => {
+            return res.data.data
+        })
+    },
+    findCurrentReportData(params) {
+        return HttpClient.get('report/findCurrentReportData', Object.assign({params: params}, option)).then(res => {
+            return res.data.data
+        })
+    }
 }

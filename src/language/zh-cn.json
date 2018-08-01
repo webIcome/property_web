@@ -280,6 +280,20 @@
                 "deviceModel": "设备型号"
             }
         },
+        "alarm": {
+            "title": "告警管理",
+            "device": {
+                "assetName": "资产名称",
+                "address": "安装地点",
+                "equipment": "物联设备",
+                "alarmContent": "告警内容",
+                "alarmType": "告警类型",
+                "alarmTime": "告警时间",
+                "dealStatus": "处理状态",
+                "dealTime": "处理时间",
+                "dealPeople": "处理人"
+            }
+        },
         "waterLevel": {
             "title": "水位检测器",
             "delete": "您确认要删除此设备吗？",
@@ -588,7 +602,8 @@
             "endTime": "结束时间",
             "normal": "正常",
             "normalAlarm": "普通告警",
-            "urgentAlarm": "紧急告警"
+            "urgentAlarm": "紧急告警",
+            "alarmNumber": "告警次数"
         },
         "dataAnalyse": {
             "title": "数据分析",

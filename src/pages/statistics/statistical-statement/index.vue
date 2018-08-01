@@ -22,7 +22,7 @@
       created() {},
       computed: {
           isLine: function () {
-              return true
+              return this.params.type == 2
           }
       },
       methods: {

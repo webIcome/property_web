@@ -8,7 +8,7 @@
         <slot name="add" :initList="initList" :table="$refs[tableRef]" :list="list" :selectionList="selectionList"></slot>
       </div>
     </div>
-    <div class="search-header">
+    <div class="search-header" v-if="isSearch">
       <div class="search-header-content">
         <form class="form-inline default-form">
           <slot name="search" :searchParams="searchParams"></slot>
@@ -62,6 +62,9 @@
         props: {
             service: Object,
             title: String,
+            isSearch: {
+                default: true
+            }
         },
         created() {
             this.initList();

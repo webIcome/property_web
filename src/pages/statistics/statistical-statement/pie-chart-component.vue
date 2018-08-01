@@ -1,20 +1,34 @@
 <template>
-  <pie-echart-component :option="useOption"></pie-echart-component>
+  <div class="chart-items" >
+    <template v-for="item in data">
+      <div class="chart-item" :ref="test">
+        <pie-echart-component v-if="visible" :option="getOption(item)"></pie-echart-component>
+      </div>
+    </template>
+  </div>
 </template>
 <script>
     export default {
         name: "pieChartComponent",
         data() {
             return {
-                useOption: {},
+                visible: false,
+                test: 'test',
                 option: {
-                    color: ['#5282E6', '#7654DF', '#FF6668', '#FF854A', '#5282E6'],
+                    color: ['#bfbfbf', '#eb6877', '#5181ed', '#FF854A', '#5282E6'],
                     tooltip: {
                         trigger: 'item',
                         formatter: "{a} <br/>{b}: {d}%",
                     },
+                    legend: {
+                        bottom: 'center',
+                        orient: 'vertical',
+                        right: 20,
+                        itemGap: 20,
+                        icon: 'circle'
+                    },
                     title: {
-                        text:'故障率',
+                        text:'',
                         left:'center',
                         top:'center',
                         textStyle:{
@@ -27,7 +41,7 @@
                         {
                             name:'访问来源',
                             type:'pie',
-                            radius: ['75%', '90%'],
+                            radius: ['65%', '80%'],
                             avoidLabelOverlap: false,
                             label: {
                                 normal: {
@@ -59,24 +73,48 @@
         props: {
             data: {
                 default: function () {
-                    return {}
+                    return []
                 }
             }
         },
         created(){
-            this.initOption();
+
+        },
+        mounted() {
+            this.$nextTick(() => {
+                this.generateHeight();
+                this.visible = true;
+            })
         },
         methods: {
-            initOption() {
+            getOption(item) {
                 let option = JSON.parse(JSON.stringify(this.option));
-                option.series[0].data = this.data;
-                this.useOption = option;
+                let number = 0;
+                item.series.forEach(data => {
+                    number += data.value;
+                });
+                option.series[0].data = item.series;
+                option.title.text = item.name + '\n\n' + number;
+                option.legend.data = item.xAxisData;
+                return option
+            },
+            generateHeight() {
+                this.$refs[this.test].forEach(item => {
+                    item.style.height = item.offsetWidth * 1/2 + 'px';
+                })
             },
         },
-        watch: {
-            data: function () {
-                this.initOption()
-            }
-        }
     }
 </script>
+<style lang="less" scoped>
+  .chart-items {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    padding-right: 50px;
+    .chart-item {
+      width: 33.3%;
+      margin-bottom: 50px;
+    }
+  }
+</style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="line">
-    <line-echart-component :option="useOption"></line-echart-component>
+  <div class="line" :ref="test">
+    <line-echart-component v-if="visible" :option="useOption"></line-echart-component>
   </div>
 </template>
 <script>
@@ -8,7 +8,10 @@
         name: "lineChartComponent",
         data() {
             return {
+                visible: false,
+                test: 'test',
                 useOption: {},
+                color: ['#bfbfbf', '#eb6877', '#5181ed', '#FF854A', '#5282E6'],
                 option: {
                     tooltip: {
                         trigger: 'axis',
@@ -19,18 +22,26 @@
                             }
                         }
                     },
+                    legend: {
+                        data: [],
+                        bottom: 0,
+                    },
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
                         nameTextStyle: {
-                            color: '#8FABD2',
+                            color: '#787878',
+                            padding: [0, 0, 0, 10],
                         },
-                        name: '日',
+                        name: this.xName,
                         axisLabel: {
-                            color: '#8FABD2'
+                            color: '#787878'
                         },
                         axisLine: {
-                            show: false,
+                            show: true,
+                            lineStyle: {
+                                color: '#787878'
+                            }
                         },
                         axisTick: {
                             show: false
@@ -42,23 +53,26 @@
                             show: true,
                             lineStyle: {
                                 width: 0.15,
-                                color: '#ddd',
+//                                color: '#ddd',
 
                             }
                         },
                         nameTextStyle: {
-                            color: '#8FABD2',
-                            padding: [10,10,20,10]
+                            color: '#787878',
+                            padding: [10,60,20,10],
                         },
-                        name: 'Wh',
+                        name: this.$t("statistics.statisticalStatement.alarmNumber"),
                         axisLine: {
-                            show: false,
+                            show: true,
+                            lineStyle: {
+                                color: '#787878'
+                            }
                         },
                         axisTick: {
                             show: false
                         },
                         axisLabel: {
-                            color: '#8FABD2'
+                            color: '#787878'
                         },
                     },
                     series: []
@@ -67,39 +81,45 @@
                     type: 'line',
                     smooth: true,
                     name: '',
-                    lineStyle: {
-                        color: '#44B5FD',
-                        width: 3,
-                    },
-                    itemStyle: {
-                        opacity: 0
-                    }
                 }
             }
         },
         props: {
             data: {
                 default: function () {
-                    return []
+                    return {}
                 }
-            }
+            },
+            xName: ''
         },
         created(){
             this.initOption();
         },
+        mounted() {
+            this.$nextTick(() => {
+                this.generateHeight();
+                this.visible = true;
+            })
+        },
         methods: {
             initOption() {
                 let option = JSON.parse(JSON.stringify(this.option));
-                this.data.forEach(item => {
-                    option.series.push(this.getSeries(item))
+                this.data.series.forEach(item => {
+                    option.series.push(this.getSeries(item.data, item.name))
+                    option.legend.data.push(item.name)
                 });
+                option.xAxis.data = this.data.xAxisData;
                 this.useOption = option;
             },
-            getSeries(data) {
+            getSeries(data, name) {
                 let series = JSON.parse(JSON.stringify(this.series));
                 series.data = data;
+                series.name = name;
                 return series;
-            }
+            },
+            generateHeight() {
+                this.$refs[this.test].style.height = this.$refs[this.test].offsetWidth * 1/3 + 'px';
+            },
         },
         watch: {
             data: function () {
@@ -110,6 +130,6 @@
 </script>
 <style lang="less" scoped>
   .line {
-    height: 400px;
+    padding: 50px 0;
   }
 </style>
