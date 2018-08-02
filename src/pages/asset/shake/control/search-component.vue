@@ -63,10 +63,10 @@
                         fn = Service.controlSearchRelieveAlarmValue;
                         break;
                     case 5:
-                        fn = Service.controlSearchGatherPeriod;
+                        fn = Service.controlSearchAlarmEnabled;
                         break;
                     case 6:
-                        fn = Service.controlSearchRange;
+                        fn = Service.controlSearchGatherPeriod;
                         break;
                     case 7:
                         fn = Service.controlSearchResetData;

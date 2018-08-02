@@ -12,14 +12,14 @@
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="500px">
       <el-form label-width="170px" :model="operData" :ref="ref" :rules="Rules" class="el-form-default" :validate-on-rule-change="false">
         <template v-if="operData.operateType == 1">
-          <el-form-item :label='$t("control.setAlarmCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setAlarmCycle") + "/min"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 2">
           <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
             <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.open")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='0'>{{$t("control.close")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.close")}}</el-radio>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 3">

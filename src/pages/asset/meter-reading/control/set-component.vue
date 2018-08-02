@@ -12,13 +12,16 @@
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="500px">
       <el-form label-width="170px" :model="operData" :ref="ref" :rules="Rules" class="el-form-default" :validate-on-rule-change="false">
         <template v-if="operData.operateType == 1">
-          <el-form-item :label='$t("control.setHeartbeatCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setHeartbeatCycle") + "/h"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 2">
-          <el-form-item :label='$t("control.collectLoop")' prop="baseValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+          <el-form-item :label='$t("control.collectLoop")' prop="operateValue">
+            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.oneForwardLoop")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.oneReverseLoop")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='3'>{{$t("control.twoForwardLoop")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='4'>{{$t("control.twoReverseLoop")}}</el-radio>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 3">
@@ -60,13 +63,13 @@
                     ]
                 } else if (this.operData.operateType == 2) {
                     rules.operateValue = [
-                            {required: true, message: this.$t("rules.require")},
-                            {type: 'number', message: this.$t("rules.range") + '0~255', min:0, max: 255},
-                            {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
+                        {required: true, message: this.$t("rules.require")},
                         ]
                 } else if (this.operData.operateType == 3) {
                     rules.operateValue = [
                         {required: true, message: this.$t("rules.require")},
+                        {type: 'number', message: this.$t("rules.range") + '1~247', min: 1, max: 247},
+                        {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 }
                 return rules
@@ -80,10 +83,10 @@
                         fn = Service.controlSetHeartPeriod;
                         break;
                     case 2:
-                        fn = Service.controlSetAlarmValue;
+                        fn = Service.controlSetCollectLoop;
                         break;
                     case 3:
-                        fn = Service.controlSetAlarmEnabled;
+                        fn = Service.controlSetAddressCode;
                         break;
                 }
                 return fn

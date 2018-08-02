@@ -12,36 +12,36 @@
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="500px">
       <el-form label-width="170px" :model="operData" :ref="ref" :rules="Rules" class="el-form-default" :validate-on-rule-change="false">
         <template v-if="operData.operateType == 1">
-          <el-form-item :label='$t("control.setHeartbeatCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setHeartbeatCycle") + "/h"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 2">
-          <el-form-item :label='$t("control.setAlarmCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setAlarmCycle") + "/min"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType ==3">
-          <el-form-item :label='$t("control.setAlarmThresholdMin") + "/℃"' prop="operateValueMin">
+          <el-form-item :label='$t("control.setAlarmThresholdMin") + "/0.1℃"' prop="operateValueMin">
             <el-radio v-model="operData.min" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.min" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.min == 1" type="text" v-model.trim.number="operData.operateValueMin" clearable></el-input>
           </el-form-item>
-          <el-form-item :label='$t("control.setAlarmThresholdMax") + "/℃"' prop="operateValueMax">
+          <el-form-item :label='$t("control.setAlarmThresholdMax") + "/0.1℃"' prop="operateValueMax">
             <el-radio v-model="operData.max" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.max" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.max == 1" type="text" v-model.trim.number="operData.operateValueMax" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 4">
-          <el-form-item :label='$t("control.setRelieveAlarmThreshold") + "/0.1lux"' prop="operateValue">
+          <el-form-item :label='$t("control.setRelieveAlarmThreshold") + "/0.1℃"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 5">
           <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
             <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.open")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='0'>{{$t("control.close")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.close")}}</el-radio>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 6">
@@ -94,15 +94,15 @@
                     if (this.operData.min == 1) {
                         rules.operateValueMin = [
                             {required: true, message: this.$t("rules.require")},
-                            {type: 'number', message: this.$t("rules.range") + '0~' + this.$t("control.setAlarmThresholdMax"), min: 0, max: this.operData.operateValueMax},
-                            {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
+                            {type: 'number', message: this.$t("rules.range") + '0~' + this.$t("control.setAlarmThresholdMax"), min: -32768, max: this.operData.operateValueMax},
+                            {pattern: /^[-+]?[0-9]+$/, message: this.$t("rules.positiveInteger")}
                         ]
                     }
                     if (this.operData.max == 1) {
                         rules.operateValueMax = [
                             {required: true, message: this.$t("rules.require")},
-                            {type: 'number', message: this.$t("rules.range") + this.$t("control.setAlarmThresholdMin") + '~16777215', min: this.operData.operateValueMin, max: 16777215},
-                            {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
+                            {type: 'number', message: this.$t("rules.range") + this.$t("control.setAlarmThresholdMin") + '~32768', min: this.operData.operateValueMin, max: 32768},
+                            {pattern: /^[-+]?[0-9]+$/, message: this.$t("rules.positiveInteger")}
                         ]
                     }
 
@@ -155,6 +155,9 @@
                 this.$refs[this.ref].validateField(prop, (errorMessage) => {
 
                 })
+            },
+            resetData() {
+                this.operData = {operateType: '',operateValueMin: '',operateValueMax: ''}
             }
         },
         watch: {
@@ -162,7 +165,7 @@
                 if (newVal) {
                     this.operData.operateValueMin = ''
                 } else {
-                    this.operData.operateValueMin = 16777215;
+                    this.operData.operateValueMin = 65535;
                     this.validateField('operateValueMin')
                 }
             },
@@ -170,7 +173,7 @@
                 if (newVal) {
                     this.operData.operateValueMax = ''
                 } else {
-                    this.operData.operateValueMax = 16777215
+                    this.operData.operateValueMax = 65535
                     this.validateField('operateValueMax')
                 }
             },

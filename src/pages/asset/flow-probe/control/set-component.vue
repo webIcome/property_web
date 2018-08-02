@@ -12,29 +12,29 @@
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="500px">
       <el-form label-width="170px" :model="operData" :ref="ref" :rules="Rules" class="el-form-default" :validate-on-rule-change="false">
         <template v-if="operData.operateType == 1">
-          <el-form-item :label='$t("control.setHeartbeatCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setHeartbeatCycle") + "/min"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 2">
-          <el-form-item :label='$t("control.setAlarmCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setAlarmCycle") + "/min"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType ==3">
-          <el-form-item :label='$t("control.setAlarmThresholdMin") + " m/s"' prop="operateValueMin">
+          <el-form-item :label='$t("control.setAlarmThresholdMin") + " 0.1m/s"' prop="operateValueMin">
             <el-radio v-model="operData.min" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.min" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.min == 1" type="text" v-model.trim.number="operData.operateValueMin" clearable></el-input>
           </el-form-item>
-          <el-form-item :label='$t("control.setAlarmThresholdMax") + " m/s"' prop="operateValueMax">
+          <el-form-item :label='$t("control.setAlarmThresholdMax") + " 0.1m/s"' prop="operateValueMax">
             <el-radio v-model="operData.max" :label='1'>{{$t("control.setValue")}}</el-radio>
             <el-radio v-model="operData.max" :label='0'>{{$t("control.none")}}</el-radio>
             <el-input v-if="operData.max == 1" type="text" v-model.trim.number="operData.operateValueMax" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 4">
-          <el-form-item :label='$t("control.setRelieveAlarmThreshold") + "/0.1lux"' prop="operateValue">
+          <el-form-item :label='$t("control.setRelieveAlarmThreshold") + " 0.1m/s"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
@@ -44,13 +44,19 @@
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 6">
-          <el-form-item :label='$t("control.setRange")' prop="operateValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+          <el-form-item :label='$t("control.setFlowRange")' prop="flowValue">
+            <el-input type="text" v-model.trim.number="operData.flowValue" clearable></el-input>
+          </el-form-item>
+          <el-form-item :label='$t("control.setSpeedRange")' prop="speedValue">
+            <el-input type="text" v-model.trim.number="operData.speedValue" clearable></el-input>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 7">
-          <el-form-item :label='$t("control.setStandValue")' prop="operateValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+          <el-form-item :label='$t("control.setFlowStandValue")' prop="flowValue">
+            <el-input type="text" v-model.trim.number="operData.flowValue" clearable></el-input>
+          </el-form-item>
+          <el-form-item :label='$t("control.setSpeedStandValue")' prop="speedValue">
+            <el-input type="text" v-model.trim.number="operData.speedValue" clearable></el-input>
           </el-form-item>
         </template>
       </el-form>
@@ -86,13 +92,13 @@
                 if (this.operData.operateType == 1) {
                     rules.operateValue = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '1~24', min: 1, max: 24},
+                        {type: 'number', message: this.$t("rules.range") + '0~65535', min: 0, max: 65535},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 2) {
                     rules.operateValue = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '0~255', min: 0, max: 255},
+                        {type: 'number', message: this.$t("rules.range") + '0~65535', min: 0, max: 65535},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 3) {
@@ -106,7 +112,7 @@
                     if (this.operData.max == 1) {
                         rules.operateValueMax = [
                             {required: true, message: this.$t("rules.require")},
-                            {type: 'number', message: this.$t("rules.range") + this.$t("control.setAlarmThresholdMin") + '~16777215', min: this.operData.operateValueMin, max: 65535},
+                            {type: 'number', message: this.$t("rules.range") + this.$t("control.setAlarmThresholdMin") + '~65535', min: this.operData.operateValueMin, max: 65535},
                             {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                         ]
                     }
@@ -120,17 +126,27 @@
                 } else if (this.operData.operateType == 5) {
                     rules.operateValue = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '0~65535', min: 0, max: 65535},
+                        {type: 'number', message: this.$t("rules.range") + '5~65535', min: 5, max: 65535},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 6) {
-                    rules.operateValue = [
+                    rules.flowValue = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '0~255', min: 0, max: 255},
+                        {type: 'number', message: this.$t("rules.range") + '0~65535', min: 0, max: 65535},
+                        {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
+                    ];
+                    rules.speedValue = [
+                        {required: true, message: this.$t("rules.require")},
+                        {type: 'number', message: this.$t("rules.range") + '0~65535', min: 0, max: 65535},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 7) {
-                    rules.operateValue = [
+                    rules.flowValue = [
+                        {required: true, message: this.$t("rules.require")},
+                        {type: 'number', message: this.$t("rules.range") + '-127~127', min: -127, max: 127},
+                        {pattern: /^[-+]?[0-9]+$/, message: this.$t("rules.integer")}
+                    ];
+                    rules.speedValue = [
                         {required: true, message: this.$t("rules.require")},
                         {type: 'number', message: this.$t("rules.range") + '-127~127', min: -127, max: 127},
                         {pattern: /^[-+]?[0-9]+$/, message: this.$t("rules.integer")}
@@ -171,6 +187,9 @@
                 this.$refs[this.ref].validateField(prop, (errorMessage) => {
 
                 })
+            },
+            resetData() {
+                this.operData = {operateType: '',operateValueMin: '',operateValueMax: ''}
             }
         },
         watch: {

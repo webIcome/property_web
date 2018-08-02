@@ -52,7 +52,7 @@
                 if (this.operData.operateType == 1) {
                     rules.operateValue = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '1~24', min: 1, max: 24},
+                        {type: 'number', message: this.$t("rules.range") + '1~65535', min: 1, max: 65535},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 2) {
@@ -77,13 +77,10 @@
                 let fn = '';
                 switch (operateType) {
                     case 1:
-                        fn = Service.controlSetHeartPeriod;
+                        fn = Service.controlSetNobody;
                         break;
                     case 2:
-                        fn = Service.controlSetAlarmValue;
-                        break;
-                    case 3:
-                        fn = Service.controlSetAlarmEnabled;
+                        fn = Service.controlSetSomebody;
                         break;
                 }
                 return fn

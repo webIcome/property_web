@@ -43,8 +43,74 @@ export default {
             return res;
         })
     },
+    controlSearchHeartPeriod(ids) {
+        return HttpClient.post('voiceRecognition/batchSearchHeartBeatCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchAlarmPeriod(ids) {
+        return HttpClient.post('voiceRecognition/batchSearchAlarmCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchAlarmValue(ids) {
+        return HttpClient.post('voiceRecognition/batchSearchThresholdByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchRelieveAlarmValue(ids) {
+        return HttpClient.post('voiceRecognition/batchSearchRelieveThresholdByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchAlarmEnabled(ids) {
+        return HttpClient.post('voiceRecognition/batchSearchAlarmDutyByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchGatherPeriod(ids) {
+        return HttpClient.post('voiceRecognition/batchSearchCollectCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
     controlSetHeartPeriod(body) {
         return HttpClient.post('voiceRecognition/batchSetHeartBeatCycleByDeviceIds', '', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetAlarmPeriod(body) {
+        return HttpClient.post('voiceRecognition/batchSetAlarmCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetAlarmValue(body) {
+        return HttpClient.post('voiceRecognition/batchSetThresholdByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetRelieveAlarmValue(body) {
+        return HttpClient.post('voiceRecognition/batchSetRelieveThresholdByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetAlarmEnabled(body) {
+        return HttpClient.post('voiceRecognition/batchSetAlarmDutyByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetGatherPeriod(body) {
+        return HttpClient.post('voiceRecognition/batchSetCollectCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
             showSuccess(res);
             return res;
         })

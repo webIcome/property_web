@@ -12,7 +12,7 @@
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="500px">
       <el-form label-width="170px" :model="operData" :ref="ref" :rules="Rules" class="el-form-default" :validate-on-rule-change="false">
         <template v-if="operData.operateType == 1">
-          <el-form-item :label='$t("control.setHeartbeatCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setHeartbeatCycle") + "/h"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
@@ -26,8 +26,10 @@
         </template>
         <template v-else-if="operData.operateType == 3">
           <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
-            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.open")}}</el-radio>
             <el-radio v-model="operData.operateValue" :label='0'>{{$t("control.close")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.oneAlarm")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.twoAlarm")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='3'>{{$t("control.threeAlarm")}}</el-radio>
           </el-form-item>
         </template>
       </el-form>
@@ -46,9 +48,9 @@
         data() {
             return {
                 setItems: [
-                    {value: 1, text: this.$t("control.alarmCycle")},
-                    {value: 2, text: this.$t("control.alarmDuty")},
-                    {value: 3, text: this.$t("control.collectCycle")},
+                    {value: 1, text: this.$t("control.heartbeatCycle")},
+                    {value: 2, text: this.$t("control.alarmThreshold")},
+                    {value: 3, text: this.$t("control.alarmDuty")},
                 ],
                 operData: {}
             }

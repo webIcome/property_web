@@ -43,14 +43,86 @@ export default {
             return res;
         })
     },
-    controlSetValue(body) {
-        return HttpClient.post('shockCheck/batchSetStaticValueByDeviceIds','', Object.assign({params: body},option)).then(res => {
+    controlSearchHeartPeriod(ids) {
+        return HttpClient.post('shockCheck/batchSearchHeartBeatCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchAlarmPeriod(ids) {
+        return HttpClient.post('shockCheck/batchSearchAlarmCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchAlarmValue(ids) {
+        return HttpClient.post('shockCheck/batchSearchThresholdByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchRelieveAlarmValue(ids) {
+        return HttpClient.post('shockCheck/batchSearchRelieveThresholdByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchAlarmEnabled(ids) {
+        return HttpClient.post('shockCheck/batchSearchAlarmDutyByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchGatherPeriod(ids) {
+        return HttpClient.post('shockCheck/batchSearchCollectCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSearchResetData(ids) {
+        return HttpClient.post('shockCheck/batchSearchInitStandardByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSetHeartPeriod(body) {
         return HttpClient.post('shockCheck/batchSetHeartBeatCycleByDeviceIds', '', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetAlarmPeriod(body) {
+        return HttpClient.post('shockCheck/batchSetAlarmCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetAlarmValue(body) {
+        return HttpClient.post('shockCheck/batchSetThresholdByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetRelieveAlarmValue(body) {
+        return HttpClient.post('shockCheck/batchSetRelieveThresholdByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetAlarmEnabled(body) {
+        return HttpClient.post('shockCheck/batchSetAlarmDutyByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetGatherPeriod(body) {
+        return HttpClient.post('shockCheck/batchSetCollectCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
+            showSuccess(res);
+            return res;
+        })
+    },
+    controlSetResetData(body) {
+        return HttpClient.post('shockCheck/batchSetInitStandardByDeviceIds','', Object.assign({params: body},option)).then(res => {
             showSuccess(res);
             return res;
         })

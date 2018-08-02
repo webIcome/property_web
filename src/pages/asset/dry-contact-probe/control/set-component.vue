@@ -12,7 +12,7 @@
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="500px">
       <el-form label-width="170px" :model="operData" :ref="ref" :rules="Rules" class="el-form-default" :validate-on-rule-change="false">
         <template v-if="operData.operateType == 1">
-          <el-form-item :label='$t("control.setAlarmCycle")' prop="operateValue">
+          <el-form-item :label='$t("control.setAlarmCycle") + "/min"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
@@ -24,12 +24,13 @@
         <template v-else-if="operData.operateType == 3">
           <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
             <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.open")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='0'>{{$t("control.close")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.close")}}</el-radio>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 4">
           <el-form-item :label='$t("control.turnOffLevel")' prop="operateValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.lowTurnOffLevel")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.highTurnOffLevel")}}</el-radio>
           </el-form-item>
         </template>
       </el-form>
@@ -53,7 +54,6 @@
                     {value: 3, text: this.$t("control.alarmDuty")},
                     {value: 4, text: this.$t("control.turnOffLevel")},
                 ],
-                operData: {}
             }
         },
         computed: {
@@ -62,13 +62,13 @@
                 if (this.operData.operateType == 1) {
                     rules.operateValue = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '1~24', min: 1, max: 24},
+                        {type: 'number', message: this.$t("rules.range") + '0~255', min: 0, max: 255},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 2) {
                     rules.operateValue = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '1~24', min: 1, max: 24},
+                        {type: 'number', message: this.$t("rules.range") + '0~65535', min: 0, max: 65535},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 3) {
@@ -78,8 +78,6 @@
                 } else if (this.operData.operateType == 4) {
                     rules.operateValue = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '1~24', min: 1, max: 24},
-                        {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 }
                 return rules

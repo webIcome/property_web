@@ -6,7 +6,7 @@ export default {
     data() {
         return {
             visible: false,
-            operData: {},
+            operData: {operateType: ''},
             ref: 'well-form',
             setItems: [
             ],
@@ -46,13 +46,16 @@ export default {
         clearValidate() {
             if (this.$refs[this.ref]) this.$refs[this.ref].clearValidate();
         },
+        resetData() {
+            this.operData = {operateType: ''}
+        }
     },
     watch: {
         visible: function (newValue, oldValue) {
             if (newValue) {
                 this.clearValidate();
             } else {
-                this.operData = {}
+                this.resetData()
             }
         }
     }
