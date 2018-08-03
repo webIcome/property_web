@@ -1,8 +1,42 @@
 /**
  * Created by spring on 2018/7/17.
  */
+import UserStorage from "../../store/user"
 export default {
+    data() {
+        return {
+            navs: [],
+            code: '',
+            localNavs: []
+        }
+    },
+    created() {
+        // this.navs = this.dealNavs(this.getNavs(this.code))
+    },
     methods: {
+        getNavs(code) {
+            return UserStorage.state.navs[code];
+        },
+        dealNavs(navs) {
+            return navs.map(item => {
+                this.localNav.forEach(nav => {
+                    if (item.modulecode == nav.modulecode) {
+                        item.url = nav.url;
+                        item.ename = nav.ename;
+                    }
+                })
+                return item;
+
+            }).filter(item => {
+                let filter = false;
+                this.localNavs.forEach(nav => {
+                    if (nav.modulecode == item.modulecode) {
+                        filter = true;
+                    }
+                });
+                return filter;
+            })
+        },
         collapse(nav, two) {
             let isActive = nav.isActive;
             this.isActiveHide(two);

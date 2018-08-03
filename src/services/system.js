@@ -6,16 +6,6 @@ import Config from "../config";
 import {Message} from 'element-ui'
 const option = {baseURL: Config.URL_API};
 export default {
-    login(access) {
-        return HttpClient.post('accounts/login', access, option).then(res => {
-            return res;
-        })
-    },
-    changePassword(body) {
-        return HttpClient.post('user/changePassword', body, option).then(res => {
-            return res;
-        })
-    },
     getMenus(appid) {
         return HttpClient.post('permission/getModuleListByUserid', {appid: appid}, option).then(res => {
             if (!res.data.data) {
@@ -51,48 +41,6 @@ export default {
                 return res.data.data.result;
             }
         });
-    },
-    findLogs(params) {
-        return HttpClient.get('operationLogs/getList', Object.assign({params: params}, option)).then(res => {
-            if (res.data && res.data.data) {
-                return res.data.data;
-            } else {
-                return {};
-            }
-        })
-    },
-    findUsers(params) {
-        return HttpClient.get('user/getList', Object.assign({params: params}, option)).then(res => {
-            if (res.data && res.data.data) {
-                return res.data.data;
-            } else {
-                return {};
-            }
-        })
-    },
-    resetPassword(body) {
-        return HttpClient.post('user/resetPassword', body, option).then(res => {
-            showSuccess(res)
-            return res;
-        })
-    },
-    addUser(body) {
-        return HttpClient.post('user/add', body, option).then(res => {
-            showSuccess(res)
-            return res;
-        })
-    },
-    editUser(body) {
-        return HttpClient.post('user/edit', body, option).then(res => {
-            showSuccess(res)
-            return res;
-        })
-    },
-    deleteUser(body) {
-        return HttpClient.post('user/delete', body, option).then(res => {
-            showSuccess(res)
-            return res;
-        })
     },
     addCompany(body) {
         return HttpClient.post('company/add', body, option).then(res => {

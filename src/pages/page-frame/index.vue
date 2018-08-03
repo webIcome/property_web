@@ -8,27 +8,26 @@
 </template>
 <script>
     import HeaderComponent from "./header";
-    import AsideNav from "./aside-nav-analyze";
     import UserStorage from "../../store/user"
-  export default {
-      components: {HeaderComponent, AsideNav},
-      name: 'pageFrame',
-      data() {
-          return {
-              visible: true
-          }
-      },
-      created() {
-//          this.getMenus();
-      },
-      methods: {
-          getMenus() {
-              UserStorage.getMenus().then(list => {
-                  this.visible = true;
-              })
-          }
-      }
-  }
+    export default {
+        components: {HeaderComponent},
+        name: 'pageFrame',
+        data() {
+            return {
+                visible: false
+            }
+        },
+        created() {
+            this.getMenus();
+        },
+        methods: {
+            getMenus() {
+                UserStorage.getMenus().then(list => {
+                    this.visible = true;
+                })
+            }
+        }
+    }
 </script>
 <style scoped lang="less">
   @navWidth: 240px;
@@ -45,6 +44,7 @@
       background-color: @navBackgroundColor;
     }
   }
+
   .full-view-bg {
     min-width: 1300px;
     &:before {

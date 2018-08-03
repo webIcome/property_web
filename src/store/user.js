@@ -5,6 +5,7 @@
 import LocalStorage from "./local-storage";
 import Types from "./types";
 import Services from '../services/system';
+import LoginService from '../services/login'
 export default {
     state: {
         get user() {
@@ -39,7 +40,7 @@ export default {
         }
     },
     login(access) {
-        return Services.login(access).then(res => {
+        return LoginService.login(access).then(res => {
             if (res.data.data) {
                 this.state.user = res.data.data;
                 return res.data.data
@@ -48,10 +49,26 @@ export default {
             }
         }).catch(err => Promise.reject(err))
     },
-    getMenus(id) {
-        return Services.getMenus(id).then(list => {
-            this.state.navs = list;
-            return list;
+    getMenus() {
+        return Services.getMenus(3).then(list => {
+            this.state.navs = dealNav(list);
+            return this.state.navs;
         }).catch(err => Promise.reject(err))
     }
+}
+
+function dealNav(list) {
+    let navs = {};
+    navs.parents = list.map(item => {
+        if (item.children.length) {
+            navs[item.modulecode] = getChildren(item.children)
+        }
+        return {modulename: item.modulename, modulecode: item.modulecode};
+    })
+}
+
+function getChildren(list) {
+    return list.map(item => {
+        return {modulename: item.modulename, modulecode: item.modulecode};
+    })
 }

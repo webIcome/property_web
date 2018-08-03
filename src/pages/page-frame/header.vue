@@ -38,14 +38,22 @@
         methods: {
             initNav() {
                 this.useNavs = [];
-               /* Storage.state.navs.forEach(item => {
+              /*  this.useNavs = Storage.state.navs.parents.map(item => {
                     this.localNav.forEach(nav => {
                         if (item.modulecode == nav.modulecode) {
                             item.url = nav.url;
-                            this.useNavs.push(item)
                         }
                     })
-                })*/
+                    return item;
+                }).filter(item => {
+                    let filter = false;
+                    this.localNavs.forEach(nav => {
+                        if (nav.modulecode == item.modulecode) {
+                            filter = true;
+                        }
+                    });
+                    return filter;
+                });*/
                 this.useNavs = this.localNav;
                 let currentHash = window.location.hash.substring(window.location.hash.indexOf('/'));
                 console.log(currentHash)

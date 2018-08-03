@@ -5,6 +5,7 @@
       <el-button style="margin-right: 0" :disabled="!isEdit" @click="updateLimit" class="edit-btn">{{$t("system.role.confirm")}}</el-button>
     </div>
     <div class="organize-limit">
+      <!--<limit-component :list="list"></limit-component>-->
       <template v-for="limit in list">
         <div class="limits">
           <div class="limits-parent">
@@ -26,9 +27,10 @@
 </template>
 <script>
     import Service from "../../../services/system"
+    import LimitComponent from "./limit-component";
     export default {
-        name: 'limitComponent',
-        components: {},
+        name: 'limit',
+        components: {LimitComponent},
         data() {
             return {
                 list: [],

@@ -13,6 +13,10 @@
                 navs: [
                     {modulename: "统计报表", ename: 'statistical-statement', url: 'statistical-statement'},
                     {modulename: "数据分析", ename: 'data-analysis', url: 'data-analysis'},
+                ],
+                localNavs: [
+                    {modulename: "统计报表", ename: 'statistical-statement', url: 'statistical-statement'},
+                    {modulename: "数据分析", ename: 'data-analysis', url: 'data-analysis'},
                 ]
             }
         },

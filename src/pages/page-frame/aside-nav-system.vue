@@ -15,7 +15,13 @@
                     {modulename: "项目管理", ename: 'project', url: 'project'},
                     {modulename: "用户管理", ename: 'user', url: 'user'},
                     {modulename: "操作日志", ename: 'log', url: 'log'},
-                ]
+                ],
+                localNavs: [
+                    {modulename: "角色管理", ename: 'role', url: 'role'},
+                    {modulename: "项目管理", ename: 'project', url: 'project'},
+                    {modulename: "用户管理", ename: 'user', url: 'user'},
+                    {modulename: "操作日志", ename: 'log', url: 'log'},
+                ],
             }
         },
         methods: {
