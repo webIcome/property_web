@@ -11,7 +11,7 @@ export default {
         }
     },
     created() {
-        // this.navs = this.dealNavs(this.getNavs(this.code))
+        this.navs = this.dealNavs(this.getNavs(this.code))
     },
     methods: {
         getNavs(code) {
@@ -19,7 +19,7 @@ export default {
         },
         dealNavs(navs) {
             return navs.map(item => {
-                this.localNav.forEach(nav => {
+                this.localNavs.forEach(nav => {
                     if (item.modulecode == nav.modulecode) {
                         item.url = nav.url;
                         item.ename = nav.ename;

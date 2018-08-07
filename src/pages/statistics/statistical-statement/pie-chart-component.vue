@@ -15,7 +15,7 @@
                 visible: false,
                 test: 'test',
                 option: {
-                    color: ['#bfbfbf', '#eb6877', '#5181ed', '#FF854A', '#5282E6'],
+                    color: ['#bfbfbf', '#eb6877', '#5181ed', '#FF854A'],
                     tooltip: {
                         trigger: 'item',
                         formatter: "{a} <br/>{b}: {d}%",

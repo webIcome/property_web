@@ -2,9 +2,7 @@
   <div class="section">
     <div class="aside">
       <div class="project">
-        <el-select v-model="project" :placeholder='$t("common.select")' clearable>
-          <el-option v-for="type in projects" :value="type.value" :key="type.value" :label="type.text"></el-option>
-        </el-select>
+        <select-project-component v-model="projectId" :defaultId="true"></select-project-component>
       </div>
       <div>
         <template v-for="nav in navs">
@@ -20,67 +18,127 @@
     </div>
     <div class="content">
       <div class="content-right">
-        <div class="title-header">
-          <div class="title-header-content">
-            <span>{{title}}</span>
+        <template v-for="item in list">
+          <div class="title-header">
+            <div class="title-header-content">
+              <span>{{item.address}}</span>
+            </div>
+            <div class="title-header-en">
+              <span v-for="status in item.addressStatus" :class="{red: status.status != 0}">{{status.value}}</span>
+            </div>
           </div>
-          <div class="title-header-en">
-            <span></span>
-          </div>
-        </div>
-        <div class="just-time-content">
-          <template v-for="item in data">
-            <div class="content-item">
-              <div class="content-item-content">
-                <div class="content-item-title">{{item.title}}</div>
-                <div class="content-item-body" :class="item.ename">
-                  <div class="content-item-img"></div>
-                  <div class="content-item-text">1111111111</div>
+          <div class="just-time-content">
+            <template v-for="info in item.assetInfo">
+              <div class="content-item">
+                <div class="content-item-content">
+                  <div class="content-item-title">{{info.assetName}}</div>
+                  <div class="content-item-body" :class="info.ename">
+                    <div class="content-item-img"></div>
+                    <div class="content-item-text">
+                      <template v-for="text in info.addressStatus">
+                        <div :class="{red: text.status != 0}">{{text.value}}</div>
+                      </template>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </div>
+            </template>
+          </div>
+        </template>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import Service from "../../services/just-time"
   export default {
       name: 'justTimePage',
       data() {
           return {
-              project: '',
-              projects: [],
+              projectId: '',
+              code: '',
+              list: [{
+                  "address": "A02区 13层1303A",
+                  "addressStatus": [
+                      {status: 0,value: '温度 30'},
+                      {status: 1,value: '温度 30'},
+                  ],
+                  "assetInfo": [
+                      {
+                          "assetName": "水箱",
+                          "addressStatus": [{status: 0,value: '温度 30'},
+                              {status: 1,value: '温度 30'},],
+                          code: 2
+                      }
+                  ]
+              }],
               navs: [
-                  {name: this.$t("justTime.drainage"), ename: 'drainage', isActive: true},
-                  {name: this.$t("justTime.powerDistribution"), ename: 'power-distribution', isActive: false},
-                  {name: this.$t("justTime.elevator"), ename: 'elevator', isActive: false},
-                  {name: this.$t("justTime.airConditioner"), ename: 'air-conditioner', isActive: false},
-                  {name: this.$t("justTime.others"), ename: 'others', isActive: false},
+                  {name: this.$t("justTime.drainage"), ename: 'drainage', isActive: true, code: 1},
+                  {name: this.$t("justTime.powerDistribution"), ename: 'power-distribution', isActive: false, code: 2},
+                  {name: this.$t("justTime.elevator"), ename: 'elevator', isActive: false, code: 3},
+                  {name: this.$t("justTime.airConditioner"), ename: 'air-conditioner', isActive: false, code: 4},
+                  {name: this.$t("justTime.others"), ename: 'others', isActive: false, code: 5},
               ],
-              data: [
-                  {title: "生活用水泵", ename: 'water-pump'},
-                  {title: "生活用水泵", ename: 'boiler'},
-                  {title: "生活用水泵", ename: 'car-platform'},
-                  {title: "生活用水泵", ename: 'compressor'},
-                  {title: "生活用水泵", ename: 'cooling-tower'},
-                  {title: "生活用水泵", ename: 'draught-fan'},
-                  {title: "生活用水泵", ename: 'switch-box'},
-                  {title: "生活用水泵", ename: 'tractor'},
-                  {title: "生活用水泵", ename: 'transformer'},
-                  {title: "生活用水泵", ename: 'water-pump'},
-              ]
+              localList: [
+                  {title: "泵", ename: 'water-pump', code: 1},
+                  {title: "冰箱", ename: 'water-tank', code: 2},
+                  {title: "锅炉", ename: 'boiler', code: 3},
+                  {title: "配电柜", ename: 'switch-box', code: 4},
+                  {title: "变压器", ename: 'transformer', code: 5},
+                  {title: "曳引机", ename: 'tractor', code: 6},
+                  {title: "轿厢", ename: 'car-platform', code: 7},
+                  {title: "风机", ename: 'draught-fan', code: 8},
+                  {title: "压缩机", ename: 'compressor', code: 9},
+                  {title: "冷却塔", ename: 'cooling-tower', code: 10},
+                  {title: "其他", ename: 'others', code: 11},
+              ],
+              timer: '',
+              refreshInterval: 10000
           }
       },
-      created(){},
+      created(){
+          this.initData()
+      },
       methods: {
+          initData() {
+              this.transformData(this.list)
+              this.findList()
+              this.refreshPage();
+          },
+          refreshPage() {
+              clearInterval(this.timer);
+              this.timer = setInterval(() => {
+                  this.findList()
+              }, this.refreshInterval)
+          },
+          findList() {
+              Service.findList({projectId: this.projectId, code: this.code}).then(data => {
+                  this.list = this.transformData(data);
+              })
+          },
+          transformData(list) {
+              return list.map(item => {
+                  item.assetInfo.forEach(i => {
+                      this.localList.forEach(local => {
+                          if (local.code == i.code) {
+                              i.ename = local.ename;
+                          }
+                      });
+                  });
+                  return item
+              });
+          },
           select(nav) {
               this.navs.forEach(item => {
                   item.isActive = false;
               });
               nav.isActive = true;
+              this.code = nav.code;
+              this.findList();
           }
+      },
+      destroyed() {
+          clearInterval(this.timer);
       }
   }
 </script>
@@ -224,9 +282,17 @@
             width: 100%;
             text-align: center;
             span {
+              &.red {
+                color: #ea6a76;
+              }
               display: inline-block;
-              height: 30px;
-              line-height: 30px;
+              margin-top: 10px;
+              border-right: 1px solid #787878;
+              padding: 0 10px;
+              font-weight: bold;
+              &:last-child {
+                border: none;
+              }
             }
           }
         }
@@ -264,7 +330,11 @@
                 background-position:center;
               }
               .content-item-text{
+                font-weight: bold;
                 flex: 7;
+                .red {
+                  color: #ea6a76;
+                }
               }
               &.boiler {
                 .content-item-img {

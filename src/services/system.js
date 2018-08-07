@@ -7,11 +7,11 @@ import {Message} from 'element-ui'
 const option = {baseURL: Config.URL_API};
 export default {
     getMenus(appid) {
-        return HttpClient.post('permission/getModuleListByUserid', {appid: appid}, option).then(res => {
+        return HttpClient.get('permission/getNewModuleListByUserid', Object.assign({params: {appid: appid}}, option)).then(res => {
             if (!res.data.data) {
                 return [];
             } else {
-                return res.data.data.list;
+                return res.data.data.result;
             }
         })
     },
@@ -34,7 +34,7 @@ export default {
         });
     },
     getLimits(id) {
-        return HttpClient.post('permission/getModuleListByPostid', {postid: id}, option).then(res => {
+        return HttpClient.post('permission/getModuleListByPostid', {postid: id, appid: 3}, option).then(res => {
             if (!res.data.data) {
                 return [];
             } else {

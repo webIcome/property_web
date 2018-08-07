@@ -7,7 +7,7 @@
 <script>
     import Storage from '../store/user'
     export default {
-        name: "selectProjectsComponent",
+        name: "selectProjectComponent",
         data() {
             return {
                 projects: [],
@@ -15,7 +15,8 @@
             }
         },
         props: {
-            value: ''
+            value: '',
+            defaultId: false
         },
         created() {
             this.initProjects();
@@ -24,6 +25,9 @@
             initProjects() {
                 this.$globalCache.projects.then(projects => {
                     this.projects = projects;
+                    if (this.defaultId) {
+                        this.selections = this.projects[0].id
+                    }
                 })
             },
             change(item) {

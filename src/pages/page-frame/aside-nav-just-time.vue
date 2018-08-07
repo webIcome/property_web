@@ -10,6 +10,7 @@
         name: 'asideNavJustTime',
         data() {
             return {
+                code: 'PROPERTYSSJK',
                 navs: []
             }
         }

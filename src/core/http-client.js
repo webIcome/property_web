@@ -13,7 +13,7 @@ let cancelToken = axios.CancelToken
 let removePending = config => {
     for(let p in pending){
         if(pending[p].u === config.url + '&' + config.method + '&' + JSON.stringify(config.params)) { //当当前请求在数组中存在时执行函数体
-            if(config.method.toLowerCase() == 'get') {
+            if(config.method.toLowerCase() == 'get' || config.path == 'permission/getModuleListByPostid') {
                 pending[p].f(); //执行取消操作
                 pending.splice(p, 1); //把这条记录从数组中移除
             } else {
@@ -34,7 +34,7 @@ let removePendingAfterRes = config => {
 axios.defaults.baseURL = Config.LAMP_URL_API;
 
 axios.interceptors.request.use(function (config) {
-    removePending({url: config.baseURL + config.url, method: config.method, params: config.params});
+    removePending({url: config.baseURL + config.url, method: config.method, params: config.params, path: config.url});
     config.cancelToken = new cancelToken((c)=>{
         // 这里的ajax标识我是用请求地址&请求方式拼接的字符串，当然你可以选择其他的一些方式
         pending.push({ u: config.baseURL + config.url + '&' + config.method + '&' + JSON.stringify(config.params), f: c });

@@ -64,7 +64,8 @@ function dealNav(list) {
             navs[item.modulecode] = getChildren(item.children)
         }
         return {modulename: item.modulename, modulecode: item.modulecode};
-    })
+    });
+    return navs;
 }
 
 function getChildren(list) {

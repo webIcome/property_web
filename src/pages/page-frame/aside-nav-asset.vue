@@ -10,12 +10,13 @@
         mixins: [asideNavMixin],
         data() {
             return {
+                code: 'PROPERTYZCGL',
                 navs: [
-                    {modulename: "台帐管理", ename: 'standing-book', url: 'standing-book'},
+                    {modulename: "台帐管理", ename: 'standing-book', url: 'standing-book', modulecode: 'PROPERTYTZGL'},
                     {
                     modulename: '物联设备',
                     ename: 'equipment',
-                    modulecode: 'TERMINAL',
+                    modulecode: 'PROPERTYWLSB',
                     children: [
                         {modulename: '水位', modulecode: 'TERMINALWATERLEVEL', url: 'water-level', ename: 'water-level'},
                         {modulename: '水流', url: 'flow-probe',ename: 'flow-probe'},
@@ -35,11 +36,11 @@
                 },
                     {modulename: "告警管理", ename: 'alarm', url: 'alarm'},],
                 localNavs: [
-                    {modulename: "台帐管理", ename: 'standing-book', url: 'standing-book'},
+                    {modulename: "台帐管理", ename: 'standing-book', url: 'standing-book', modulecode: 'PROPERTYTZGL'},
                     {
                         modulename: '物联设备',
                         ename: 'equipment',
-                        modulecode: 'TERMINAL',
+                        modulecode: 'PROPERTYWLSB',
                         children: [
                             {modulename: '水位', modulecode: 'TERMINALWATERLEVEL', url: 'water-level', ename: 'water-level'},
                             {modulename: '水流', url: 'flow-probe',ename: 'flow-probe'},
@@ -57,7 +58,7 @@
                             {modulename: '声音', url: 'sound-probe',ename: 'sound-probe'},
                         ]
                     },
-                    {modulename: "告警管理", ename: 'alarm', url: 'alarm'},]
+                    {modulename: "告警管理", ename: 'alarm', url: 'alarm', modulecode: 'PROPERTYGJGL'},]
             }
         },
         created() {

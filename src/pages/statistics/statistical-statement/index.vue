@@ -1,5 +1,5 @@
 <template>
-  <div class="content-right">
+  <div class="content-right" style="min-width: 1260px">
     <div class="statistical-header">
       <params-component v-model="params"></params-component>
     </div>

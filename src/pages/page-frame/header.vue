@@ -23,10 +23,10 @@
         data() {
             return {
                 localNav: [
-                    {modulename: "实时监控", url: '/just-time', modulecode: 'justTime'},
-                    {modulename: "统计分析", url: '/analyze', modulecode: 'analyze'},
-                    {modulename: "资产管理", url: '/asset', modulecode: 'asset'},
-                    {modulename: "系统管理", url: '/system', modulecode: 'system'},
+                    {modulename: "实时监控", url: '/just-time', modulecode: 'PROPERTYSSJK'},
+                    {modulename: "统计分析", url: '/analyze', modulecode: 'PROPERTYTJFX'},
+                    {modulename: "资产管理", url: '/asset', modulecode: 'PROPERTYZCGL'},
+                    {modulename: "系统管理", url: '/system', modulecode: 'PROPERTYXTGL'},
                 ],
                 user: Storage.state.user,
                 useNavs: []
@@ -38,7 +38,7 @@
         methods: {
             initNav() {
                 this.useNavs = [];
-              /*  this.useNavs = Storage.state.navs.parents.map(item => {
+                this.useNavs = Storage.state.navs.parents.map(item => {
                     this.localNav.forEach(nav => {
                         if (item.modulecode == nav.modulecode) {
                             item.url = nav.url;
@@ -47,14 +47,14 @@
                     return item;
                 }).filter(item => {
                     let filter = false;
-                    this.localNavs.forEach(nav => {
+                    this.localNav.forEach(nav => {
                         if (nav.modulecode == item.modulecode) {
                             filter = true;
                         }
                     });
                     return filter;
-                });*/
-                this.useNavs = this.localNav;
+                });
+//                this.useNavs = this.localNav;
                 let currentHash = window.location.hash.substring(window.location.hash.indexOf('/'));
                 console.log(currentHash)
                 if (currentHash == '/' || ! currentHash) {
