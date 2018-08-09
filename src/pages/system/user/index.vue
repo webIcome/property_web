@@ -10,9 +10,7 @@
       </div>
       <div class="form-group">
         <label>{{$t("system.user.projects")}}</label>
-        <el-select v-model="searchParams.projectid" :placeholder='$t("common.select")' clearable>
-          <el-option v-for="type in projects" :value="type.value" :key="type.value" :label="type.text"></el-option>
-        </el-select>
+        <select-projects-component v-model="searchParams.projectids"></select-projects-component>
       </div>
       <div class="form-group">
         <label>{{$t("system.user.job")}}</label>
@@ -26,7 +24,11 @@
     <template slot="table" slot-scope="{pagingEvent}">
       <el-table-column prop="username" :label='$t("system.user.zhName")'></el-table-column>
       <el-table-column prop="usernameEn" :label='$t("system.user.enName")'></el-table-column>
-      <el-table-column prop="companyname" :label='$t("system.user.projects")'></el-table-column>
+      <el-table-column prop="companyname" :label='$t("system.user.projects")'>
+        <templage slot-scope="scope">
+          <show-projects-component :id="scope.row.objectid" :projectIds="scope.row.projectIds"></show-projects-component>
+        </templage>
+      </el-table-column>
       <el-table-column prop="postname" :label='$t("system.user.role")'></el-table-column>
       <el-table-column prop="job" :label='$t("system.user.job")'></el-table-column>
       <el-table-column prop="linkphone" :label='$t("system.user.phone")'></el-table-column>
@@ -49,21 +51,18 @@
     import DeleteComponent from "./delete-component";
     import ResetPasswordComponent from "./reset-password-component";
     import OperComponent from "./oper-component";
+    import ShowProjectsComponent from "./show-projects-component";
     export default {
-        components: {OperComponent, ResetPasswordComponent, DeleteComponent},
+        components: {ShowProjectsComponent, OperComponent, ResetPasswordComponent, DeleteComponent},
         name: 'userPage',
         data() {
             return {
                 service: Service,
                 title: this.$t("system.user.title"),
-                projects: [],
                 visible: false
             }
         },
         created() {
-            this.$globalCache.projects.then(data => {
-                this.projects = data;
-            })
             this.visible = true;
         }
     }

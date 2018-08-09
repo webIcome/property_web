@@ -56,6 +56,7 @@
   </div>
 </template>
 <script>
+  import Storage from "../../../store/user"
   import moment from "moment"
     export default {
         name: 'paramsComponent',
@@ -67,7 +68,8 @@
                     mode: 1,
                     dimension: 3,
                     startTime: '',
-                    endTime: ''
+                    endTime: '',
+                    projectIds: Storage.state.user.projectIds
                 },
             }
         },

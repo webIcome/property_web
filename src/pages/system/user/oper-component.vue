@@ -10,6 +10,9 @@
         <el-form-item :label='$t("system.user.enName")' prop="usernameEn">
           <el-input v-model.trim="data.usernameEn" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
+        <el-form-item :label='$t("system.user.projects")' prop="projectIds">
+          <select-projects-component v-model="data.projectIds" style="width: 100%"></select-projects-component>
+        </el-form-item>
         <el-form-item :label='$t("system.user.role")' prop="postid">
           <el-select v-model="data.postid" :placeholder='$t("common.select")' clearable style="width: 100%;">
             <el-option v-for="post in posts"
@@ -54,6 +57,9 @@
                         {required: true, message: this.$t("rules.require")}
                     ],
                     postid: [
+                        {required: true, message: this.$t("rules.require")}
+                    ],
+                    projectIds: [
                         {required: true, message: this.$t("rules.require")}
                     ],
                     job: [
@@ -142,7 +148,7 @@
                 })
             },
             getDetail() {
-                this.data = this.user;
+                this.data = Object.assign({}, this.user);
             },
             clearValidate() {
                 if (this.$refs[this.ref]) this.$refs[this.ref].clearValidate();
