@@ -6,7 +6,7 @@
     <template slot="search" slot-scope="{searchParams}">
       <div class="form-group">
         <label>{{$t("system.user.name")}}</label>
-        <el-input type="text" v-model="searchParams.prousername" :placeholder='$t("common.input")' clearable/>
+        <el-input type="text" v-model="searchParams.username" :placeholder='$t("common.input")' clearable/>
       </div>
       <div class="form-group">
         <label>{{$t("system.user.projects")}}</label>

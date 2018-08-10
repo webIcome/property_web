@@ -19,7 +19,7 @@
       <p v-else-if="operateType == 4" class="title">{{$t("control.relieveAlarmThresholdTip")}}</p>
       <p v-else-if="operateType == 5" class="title">{{$t("control.alarmDutyTip")}}</p>
       <p v-else-if="operateType == 6" class="title">{{$t("control.collectCycleTimesTip")}}</p>
-      <p v-else-if="operateType == 7" class="title">{{$t("control.standValueTip")}}</p>
+      <p v-else-if="operateType == 7" class="title">{{$t("control.collectInitSpeedTip")}}</p>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="controlDevice">{{$t("dialog.confirm")}}</el-button>
       </span>
@@ -42,7 +42,7 @@
                     {value: 4, text: this.$t("control.relieveAlarmThreshold")},
                     {value: 5, text: this.$t("control.alarmDuty")},
                     {value: 6, text: this.$t("control.collectCycleTimes")},
-                    {value: 7, text: this.$t("control.standValue")},
+                    {value: 7, text: this.$t("control.collectInitSpeed")},
                 ],
             }
         },
@@ -69,7 +69,7 @@
                         fn = Service.controlSearchGatherPeriod;
                         break;
                     case 7:
-                        fn = Service.controlSearchResetData;
+                        fn = Service.controlSearchCollectInitSpeed;
                         break;
                 }
                 return fn

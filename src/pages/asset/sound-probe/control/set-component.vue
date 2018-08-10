@@ -39,14 +39,25 @@
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 5">
-          <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
-            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.lowTurnOffLevel")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.highTurnOffLevel")}}</el-radio>
+          <el-form-item :label='$t("control.thresholdAlarmCheck")' prop="thresholdAlarmCheck">
+            <el-radio v-model="operData.thresholdAlarmCheck" :label='0'>{{$t("control.close")}}</el-radio>
+            <el-radio v-model="operData.thresholdAlarmCheck" :label='1'>{{$t("control.open")}}</el-radio>
+          </el-form-item>
+          <el-form-item :label='$t("control.faultAlarmCheck")' prop="faultAlarmCheck">
+            <el-radio v-model="operData.faultAlarmCheck" :label='0'>{{$t("control.close")}}</el-radio>
+            <el-radio v-model="operData.faultAlarmCheck" :label='2'>{{$t("control.open")}}</el-radio>
+          </el-form-item>
+          <el-form-item :label='$t("control.startEndCheck")' prop="startEndCheck">
+            <el-radio v-model="operData.startEndCheck" :label='0'>{{$t("control.close")}}</el-radio>
+            <el-radio v-model="operData.startEndCheck" :label='4'>{{$t("control.open")}}</el-radio>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 6">
-          <el-form-item :label='$t("control.setCollectCycle")' prop="operateValue">
-            <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
+          <el-form-item :label='$t("control.setCollectCycle")' prop="cycle">
+            <el-input type="text" v-model.trim.number="operData.cycle" clearable></el-input>
+          </el-form-item>
+          <el-form-item :label='$t("control.filterTimes")' prop="count">
+            <el-input type="text" v-model.trim.number="operData.count" clearable></el-input>
           </el-form-item>
         </template>
       </el-form>
@@ -118,11 +129,16 @@
 
                     ]
                 } else if (this.operData.operateType == 6) {
-                    rules.operateValue = [
+                    rules.cycle = [
                         {required: true, message: this.$t("rules.require")},
-                        {type: 'number', message: this.$t("rules.range") + '5~65535', min: 5, max: 65535},
+                        {type: 'number', message: this.$t("rules.range") + '0~65535', min: 0, max: 65535},
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
-                    ]
+                    ];
+                    rules.count = [
+                        {required: true, message: this.$t("rules.require")},
+                        {type: 'number', message: this.$t("rules.range") + '1~10', min: 1, max: 10},
+                        {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
+                    ];
                 }
                 return rules
             }
@@ -159,7 +175,24 @@
             },
             resetData() {
                 this.operData = {operateType: '',operateValueMin: '',operateValueMax: ''}
-            }
+            },
+            control() {
+                this.$refs[this.ref].validate(valid => {
+                    if (valid) {
+                        let data;
+                        if (this.operData.operateType == 5) {
+                            data.operateValue = this.operData.thresholdAlarmCheck + this.operData.faultAlarmCheck + this.operData.startEndCheck;
+                        } else {
+                            data = this.operData;
+                        }
+                        data.deviceIds = this.deviceIds.join(',');
+                        this.getControlFn(this.operData.operateType)(data).then(res => {
+                            this.hideModal();
+                            this.initPaging();
+                        });
+                    }
+                })
+            },
         },
         watch: {
             ['operData.min'](newVal, oldVal) {
@@ -182,6 +215,10 @@
                 if (newVal == 3){
                     this.$set(this.operData, 'min', 1)
                     this.$set(this.operData, 'max', 1)
+                }else if (newVal == 5) {
+                    this.operData.thresholdAlarmCheck = 0;
+                    this.operData.faultAlarmCheck = 0;
+                    this.operData.startEndCheck = 0;
                 }
             }
         }

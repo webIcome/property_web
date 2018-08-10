@@ -162,7 +162,20 @@
         "setSecond": "几秒内",
         "setTime": "出现次数",
         "peopleJudge": "有人判定",
-        "noOneJudge": "无人判定"
+        "noOneJudge": "无人判定",
+        "powerCycle": "电能上报周期",
+        "powerCycleTip": "您确认要查询电能上报周期吗？",
+        "collectInitSpeed": "采集初始加速度值",
+        "collectInitSpeedTip": "您确认要查询采集初始加速度值吗？",
+        "setCollectInitSpeedTip": "您确认要设置采集初始加速度值吗？",
+        "thresholdAlarmCheck": "阈值告警检测",
+        "faultAlarmCheck": "故障告警检测",
+        "startEndCheck": "启停检测",
+        "filterTimes": "过滤次数",
+        "openTemperatureOpenHumidity": "开启温度，开启湿度告警",
+        "openTemperatureCloseHumidity": "开启温度，关闭湿度告警",
+        "closeTemperatureOpenHumidity": "关闭温度，开启湿度告警",
+        "closeTemperatureCloseHumidity": "关闭温度，关闭湿度告警"
     },
     "login": {
         "title": "新物业",
@@ -382,13 +395,13 @@
             "device": {
                 "sn": "设备ID",
                 "deviceModel": "设备型号",
-                "power": "最新电能",
+                "power": "最新电能/kwh",
                 "compName": "归属项目",
                 "assetName": "归属资产",
                 "address": "安装地点",
                 "electricQuantity": "电量",
                 "signalQuality": "信号质量/dBm",
-                "heartbeatCycle": "心跳包周期/h",
+                "heartbeatCycle": "电能上报周期/h",
                 "collectLoop": "采集回路&方向",
                 "addressCode": "地址码"
             }

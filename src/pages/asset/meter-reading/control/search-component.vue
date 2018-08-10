@@ -13,7 +13,7 @@
       <div class="text-center">
         <div class="dialog-warning"></div>
       </div>
-      <p v-if="operateType == 1" class="title">{{$t("control.heartbeatCycleTip")}}</p>
+      <p v-if="operateType == 1" class="title">{{$t("control.powerCycleTip")}}</p>
       <p v-else-if="operateType == 2" class="title">{{$t("control.collectLoopTip")}}</p>
       <p v-else-if="operateType == 3" class="title">{{$t("control.addressCodeTip")}}</p>
       <span slot="footer" class="dialog-footer">
@@ -32,7 +32,7 @@
         data() {
             return {
                 searchItems: [
-                    {value: 1, text: this.$t("control.heartbeatCycle")},
+                    {value: 1, text: this.$t("control.powerCycle")},
                     {value: 2, text: this.$t("control.collectLoop")},
                     {value: 3, text: this.$t("control.addressCode")},
                 ],
@@ -43,7 +43,7 @@
                 let fn = '';
                 switch (operateType) {
                     case 1:
-                        fn = Service.controlSearchHeartPeriod;
+                        fn = Service.controlSetEnergyCycle;
                         break;
                     case 2:
                         fn = Service.controlSearchCollectLoop;

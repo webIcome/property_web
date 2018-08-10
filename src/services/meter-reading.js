@@ -37,44 +37,44 @@ export default {
             return res;
         })
     },
-    controlSearchStatus(ids) {
-        return HttpClient.post('meterRead/batchSearchStatusByDeviceIds', '', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+    controlSearchStatus(body) {
+        return HttpClient.post('meterRead/batchSearchStatusByDeviceIds', '', Object.assign({params: body},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
-    controlSearchHeartPeriod(ids) {
-        return HttpClient.post('meterRead/batchSearchHeartBeatCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+    controlSearchEnergyCycle(ids) {
+        return HttpClient.post('meterRead/batchSearchElectricEnergyCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSearchCollectLoop(ids) {
-        return HttpClient.post('meterRead/batchSearchAlarmDutyByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('meterRead/batchSearchCollectDirectionByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSearchAddressCode(ids) {
-        return HttpClient.post('meterRead/batchSearchThresholdByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('meterRead/batchSearchAddressCodeByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
-    controlSetHeartPeriod(body) {
-        return HttpClient.post('meterRead/batchSetHeartBeatCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
+    controlSetEnergyCycle(body) {
+        return HttpClient.post('meterRead/batchSetElectricEnergyCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSetCollectLoop(params) {
-        return HttpClient.post('meterRead/batchSetThresholdByDeviceIds','', Object.assign({params: params},option)).then(res => {
+        return HttpClient.post('meterRead/batchSetCollectDirectionByDeviceIds','', Object.assign({params: params},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
     controlSetAddressCode(body) {
-        return HttpClient.post('meterRead/batchSetAlarmDutyByDeviceIds', '',Object.assign({params: body}, option)).then(res => {
+        return HttpClient.post('meterRead/batchSetAddressCodeByDeviceIds', '',Object.assign({params: body}, option)).then(res => {
             showSuccess(res);
             return res;
         })

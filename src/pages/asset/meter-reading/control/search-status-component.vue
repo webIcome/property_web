@@ -5,9 +5,9 @@
     </div>
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="600px">
       <el-form label-width="170px" :model="operData" :ref="ref" class="el-form-default" :validate-on-rule-change="false">
-        <el-form-item :label='$t("control.collectLoopTime")' prop="operateValue">
-          <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.oneTime")}}</el-radio>
-          <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.twoTime")}}</el-radio>
+        <el-form-item :label='$t("control.collectLoopTime")' prop="searchValue">
+          <el-radio v-model="operData.searchValue" :label='1'>{{$t("control.oneTime")}}</el-radio>
+          <el-radio v-model="operData.searchValue" :label='2'>{{$t("control.twoTime")}}</el-radio>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -26,7 +26,7 @@
         data() {
             return {
                 visible: false,
-                operData: {}
+                operData: {searchValue: 1}
             }
         },
         props: {

@@ -27,9 +27,9 @@
         <template v-else-if="operData.operateType == 3">
           <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
             <el-radio v-model="operData.operateValue" :label='0'>{{$t("control.close")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.oneAlarm")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.twoAlarm")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='3'>{{$t("control.threeAlarm")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.oneAlarm")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='4'>{{$t("control.twoAlarm")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='8'>{{$t("control.threeAlarm")}}</el-radio>
           </el-form-item>
         </template>
       </el-form>

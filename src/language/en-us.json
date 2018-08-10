@@ -1,11 +1,15 @@
 {
-  "title": "ne",
+  "title": "新物业",
   "common": {
     "operation": "操作",
     "search": "查询",
     "reset": "重置",
     "input": "请输入",
-    "select": "请选择"
+    "select": "请选择",
+    "add": "新增",
+    "edit": "编辑",
+    "bulkImport": "批量导入",
+    "download": "模板下载"
   },
   "constants": {
     "commercialType": [
@@ -14,10 +18,167 @@
       {"value": 3, "text": "商业"},
       {"value": 4, "text": "住宅"},
       {"value": 5, "text": "文化"}
+    ],
+    "alarmType": [
+      {"value": 0, "text": "普通告警"},
+      {"value": 1, "text": "紧急告警"}
+    ],
+    "assetStatus": [
+      {"value": 0, "text": "未使用"},
+      {"value": 1, "text": "正在使用"}
+    ],
+    "flag": [
+      {"value": 0, "text": "激活"},
+      {"value": 1, "text": "冻结"}
+    ],
+    "bodyProbe": [
+      {"value": "IRZ1ZT", "text": "IRZ1ZT"}
+    ],
+    "currentProbe": [
+      {"value": "WLL2ZT", "text": "WLL2ZT"}
+    ],
+    "door": [
+      {"value": "DMZ1ZT", "text": "DMZ1ZT"}
+    ],
+    "dryContactProbe": [
+      {"value": "WFZ1ZT", "text": "WFZ1ZT"}
+    ],
+    "flowProbe": [
+      {"value": "WFZ1ZT", "text": "WFZ1ZT"}
+    ],
+    "illuminanceProbe": [
+      {"value": "OPZ1ZT", "text": "OPZ1ZT"}
+    ],
+    "inundateProbe": [
+      {"value": "CPS1ZT", "text": "CPS1ZT"}
+    ],
+    "meterReading": [
+      {"value": "DTE7ZT", "text": "DTE7ZT"}
+    ],
+    "shake": [
+      {"value": "DMZ2ZT", "text": "DMZ2ZT"}
+    ],
+    "soundProbe": [
+      {"value": "ASDBZT", "text": "ASDBZT"}
+    ],
+    "temperatureHumidityProbe": [
+      {"value": "TZZ2ZT", "text": "TZZ2ZT"}
+    ],
+    "waterLevel": [
+      {"value": "WLL2ZT", "text": "WLL2ZT"}
+    ],
+    "temperatureProbe": [
+      {"value": "TZZHZT", "text": "TZZHZT"}
+    ],
+    "waterGage": [
+      {"value": "WPZTZT", "text": "WPZTZT"}
     ]
   },
+  "dialog": {
+    "title": "确认操作",
+    "confirm": "确认"
+  },
+  "detail": {
+    "basic": "基础信息",
+    "manufacturers": "厂家信息",
+    "serviceCondition": "使用情况",
+    "maintenance": "维护信息",
+    "equipment": "物联设备",
+    "status": "设备状态",
+    "belong": "归属信息",
+    "alarm": "告警信息",
+    "others": "其他信息",
+    "remark": "备注"
+  },
+  "control": {
+    "search": "查询",
+    "set": "设置",
+    "searchStatus": "查询状态",
+    "searchStatusTip": "您确认要查询状态吗？",
+    "heartbeatCycle": "心跳包周期",
+    "alarmCycle": "告警周期",
+    "relieveAlarmThreshold": "告警解除阈值",
+    "collectCycle": "采集周期",
+    "collectCycleTimes": "采集周期&过滤次数",
+    "alarmThreshold": "告警阈值",
+    "alarmDuty": "告警使能",
+    "range": "量程",
+    "standValue": "初始化校准",
+    "heartbeatCycleTip": "您确认要查询心跳包周期吗？",
+    "alarmCycleTip": "您确认要查询告警周期吗？",
+    "relieveAlarmThresholdTip": "您确认要查询解除告警阈值吗？",
+    "collectCycleTip": "您确认要查询采集周期吗？",
+    "collectCycleTimesTip": "您确认要查询采集周期&过滤次数吗？",
+    "alarmThresholdTip": "您确认要查询告警阈值吗？",
+    "alarmDutyTip": "您确认要查询告警使能吗？",
+    "rangeTip": "您确认要查询量程吗？",
+    "standValueTip": "您确认要查询初始化校准吗？",
+    "setHeartbeatCycle": "心跳包周期",
+    "setAlarmCycle": "告警周期",
+    "setAlarmThresholdMin": "告警阈值下限",
+    "setAlarmThresholdMax": "告警阈值上限",
+    "setTemperatureAlarmThresholdMin": "温度告警阈值下限/℃",
+    "setTemperatureAlarmThresholdMax": "温度告警阈值上限/℃",
+    "setHumidityAlarmThresholdMin": "湿度告警阈值下限/RH%",
+    "setHumidityAlarmThresholdMax": "湿度告警阈值上限/RH%",
+    "setRelieveAlarmThreshold": "解除告警阈值",
+    "setRelieveTemperatureAlarmThreshold": "解除温度告警阈值/℃",
+    "setRelieveHumidityAlarmThreshold": "解除湿度告警阈值/RH%",
+    "setAlarmDuty": "告警使能",
+    "setStandValue": "初始化校准",
+    "setRange": "量程",
+    "setFlowRange": "流量量程 0.1m³/h",
+    "setSpeedRange": "流速量程 0.1m/s",
+    "setSpeedStandValue": "流速校准值 0.1m/s",
+    "setFlowStandValue": "流量校准值 0.1m³/h",
+    "setCollectCycle": "采集周期/s",
+    "open": "开启",
+    "close": "关闭",
+    "oneAlarm": "1级告警开",
+    "twoAlarm": "2级告警开",
+    "threeAlarm": "3级告警开",
+    "setValue": "设置值",
+    "none": "无",
+    "collectLoop": "采集回路&方向",
+    "oneForwardLoop": "一次回路&正向电能",
+    "oneReverseLoop": "一次回路&反向电能",
+    "twoForwardLoop": "二次回路&正向电能",
+    "twoReverseLoop": "二次回路&反向电能",
+    "collectLoopTime": "采集次数",
+    "oneTime": "一次",
+    "twoTime": "二次",
+    "collectLoopDirection": "采集方向",
+    "forwardDirection": "正向",
+    "reverseDirection": "反向",
+    "collectLoopTip": "您确认要查询采集回路&方向吗？",
+    "addressCode": "地址码",
+    "addressCodeTip": "您确认要查询地址码吗？",
+    "alarmBase": "告警基数/min",
+    "alarmMultiple": "告警倍数",
+    "turnOffLevel": "通断电平",
+    "lowTurnOffLevel": "高电平为通，低电平为断",
+    "highTurnOffLevel": "低电平为通，高电平为断",
+    "turnOffLevelTip": "您确认要查询量通断电平吗？",
+    "setSecond": "几秒内",
+    "setTime": "出现次数",
+    "peopleJudge": "有人判定",
+    "noOneJudge": "无人判定",
+    "powerCycle": "电能上报周期",
+    "powerCycleTip": "您确认要查询电能上报周期吗？",
+    "collectInitSpeed": "采集初始加速度值",
+    "collectInitSpeedTip": "您确认要查询采集初始加速度值吗？",
+    "setCollectInitSpeedTip": "您确认要设置采集初始加速度值吗？",
+    "thresholdAlarmCheck": "阈值告警检测",
+    "faultAlarmCheck": "故障告警检测",
+    "startEndCheck": "启停检测",
+    "filterTimes": "过滤次数",
+    "openTemperatureOpenHumidity": "开启温度，开启湿度告警",
+    "openTemperatureCloseHumidity": "开启温度，关闭湿度告警",
+    "closeTemperatureOpenHumidity": "关闭温度，开启湿度告警",
+    "closeTemperatureCloseHumidity": "关闭温度，关闭湿度告警"
+  },
   "login": {
-    "title": "ne",
+    "title": "新物业",
     "user": "请输入用户名",
     "password": "请输入密码",
     "code": "请输入验证码",
@@ -43,7 +204,12 @@
     "confirmPasswordPlaceholder": "请输入新密码"
   },
   "rules": {
-    "require": "不能为空"
+    "require": "不能为空",
+    "error": "请输入正确的格式",
+    "range": "范围",
+    "positiveInteger": "必须为正整数",
+    "integer": "必须为整数",
+    "sn": "ID必须为8位16进制字符"
   },
   "system": {
     "log": {
@@ -55,24 +221,33 @@
       "to": "至"
     },
     "role": {
-      "companyTitle": "企业信息",
       "roleTitle": "角色信息",
       "limitTitle": "权限分配",
       "add": "添加",
       "edit": "修改",
+      "status": "状态",
       "frozen": "冻结",
       "activate": "激活",
       "copyEdit": "复制编辑",
       "confirm": "确定",
-      "zhName": "中文名称",
-      "enName": "英文名称",
+      "belongCompany": "归属企业",
       "roleName": "角色名称",
       "createdName": "创建人",
-      "createdTime": "创建时间",
-      "direction": "说明"
+      "createdTime": "创建时间"
+    },
+    "company": {
+      "title": "企业信息",
+      "zhName": "中文名称",
+      "enName": "英文名称",
+      "managerEnName": "管理员英文名",
+      "managerZhName": "管理员中文名",
+      "post": "职位",
+      "phone": "联系电话",
+      "email": "邮箱"
     },
     "project": {
       "title": "项目管理",
+      "name": "项目名称",
       "zhName": "中文名称",
       "enName": "英文名称",
       "address": "项目位置",
@@ -83,26 +258,77 @@
       "handover": "接管日期",
       "projectLeader": "项目负责人",
       "email": "邮编",
-      "type": "业态"
+      "type": "业态",
+      "delete": "您确认要删除此项目吗？"
     },
     "user": {
+      "add": "添加用户",
+      "edit": "编辑用户",
+      "resetPassword": "重置密码",
       "title": "用户管理",
       "zhName": "中文名",
       "enName": "英文名",
       "name": "姓名",
       "projects": "管理项目",
-      "role": "权限",
+      "role": "角色",
       "job": "职位",
       "phone": "联系电话",
-      "email": "邮箱"
+      "email": "邮箱",
+      "delete": "您确认要删除此账号吗？",
+      "resetWarning": "（密码重置成功后， 将发送密码至您所设置的邮箱）",
+      "resetContent": "您确认要重置密码吗？"
     }
   },
   "asset": {
     "standingBook": {
-      "title": "台账管理"
+      "title": "台账管理",
+      "delete": "您确认要删除此台帐吗？",
+      "device": {
+        "project": "归属项目",
+        "assetCode": "资产编号",
+        "assetName": "资产名称",
+        "assetType": "资产类型",
+        "address": "安装地点",
+        "addressType": "地点类型",
+        "manufacturer": "生产厂家",
+        "model": "规格型号",
+        "equipment": "物联设备",
+        "belongSystem": "归属系统",
+        "status": "使用状况",
+        "trademark": "品牌",
+        "productionTime": "出厂日期",
+        "useTime": "投入使用",
+        "durableYears": "使用年限",
+        "productionCode": "出厂编号",
+        "deviceCode": "设备编号",
+        "quantity": "数量",
+        "price": "单价",
+        "sum": "金额",
+        "maintenanceUnit": "维保单位",
+        "chargePerson": "责任人",
+        "remark": "备注",
+        "sn": "设备编号",
+        "terminalType": "设备类型",
+        "deviceModel": "设备型号"
+      }
+    },
+    "alarm": {
+      "title": "告警管理",
+      "device": {
+        "assetName": "资产名称",
+        "address": "安装地点",
+        "equipment": "物联设备",
+        "alarmContent": "告警内容",
+        "alarmType": "告警类型",
+        "alarmTime": "告警时间",
+        "dealStatus": "处理状态",
+        "dealTime": "处理时间",
+        "dealPeople": "处理人"
+      }
     },
     "waterLevel": {
       "title": "水位检测器",
+      "delete": "您确认要删除此设备吗？",
       "device": {
         "sn": "设备ID",
         "deviceModel": "设备型号",
@@ -123,6 +349,324 @@
         "relieveAlarmThreshold": "告警解除阈值/cm",
         "collectCycle": "采集周期/s"
       }
+    },
+    "door": {
+      "title": "智能门磁检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "运行状态",
+        "doorStatusName": "当前门状态",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "heartbeatCycle": "心跳包周期/h"
+      }
+    },
+    "shake": {
+      "title": "前端分析振动检测器",
+      "device": {
+        "sn": "设备ID",
+        "statusName": "运行状态",
+        "deviceModel": "设备型号",
+        "acceleratedSpeed": "最新加速度",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "initValue": "初始值/g",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警/预警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/cm",
+        "collectCycle": "采集周期/s"
+      }
+    },
+    "meterReading": {
+      "title": "抄表终端",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "power": "最新电能/kwh",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "heartbeatCycle": "电能上报周期/h",
+        "collectLoop": "采集回路&方向",
+        "addressCode": "地址码"
+      }
+    },
+    "currentProbe": {
+      "title": "电流检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "运行状态",
+        "currents": "当前电流/A",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "range": "量程/A",
+        "standardValue": "校准值/A",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/A",
+        "collectCycle": "采集周期/s",
+        "startThreshold": "设备启停电流判断值/A"
+      }
+    },
+    "illuminanceProbe": {
+      "title": "光照度检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "illuminance": "当前照度/lux",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/cm",
+        "collectCycle": "采集周期/s"
+      }
+    },
+    "inundateProbe": {
+      "title": "浸水检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "最新状态",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "alarmCycle": "告警周期/min",
+        "collectCycle": "采集周期/s"
+      }
+    },
+    "bodyProbe": {
+      "title": "人体感应器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "最新状态",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "peopleJudge": "有人判定",
+        "noOneJudge": "无人判定/s"
+      }
+    },
+    "waterGage": {
+      "title": "水压检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "运行状态",
+        "currentGage": "当前水压",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "range": "量程/m",
+        "standardValue": "校准值/cm",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/cm",
+        "collectCycle": "采集周期/s"
+      }
+    },
+    "temperatureProbe": {
+      "title": "温度检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "运行状态",
+        "currentTemperature": "当前温度",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/cm",
+        "collectCycle": "采集周期/s"
+      }
+    },
+    "temperatureHumidityProbe": {
+      "title": "温湿度检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "运行状态",
+        "currentTemperatureHumidity": "当前温湿度",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/cm",
+        "collectCycle": "采集周期/s"
+      }
+    },
+    "flowProbe": {
+      "title": "水流检测器",
+      "delete": "您确认要删除此设备吗？",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "运行状态",
+        "currentSpeed": "当前流速 m/s",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量/V",
+        "signalQuality": "信号质量/dBm",
+        "range": "量程/m",
+        "standardValue": "校准值/cm",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/cm",
+        "collectCycle": "采集周期/s"
+      }
+    },
+    "dryContactProbe": {
+      "title": "干接点检测器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "最新状态",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "alarmCycle": "告警周期/min",
+        "collectCycle": "采集周期/s",
+        "electricalLevel": "通断电平"
+      }
+    },
+    "soundProbe": {
+      "title": "前端声音识别器",
+      "device": {
+        "sn": "设备ID",
+        "deviceModel": "设备型号",
+        "statusName": "最新状态",
+        "currentDb": "当前分贝数/dB",
+        "compName": "归属项目",
+        "assetName": "归属资产",
+        "address": "安装地点",
+        "electricQuantity": "电量",
+        "signalQuality": "信号质量/dBm",
+        "alarmThreshold": "告警阈值",
+        "alarmDuty": "告警使能",
+        "alarmType": "告警类型",
+        "heartbeatCycle": "心跳包周期/h",
+        "alarmCycle": "告警周期/min",
+        "relieveAlarmThreshold": "告警解除阈值/cm",
+        "collectCycle": "采集周期/s"
+      }
     }
+  },
+  "statistics": {
+    "statisticalStatement": {
+      "project": "项目：",
+      "data": "统计数据：",
+      "method": "统计方式：",
+      "type": "统计类型：",
+      "dimensionality": "统计维度：",
+      "scope": "统计范围：",
+      "standingBook": "台帐资产",
+      "asset": "物联设备",
+      "system": "按系统",
+      "alarm": "按告警类型",
+      "current": "当前",
+      "history": "历史",
+      "day": "日",
+      "month": "月",
+      "year": "年",
+      "startTime": "起始时间",
+      "endTime": "结束时间",
+      "normal": "正常",
+      "normalAlarm": "普通告警",
+      "urgentAlarm": "紧急告警",
+      "alarmNumber": "告警次数"
+    },
+    "dataAnalyse": {
+      "title": "数据分析",
+      "type": "数据类型",
+      "belongAsset": "归属资产",
+      "assetName": "资产名称",
+      "belongSys": "归属系统",
+      "address": "安装地点",
+      "deviceType": "设备类型",
+      "dataContent": "数据内容",
+      "sn": "设备ID",
+      "belongProject": "归属项目",
+      "uploadTime": "上报时间",
+      "export": "批量导出"
+    }
+  },
+  "justTime": {
+    "drainage": "给排水",
+    "powerDistribution": "供配电",
+    "elevator": "电梯",
+    "airConditioner": "暖通空调",
+    "others": "其他",
+    "coolingTower": "冷却塔",
+    "compressor": "压缩机",
+    "transformer": "变压器",
+    "tractor": "曳引机",
+    "waterPump": "水泵",
+    "waterTank": "水箱",
+    "carPlatform": "轿厢",
+    "switchBox": "配电箱",
+    "boiler": "锅炉",
+    "draughtFan": "风机"
   }
 }

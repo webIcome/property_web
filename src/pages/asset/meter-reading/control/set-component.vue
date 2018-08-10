@@ -12,7 +12,7 @@
     <el-dialog :title='$t("dialog.title")' :visible.sync="visible" center width="500px">
       <el-form label-width="170px" :model="operData" :ref="ref" :rules="Rules" class="el-form-default" :validate-on-rule-change="false">
         <template v-if="operData.operateType == 1">
-          <el-form-item :label='$t("control.setHeartbeatCycle") + "/h"' prop="operateValue">
+          <el-form-item :label='$t("control.powerCycle") + "/h"' prop="operateValue">
             <el-input type="text" v-model.trim.number="operData.operateValue" clearable></el-input>
           </el-form-item>
         </template>
@@ -45,7 +45,7 @@
         data() {
             return {
                 setItems: [
-                    {value: 1, text: this.$t("control.heartbeatCycle")},
+                    {value: 1, text: this.$t("control.powerCycle")},
                     {value: 2, text: this.$t("control.collectLoop")},
                     {value: 3, text: this.$t("control.addressCode")},
                 ],
@@ -80,7 +80,7 @@
                 let fn = '';
                 switch (operateType) {
                     case 1:
-                        fn = Service.controlSetHeartPeriod;
+                        fn = Service.controlSetEnergyCycle;
                         break;
                     case 2:
                         fn = Service.controlSetCollectLoop;

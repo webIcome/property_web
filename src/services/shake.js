@@ -74,12 +74,12 @@ export default {
         })
     },
     controlSearchGatherPeriod(ids) {
-        return HttpClient.post('shockCheck/batchSearchCollectCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('shockCheck/batchSearchCollectCycleCountByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
-    controlSearchResetData(ids) {
+    controlSearchCollectInitSpeed(ids) {
         return HttpClient.post('shockCheck/batchSearchInitStandardByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
@@ -116,12 +116,12 @@ export default {
         })
     },
     controlSetGatherPeriod(body) {
-        return HttpClient.post('shockCheck/batchSetCollectCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
+        return HttpClient.post('shockCheck/batchSetCollectCycleCountByDeviceIds','', Object.assign({params: body},option)).then(res => {
             showSuccess(res);
             return res;
         })
     },
-    controlSetResetData(body) {
+    controlSetCollectInitSpeed(body) {
         return HttpClient.post('shockCheck/batchSetInitStandardByDeviceIds','', Object.assign({params: body},option)).then(res => {
             showSuccess(res);
             return res;

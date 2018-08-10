@@ -74,7 +74,7 @@ export default {
         })
     },
     controlSearchGatherPeriod(ids) {
-        return HttpClient.post('voiceRecognition/batchSearchCollectCycleByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
+        return HttpClient.post('voiceRecognition/batchSearchCollectCycleCountByDeviceIds','', Object.assign({params: {deviceIds: ids}},option)).then(res => {
             showSuccess(res);
             return res;
         })
@@ -110,7 +110,7 @@ export default {
         })
     },
     controlSetGatherPeriod(body) {
-        return HttpClient.post('voiceRecognition/batchSetCollectCycleByDeviceIds','', Object.assign({params: body},option)).then(res => {
+        return HttpClient.post('voiceRecognition/batchSetCollectCycleCountByDeviceIds','', Object.assign({params: body},option)).then(res => {
             showSuccess(res);
             return res;
         })

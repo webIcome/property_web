@@ -53,8 +53,10 @@
         </template>
         <template v-else-if="operData.operateType == 5">
           <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
-            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.open")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='0'>{{$t("control.close")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.openTemperatureOpenHumidity")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.openTemperatureCloseHumidity")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='3'>{{$t("control.closeTemperatureOpenHumidity")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='4'>{{$t("control.closeTemperatureCloseHumidity")}}</el-radio>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 6">
