@@ -42,7 +42,6 @@
       <el-table-column prop="address" :label='$t("asset.currentProbe.device.address")'></el-table-column>
       <el-table-column prop="alarmThreshold" :label='$t("asset.currentProbe.device.alarmThreshold")'></el-table-column>
       <el-table-column prop="alarmDuty" :label='$t("asset.currentProbe.device.alarmDuty")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.currentProbe.device.alarmType")'></el-table-column>
       <el-table-column :label='$t("asset.currentProbe.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">

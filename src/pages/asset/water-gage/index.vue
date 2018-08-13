@@ -34,8 +34,11 @@
       <el-table-column prop="assetManageName" :label='$t("asset.waterGage.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.waterGage.device.address")'></el-table-column>
       <el-table-column prop="alarmThreshold" :label='$t("asset.waterGage.device.alarmThreshold")'></el-table-column>
-      <el-table-column prop="alarmDuty" :label='$t("asset.waterGage.device.alarmDuty")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.waterGage.device.alarmType")'></el-table-column>
+      <el-table-column :label='$t("asset.waterGage.device.alarmDuty")'>
+        <template slot-scope="scope">
+          {{scope.row.alarmDuty | alarmDutyNameConverter}}
+        </template>
+      </el-table-column>
       <el-table-column :label='$t("asset.waterGage.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">

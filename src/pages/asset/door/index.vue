@@ -41,7 +41,7 @@
       <el-table-column prop="assetManageName" :label='$t("asset.door.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.door.device.address")'></el-table-column>
       <el-table-column prop="alarmThreshold" :label='$t("asset.door.device.alarmThreshold")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.door.device.alarmType")'></el-table-column>
+      <el-table-column prop="alarmDuty" :label='$t("asset.door.device.alarmDuty")'></el-table-column>
       <el-table-column :label='$t("asset.door.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">

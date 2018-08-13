@@ -39,9 +39,17 @@
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 5">
-          <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
-            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.open")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.close")}}</el-radio>
+          <el-form-item :label='$t("control.thresholdAlarm")' prop="thresholdAlarm">
+            <el-radio v-model="operData.thresholdAlarm" :label='1'>{{$t("control.open")}}</el-radio>
+            <el-radio v-model="operData.thresholdAlarm" :label='0'>{{$t("control.close")}}</el-radio>
+          </el-form-item>
+          <el-form-item :label='$t("control.deviceStart")' prop="deviceStart">
+            <el-radio v-model="operData.deviceStart" :label='2'>{{$t("control.open")}}</el-radio>
+            <el-radio v-model="operData.deviceStart" :label='0'>{{$t("control.close")}}</el-radio>
+          </el-form-item>
+          <el-form-item :label='$t("control.deviceStop")' prop="deviceStop">
+            <el-radio v-model="operData.deviceStop" :label='4'>{{$t("control.open")}}</el-radio>
+            <el-radio v-model="operData.deviceStop" :label='0'>{{$t("control.close")}}</el-radio>
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 6">
@@ -84,7 +92,7 @@
                     {value: 7, text: this.$t("control.range")},
                     {value: 8, text: this.$t("control.standValue")},
                 ],
-                operData: {operateType: '',operateValueMin: '',operateValueMax: ''}
+                operData: {operateType: '',operateValueMin: '',operateValueMax: '',thresholdAlarm: 0, deviceStart: 2, deviceStop: 4}
             }
         },
         computed: {
@@ -185,7 +193,24 @@
                 this.$refs[this.ref].validateField(prop, (errorMessage) => {
 
                 })
-            }
+            },
+            control() {
+                this.$refs[this.ref].validate(valid => {
+                    if (valid) {
+                        let data = {};
+                        if (this.operData.operateType == 5) {
+                            data.operateValue = this.operData.thresholdAlarm + this.operData.deviceStart + this.operData.deviceStop;
+                        } else {
+                            data = this.operData;
+                        }
+                        data.deviceIds = this.deviceIds.join(',');
+                        this.getControlFn(this.operData.operateType)(data).then(res => {
+                            this.hideModal();
+                            this.initPaging();
+                        });
+                    }
+                })
+            },
         },
         watch: {
             ['operData.min'](newVal, oldVal) {
@@ -208,6 +233,10 @@
                 if (newVal == 3){
                     this.$set(this.operData, 'min', 1)
                     this.$set(this.operData, 'max', 1)
+                } else if (newVal == 5) {
+                    this.operData.thresholdAlarm = 0;
+                    this.operData.deviceStart = 2;
+                    this.operData.deviceStop = 4;
                 }
             }
         }

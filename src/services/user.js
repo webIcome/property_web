@@ -5,9 +5,10 @@ import HttpClient from 'axios'
 import Config from "../config";
 import {Message} from 'element-ui'
 const option = {baseURL: Config.URL_API};
+const wellOption = {baseURL: Config.WELL_URL_API}
 export default {
     findList(params) {
-        return HttpClient.get('user/getList', Object.assign({params: params}, option)).then(res => {
+        return HttpClient.get('account/findPage', Object.assign({params: params}, wellOption)).then(res => {
             if (res.data && res.data.data) {
                 return res.data.data;
             } else {
@@ -21,14 +22,8 @@ export default {
             return res;
         })
     },
-    addUser(body) {
-        return HttpClient.post('user/add', body, option).then(res => {
-            showSuccess(res)
-            return res;
-        })
-    },
-    editUser(body) {
-        return HttpClient.post('user/edit', body, option).then(res => {
+    operate(body) {
+        return HttpClient.post('account/saveOrUpdate', body, wellOption).then(res => {
             showSuccess(res)
             return res;
         })

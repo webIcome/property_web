@@ -66,10 +66,6 @@
           <div class="detail-content-label">{{$t("asset.door.device.alarmType")}}：</div>
           <div class="detail-content-value">{{device.alarmType}}</div>
         </div>
-        <div class="detail-content-item">
-          <div class="detail-content-label">{{$t("asset.door.device.alarmCycle")}}：</div>
-          <div class="detail-content-value">{{device.alarmCycle}}</div>
-        </div>
       </div>
     </div>
     <div class="detail-item">

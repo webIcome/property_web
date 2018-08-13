@@ -114,33 +114,17 @@
             initData() {
             },
             operate() {
-                this.data.companyid = Storage.state.user.companyid;
-                this.data.loginname = this.data.linkphone;
-                if (this.edit) {
-                    this.editDevice()
-                } else {
-                    this.add()
-                }
-            },
-            add() {
                 this.$refs[this.ref].validate(valid => {
                     if (valid) {
-                        Service.addUser(this.data).then(res => {
-                            this.emitAddEvent();
+                        this.data.companyid = Storage.state.user.companyid;
+                        this.data.loginname = this.data.linkphone;
+                        Service.operate(this.data).then(res => {
+                            this.emitEvent();
                             this.hideModal();
                         });
                     }
                 })
-            },
-            editDevice() {
-                this.$refs[this.ref].validate(valid => {
-                    if (valid) {
-                        Service.editUser(this.data).then(res => {
-                            this.emitEditEvent();
-                            this.hideModal();
-                        });
-                    }
-                })
+
             },
             getPosts() {
                 SystemService.getPosts(Storage.state.user.companyid).then(list => {
@@ -152,6 +136,13 @@
             },
             clearValidate() {
                 if (this.$refs[this.ref]) this.$refs[this.ref].clearValidate();
+            },
+            emitEvent() {
+                if (this.edit) {
+                    this.emitEditEvent()
+                } else {
+                    this.emitAddEvent()
+                }
             },
             emitAddEvent() {
                 this.$emit('initPaging')

@@ -4,7 +4,7 @@
     <div v-else class="icon-item" @click="showModal"><i class="el-icon-plus"></i>{{$t("common.add")}}</div>
     <el-dialog :title="title" :visible.sync="visible" center :width="'500px'">
       <el-form label-width="120px" :model="data" :rules="Rules" :ref="ref" class="el-form-default" :validate-on-rule-change="false">
-        <el-form-item :label='$t("asset.currentProbe.device.sn")' prop="deviceName">
+        <el-form-item :label='$t("asset.currentProbe.device.sn")' prop="sn">
           <el-input v-model.trim="data.sn" :placeholder='$t("common.input")'></el-input>
         </el-form-item>
         <el-form-item :label='$t("asset.currentProbe.device.deviceModel")' prop="deviceModel">

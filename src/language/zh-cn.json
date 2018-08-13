@@ -23,6 +23,16 @@
             {"value": 0, "text": "普通告警"},
             {"value": 1, "text": "紧急告警"}
         ],
+        "alarmDuty": [
+            {"value": 0, "text": "关闭"},
+            {"value": 1, "text": "开启"}
+        ],
+        "temperatureHumidityAlarmDuty": [
+            {"value": 1, "text": "开启温度，开启湿度告警"},
+            {"value": 2, "text": "开启温度，关闭湿度告警"},
+            {"value": 3, "text": "关闭温度，开启湿度告警"},
+            {"value": 4, "text": "关闭温度，关闭湿度告警"}
+        ],
         "assetStatus": [
             {"value": 0, "text": "未使用"},
             {"value": 1, "text": "正在使用"}
@@ -134,9 +144,10 @@
         "setCollectCycle": "采集周期/s",
         "open": "开启",
         "close": "关闭",
-        "oneAlarm": "1级告警开",
-        "twoAlarm": "2级告警开",
-        "threeAlarm": "3级告警开",
+        "zeroAlarm": "0级告警",
+        "oneAlarm": "1级告警",
+        "twoAlarm": "2级告警",
+        "threeAlarm": "3级告警",
         "setValue": "设置值",
         "none": "无",
         "collectLoop": "采集回路&方向",
@@ -175,7 +186,10 @@
         "openTemperatureOpenHumidity": "开启温度，开启湿度告警",
         "openTemperatureCloseHumidity": "开启温度，关闭湿度告警",
         "closeTemperatureOpenHumidity": "关闭温度，开启湿度告警",
-        "closeTemperatureCloseHumidity": "关闭温度，关闭湿度告警"
+        "closeTemperatureCloseHumidity": "关闭温度，关闭湿度告警",
+        "thresholdAlarm": "阈值告警上报",
+        "deviceStart": "设备启动上报",
+        "deviceStop": "设备停止上报"
     },
     "login": {
         "title": "新物业",

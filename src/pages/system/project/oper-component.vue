@@ -57,7 +57,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item :label='$t("system.project.type")' prop="businessType">
-              <el-select v-model="data.businessType" :placeholder='$t("common.select")' clearable style="width: 100%;">
+              <el-select v-model="data.businessType" :placeholder='$t("common.select")' clearable style="width: 100%;" multiple>
                 <el-option v-for="type in commercialType"
                            :value="type.value" :key="type.value" :label="type.text"></el-option>
               </el-select>
@@ -80,7 +80,7 @@
         data() {
             return {
                 visible: false,
-                data: {},
+                data: {businessType: []},
                 ref: 'edit',
                 commercialType: Constants.commercialType,
                 Rules: {
@@ -121,7 +121,7 @@
             operate() {
                 this.$refs[this.ref].validate(valid => {
                     if (valid) {
-                        this.service.operate(this.getTransformDataToSend(this.data)).then(res => {
+                        Service.operate(this.getTransformDataToSend(this.data)).then(res => {
                             this.emitEvent();
                             this.hideModal();
                         });
@@ -133,12 +133,13 @@
             },
             getTransformDataToSend(data) {
                 data = this.$common.copyObj(data);
-                let position = data.position;
-                delete data.position;
+                data.businessType = data.businessType.join(',')
+                let position = data.address;
+                delete data.address;
                 data = Object.assign(data, position)
                 data.longitude = data.lng;
                 data.latitude = data.lat;
-                data.address = data.address;
+                data.address = data.position;
                 delete data.position;
                 delete data.lng;
                 delete data.lat;
@@ -146,6 +147,7 @@
             },
             getTransformDataToUse(data) {
                 data.address = this.getPosition(data);
+                data.businessType = data.businessType.split(',')
                 return data;
             },
             getPosition(position){
@@ -160,6 +162,18 @@
             },
             clearValidate() {
                 if (this.$refs[this.ref]) this.$refs[this.ref].clearValidate();
+            },
+            validateField(prop) {
+                this.$refs[this.ref].validateField(prop, (errorMessage) => {
+
+                })
+            },
+            emitEvent() {
+                if (this.edit) {
+                    this.emitEditEvent()
+                } else {
+                    this.emitAddEvent()
+                }
             },
             emitAddEvent() {
                 this.$emit('initPaging')
@@ -180,9 +194,14 @@
                     if (this.edit) this.getDetail();
                     this.clearValidate();
                 } else {
-                    this.data = {}
+                    this.data = {businessType: []}
                 }
             },
+            ['data.address']: function (newValue) {
+                if (newValue) {
+                    this.validateField('address')
+                }
+            }
         }
     }
 </script>

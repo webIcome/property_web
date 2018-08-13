@@ -34,7 +34,11 @@
       <el-table-column prop="assetManageName" :label='$t("asset.shake.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.shake.device.address")'></el-table-column>
       <el-table-column prop="alarmThreshold" :label='$t("asset.shake.device.alarmThreshold")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.shake.device.alarmType")'></el-table-column>
+      <el-table-column :label='$t("asset.shake.device.alarmDuty")'>
+        <template slot-scope="scope">
+          {{scope.row.alarmDuty | alarmDutyNameConverter}}
+        </template>
+      </el-table-column>
       <el-table-column :label='$t("asset.shake.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">

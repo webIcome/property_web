@@ -23,6 +23,9 @@ export default {
                     if (item.modulecode == nav.modulecode) {
                         item.url = nav.url;
                         item.ename = nav.ename;
+                        if (nav.children) {
+                            item.children = nav.children
+                        }
                     }
                 })
                 return item;

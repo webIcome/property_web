@@ -47,7 +47,9 @@ export default {
             if (this.$refs[this.ref]) this.$refs[this.ref].clearValidate();
         },
         resetData() {
-            this.operData = {operateType: ''}
+            Object.keys(this.operData).forEach(key => {
+                this.operData[key] = ''
+            })
         }
     },
     watch: {

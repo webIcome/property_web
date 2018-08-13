@@ -32,8 +32,11 @@
       <el-table-column prop="projectName" :label='$t("asset.dryContactProbe.device.compName")'></el-table-column>
       <el-table-column prop="assetManageName" :label='$t("asset.dryContactProbe.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.dryContactProbe.device.address")'></el-table-column>
-      <el-table-column prop="alarmDuty" :label='$t("asset.dryContactProbe.device.alarmDuty")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.dryContactProbe.device.alarmType")'></el-table-column>
+      <el-table-column :label='$t("asset.dryContactProbe.device.alarmDuty")'>
+        <template slot-scope="scope">
+          {{scope.row.alarmDuty | alarmDutyNameConverter}}
+        </template>
+      </el-table-column>
       <el-table-column :label='$t("asset.dryContactProbe.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">

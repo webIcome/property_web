@@ -60,11 +60,11 @@
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.temperatureHumidityProbe.device.alarmDuty")}}：</div>
-          <div class="detail-content-value">{{device.alarmDuty}}</div>
+          <div class="detail-content-value">{{device.alarmDuty | temperatureHumidityAlarmDutyNameConverter}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.temperatureHumidityProbe.device.alarmType")}}：</div>
-          <div class="detail-content-value">{{device.alarmType}}</div>
+          <div class="detail-content-value">{{device.alarmType | alarmTypeNameConverter}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.temperatureHumidityProbe.device.alarmCycle")}}：</div>

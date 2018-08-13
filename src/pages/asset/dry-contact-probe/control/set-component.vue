@@ -30,7 +30,7 @@
         <template v-else-if="operData.operateType == 4">
           <el-form-item :label='$t("control.turnOffLevel")' prop="operateValue">
             <el-radio v-model="operData.operateValue" :label='1'>{{$t("control.lowTurnOffLevel")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.highTurnOffLevel")}}</el-radio>
+            <el-radio v-model="operData.operateValue" :label='2' style="margin-left: 0">{{$t("control.highTurnOffLevel")}}</el-radio>
           </el-form-item>
         </template>
       </el-form>

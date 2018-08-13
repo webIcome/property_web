@@ -33,7 +33,11 @@
       <el-table-column prop="assetManageName" :label='$t("asset.inundateProbe.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.inundateProbe.device.address")'></el-table-column>
       <el-table-column prop="alarmThreshold" :label='$t("asset.inundateProbe.device.alarmThreshold")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.inundateProbe.device.alarmType")'></el-table-column>
+      <el-table-column :label='$t("asset.inundateProbe.device.alarmDuty")'>
+        <template slot-scope="scope">
+          {{scope.row.alarmDuty | alarmDutyNameConverter}}
+        </template>
+      </el-table-column>
       <el-table-column :label='$t("asset.inundateProbe.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">

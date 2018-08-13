@@ -124,10 +124,7 @@
                         {pattern: /^[0-9]+$/, message: this.$t("rules.positiveInteger")}
                     ]
                 } else if (this.operData.operateType == 5) {
-                    rules.operateValue = [
-                        {required: true, message: this.$t("rules.require")},
 
-                    ]
                 } else if (this.operData.operateType == 6) {
                     rules.cycle = [
                         {required: true, message: this.$t("rules.require")},
@@ -179,7 +176,7 @@
             control() {
                 this.$refs[this.ref].validate(valid => {
                     if (valid) {
-                        let data;
+                        let data = {};
                         if (this.operData.operateType == 5) {
                             data.operateValue = this.operData.thresholdAlarmCheck + this.operData.faultAlarmCheck + this.operData.startEndCheck;
                         } else {
@@ -216,7 +213,7 @@
                     this.$set(this.operData, 'min', 1)
                     this.$set(this.operData, 'max', 1)
                 }else if (newVal == 5) {
-                    this.operData.thresholdAlarmCheck = 0;
+                    this.operData.thresholdAlarmCheck = 1;
                     this.operData.faultAlarmCheck = 0;
                     this.operData.startEndCheck = 0;
                 }

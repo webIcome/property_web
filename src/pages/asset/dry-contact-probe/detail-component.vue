@@ -52,11 +52,11 @@
       <div class="detail-content">
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.dryContactProbe.device.alarmDuty")}}：</div>
-          <div class="detail-content-value">{{device.alarmDuty}}</div>
+          <div class="detail-content-value">{{device.alarmDuty | alarmDutyNameConverter}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.dryContactProbe.device.alarmType")}}：</div>
-          <div class="detail-content-value">{{device.alarmType}}</div>
+          <div class="detail-content-value">{{device.alarmType | alarmTypeNameConverter}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.dryContactProbe.device.alarmCycle")}}：</div>

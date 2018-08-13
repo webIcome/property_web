@@ -34,7 +34,11 @@
       <el-table-column prop="assetManageName" :label='$t("asset.temperatureHumidityProbe.device.assetName")'></el-table-column>
       <el-table-column prop="address" :label='$t("asset.temperatureHumidityProbe.device.address")'></el-table-column>
       <el-table-column prop="alarmThreshold" :label='$t("asset.temperatureHumidityProbe.device.alarmThreshold")'></el-table-column>
-      <el-table-column prop="alarmType" :label='$t("asset.temperatureHumidityProbe.device.alarmType")'></el-table-column>
+      <el-table-column :label='$t("asset.temperatureHumidityProbe.device.alarmDuty")'>
+        <template slot-scope="scope">
+          {{scope.row.alarmDuty | temperatureHumidityAlarmDutyNameConverter}}
+        </template>
+      </el-table-column>
       <el-table-column :label='$t("asset.temperatureHumidityProbe.device.electricQuantity")'>
         <template slot-scope="scope">
           <span :class="getPowerClass(scope.row.electricLevel)">

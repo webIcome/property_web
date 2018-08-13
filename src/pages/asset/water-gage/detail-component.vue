@@ -60,11 +60,11 @@
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.waterGage.device.alarmDuty")}}：</div>
-          <div class="detail-content-value">{{device.alarmDuty}}</div>
+          <div class="detail-content-value">{{device.alarmDuty | alarmDutyNameConverter}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.waterGage.device.alarmType")}}：</div>
-          <div class="detail-content-value">{{device.alarmType}}</div>
+          <div class="detail-content-value">{{device.alarmType | alarmTypeNameConverter}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.waterGage.device.alarmCycle")}}：</div>

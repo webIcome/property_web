@@ -180,7 +180,7 @@
             control() {
                 this.$refs[this.ref].validate(valid => {
                     if (valid) {
-                        let data;
+                        let data = {};
                         if (this.operData.operateType == 5) {
                             data.operateValue = this.operData.thresholdAlarmCheck + this.operData.faultAlarmCheck + this.operData.startEndCheck;
                         } else {

@@ -12,10 +12,10 @@
         <label>{{$t("system.user.projects")}}</label>
         <select-projects-component v-model="searchParams.projectids"></select-projects-component>
       </div>
-      <div class="form-group">
+      <!--<div class="form-group">
         <label>{{$t("system.user.job")}}</label>
         <el-input type="text" v-model="searchParams.job" :placeholder='$t("common.input")' clearable/>
-      </div>
+      </div>-->
       <div class="form-group">
         <label>{{$t("system.user.phone")}}</label>
         <el-input type="text" v-model="searchParams.linkphone" :placeholder='$t("common.input")' clearable/>
@@ -25,9 +25,9 @@
       <el-table-column prop="username" :label='$t("system.user.zhName")'></el-table-column>
       <el-table-column prop="usernameEn" :label='$t("system.user.enName")'></el-table-column>
       <el-table-column prop="companyname" :label='$t("system.user.projects")'>
-        <templage slot-scope="scope">
+        <template slot-scope="scope">
           <show-projects-component :id="scope.row.objectid" :projectIds="scope.row.projectIds"></show-projects-component>
-        </templage>
+        </template>
       </el-table-column>
       <el-table-column prop="postname" :label='$t("system.user.role")'></el-table-column>
       <el-table-column prop="job" :label='$t("system.user.job")'></el-table-column>

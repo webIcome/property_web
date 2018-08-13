@@ -118,7 +118,8 @@
                 });
             },
             isSelectable(row,index) {
-                return row.status != 1
+                return true;
+//                return row.status != 1
             },
             getPowerClass(value) {
                 let className = '';

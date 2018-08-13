@@ -25,11 +25,21 @@
           </el-form-item>
         </template>
         <template v-else-if="operData.operateType == 3">
-          <el-form-item :label='$t("control.setAlarmDuty")' prop="operateValue">
-            <el-radio v-model="operData.operateValue" :label='0'>{{$t("control.close")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='2'>{{$t("control.oneAlarm")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='4'>{{$t("control.twoAlarm")}}</el-radio>
-            <el-radio v-model="operData.operateValue" :label='8'>{{$t("control.threeAlarm")}}</el-radio>
+          <el-form-item :label='$t("control.zeroAlarm")' prop="zeroAlarm">
+            <el-radio v-model="operData.zeroAlarm" :label='1'>{{$t("control.open")}}</el-radio>
+            <el-radio v-model="operData.zeroAlarm" :label='0'>{{$t("control.close")}}</el-radio>
+          </el-form-item>
+          <el-form-item :label='$t("control.oneAlarm")' prop="oneAlarm">
+            <el-radio v-model="operData.oneAlarm" :label='2'>{{$t("control.open")}}</el-radio>
+            <el-radio v-model="operData.oneAlarm" :label='0'>{{$t("control.close")}}</el-radio>
+          </el-form-item>
+          <el-form-item :label='$t("control.twoAlarm")' prop="twoAlarm">
+            <el-radio v-model="operData.twoAlarm" :label='4'>{{$t("control.open")}}</el-radio>
+            <el-radio v-model="operData.twoAlarm" :label='0'>{{$t("control.close")}}</el-radio>
+          </el-form-item>
+          <el-form-item :label='$t("control.threeAlarm")' prop="threeAlarm">
+            <el-radio v-model="operData.threeAlarm" :label='8'>{{$t("control.open")}}</el-radio>
+            <el-radio v-model="operData.threeAlarm" :label='0'>{{$t("control.close")}}</el-radio>
           </el-form-item>
         </template>
       </el-form>
@@ -52,7 +62,7 @@
                     {value: 2, text: this.$t("control.alarmThreshold")},
                     {value: 3, text: this.$t("control.alarmDuty")},
                 ],
-                operData: {}
+                operData: {zeroAlarm: '',oneAlarm: '', twoAlarm: '', threeAlarm: ''}
             }
         },
         computed: {
@@ -101,6 +111,33 @@
                 }
                 return fn
             },
+            control() {
+                this.$refs[this.ref].validate(valid => {
+                    if (valid) {
+                        let data = {};
+                        if (this.operData.operateType == 3) {
+                            data.operateValue = this.operData.zeroAlarm + this.operData.oneAlarm + this.operData.twoAlarm + this.operData.threeAlarm;
+                        } else {
+                            data = this.operData;
+                        }
+                        data.deviceIds = this.deviceIds.join(',');
+                        this.getControlFn(this.operData.operateType)(data).then(res => {
+                            this.hideModal();
+                            this.initPaging();
+                        });
+                    }
+                })
+            },
         },
+        watch: {
+            ['operData.operateType'](newVal) {
+               if (newVal == 3) {
+                    this.operData.zeroAlarm = 0;
+                    this.operData.oneAlarm = 2;
+                    this.operData.twoAlarm = 4;
+                    this.operData.threeAlarm = 8;
+                }
+            }
+        }
     }
 </script>

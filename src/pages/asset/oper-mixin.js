@@ -60,6 +60,12 @@ export default {
             return data;
         },
         getTransformDataToUse(data) {
+            if (typeof data.alarmType == "string") {
+                data.alarmType = Number(data.alarmType)
+            }
+            if (typeof data.alarmDuty == "string") {
+                data.alarmDuty = Number(data.alarmDuty)
+            }
             return data;
         },
         clearValidate() {
