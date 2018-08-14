@@ -2,6 +2,7 @@
   <el-popover
       placement="right"
       trigger="hover"
+      :disabled="!length"
       @show="findProjects"
   >
     <table class="table table-striped">
@@ -40,7 +41,7 @@
         computed: {
             length: function () {
                 if (this.projectIds) {
-                    return this.projectIds.length
+                    return this.projectIds.split(',').length
                 } else {
                     return 0
                 }
@@ -52,7 +53,7 @@
         methods: {
             findProjects() {
                 if (this.isInit) return;
-                Service.findList({userId: this.id}).then(list => {
+                Service.getList({userId: this.id}).then(list => {
                     this.list = list;
                     this.isInit = true;
                 })

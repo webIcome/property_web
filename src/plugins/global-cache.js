@@ -40,7 +40,7 @@ class GlobalCache {
                 if (!res.data.data) {
                     this._projects = null;
                 } else {
-                    return res.data.data.companies;
+                    return res.data.data;
                 }
             }).catch(err => {
                 this._projects = null;

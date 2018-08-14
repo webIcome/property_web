@@ -5,6 +5,7 @@
   </el-select>
 </template>
 <script>
+    import Language from "../utils/language";
     export default {
         name: "selectProjectsComponent",
         data() {
@@ -18,7 +19,7 @@
         computed: {
             selections: function () {
                 if (this.value) {
-                    return this.value.split(',')
+                    return this.value.split(',').map(item => Number(item))
                 } else {
                     return []
                 }
@@ -30,8 +31,20 @@
         methods: {
             initProjects() {
                 this.$globalCache.projects.then(projects => {
-                    this.projects = projects;
+                    this.projects = this.transformData(projects);
                 })
+            },
+            transformData(list) {
+                return list.map(item => {
+                    return {id: item.id, projectName: this.getName(item)}
+                })
+            },
+            getName(data) {
+                if (Language.isEn()) {
+                    return data.projectNameEn
+                } else {
+                    return data.projectNameCn
+                }
             },
             change(items) {
                 this.$emit('input', items.join(','))

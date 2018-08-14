@@ -64,7 +64,7 @@
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.currentProbe.device.alarmType")}}：</div>
-          <div class="detail-content-value">{{device.alarmType}}</div>
+          <div class="detail-content-value">{{device.alarmType | alarmTypeNameConverter}}</div>
         </div>
         <div class="detail-content-item">
           <div class="detail-content-label">{{$t("asset.currentProbe.device.alarmCycle")}}：</div>

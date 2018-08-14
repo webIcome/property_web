@@ -97,7 +97,7 @@
             edit: {
                 default: false
             },
-           project: {
+            project: {
                default: function () {
                    return {}
                }
@@ -133,7 +133,7 @@
             },
             getTransformDataToSend(data) {
                 data = this.$common.copyObj(data);
-                data.businessType = data.businessType.join(',')
+                if (data.businessType) data.businessType = data.businessType.join(',')
                 let position = data.address;
                 delete data.address;
                 data = Object.assign(data, position)
@@ -147,7 +147,7 @@
             },
             getTransformDataToUse(data) {
                 data.address = this.getPosition(data);
-                data.businessType = data.businessType.split(',')
+                if (data.businessType) data.businessType = data.businessType.split(',')
                 return data;
             },
             getPosition(position){
@@ -164,7 +164,7 @@
                 if (this.$refs[this.ref]) this.$refs[this.ref].clearValidate();
             },
             validateField(prop) {
-                this.$refs[this.ref].validateField(prop, (errorMessage) => {
+                if (this.$refs[this.ref]) this.$refs[this.ref].validateField(prop, (errorMessage) => {
 
                 })
             },

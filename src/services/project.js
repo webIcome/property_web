@@ -21,6 +21,11 @@ export default {
             }
         })
     },
+    getList(params) {
+        return HttpClient.get('project/findList', Object.assign({params: params}, option)).then(res => {
+            return res.data.data
+        })
+    },
     operate(body) {
         return HttpClient.post('project/saveOrUpdate', body, option).then(res => {
             showSuccess(res);

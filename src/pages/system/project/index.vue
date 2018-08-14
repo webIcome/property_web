@@ -26,7 +26,7 @@
       <el-table-column :label='$t("common.operation")' width="87">
         <template slot-scope="scope">
           <el-row type="flex" justify="space-between">
-            <oper-component :id="scope.row" :edit="true" @initCurrentPaging="pagingEvent"></oper-component>
+            <oper-component :project="scope.row" :edit="true" @initCurrentPaging="pagingEvent"></oper-component>
             <delete-component :id="scope.row.id" @initCurrentPaging="pagingEvent"></delete-component>
           </el-row>
         </template>
