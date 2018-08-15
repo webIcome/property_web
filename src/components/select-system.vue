@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="selection" :placeholder='$t("common.select")' clearable @change="change">
+  <el-select :value="value" :placeholder='$t("common.select")' clearable @change="change">
     <el-option v-for="item in systemCodes"
                :value="item.code" :key="item.code" :label="item.name"></el-option>
   </el-select>
@@ -10,7 +10,6 @@
         data() {
             return {
                 systemCodes: [],
-                selection: ''
             }
         },
         props: {
@@ -18,7 +17,6 @@
         },
         created() {
             this.initSystem();
-            this.selection = this.value
         },
         methods: {
             initSystem() {
@@ -30,10 +28,5 @@
                 this.$emit('input', items.join(','))
             }
         },
-        watch: {
-            value: function (newVal) {
-                this.selection = newVal;
-            }
-        }
     }
 </script>

@@ -30,7 +30,7 @@ export default {
     'select-projects-component': selectProjects,
     'select-project-component': selectProject,
     'select-system-component': selectSystem,
-    // 'select-asset-component': selectAsset,
+    'select-asset-component': selectAsset,
     'select-asset-type-component': selectAssetType,
     'select-address-type-component': selectAddressType,
 }

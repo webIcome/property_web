@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="selections" :placeholder='$t("common.select")' clearable @change="change">
+  <el-select :value="value" :placeholder='$t("common.select")' clearable @change="change">
     <el-option v-for="item in systemCodes"
                :value="item.code" :key="item.code" :label="item.name"></el-option>
   </el-select>
@@ -10,7 +10,6 @@
         data() {
             return {
                 systemCodes: [],
-                selections: ''
             }
         },
         props: {

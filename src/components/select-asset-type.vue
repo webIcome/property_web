@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="selections" :placeholder='$t("common.select")' clearable @change="change" multiple>
+  <el-select :value="selections" :placeholder='$t("common.select")' clearable @change="change" multiple>
     <el-option v-for="item in systemCodes"
                :value="item.code" :key="item.code" :label="item.name"></el-option>
   </el-select>
@@ -10,11 +10,19 @@
         data() {
             return {
                 systemCodes: [],
-                selections: []
             }
         },
         props: {
             value: ''
+        },
+        computed: {
+            selections: function () {
+                if (this.value) {
+                    return this.value.split(',').map(item => Number(item))
+                } else {
+                    return []
+                }
+            }
         },
         created() {
             this.initSystem();

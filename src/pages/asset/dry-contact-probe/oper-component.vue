@@ -21,7 +21,7 @@
           <select-projects-component v-model="data.projectIds" style="width: 100%"></select-projects-component>
         </el-form-item>
         <el-form-item :label='$t("asset.dryContactProbe.device.assetName")' prop="assetManageId">
-          <select-asset-component v-model="data.assetManageId" style="width: 100%"></select-asset-component>
+          <select-asset-dialog-component v-model="data.assetManageId" style="width: 100%" :reset=visible :assetManageName=data.assetManageName></select-asset-dialog-component>
         </el-form-item>
         <el-form-item :label='$t("asset.dryContactProbe.device.address")' prop="address">
           <el-input v-model.trim="data.address" :placeholder='$t("common.input")'></el-input>

@@ -2,9 +2,9 @@
  * Created by spring on 2018/7/20.
  */
 import CommonConstant from "../../constants/common";
-import SelectAssetComponent from './select-asset-component.vue';
+import SelectAssetDialogComponent from './select-asset-dialog-component.vue';
 export default {
-    components: {SelectAssetComponent},
+    components: {SelectAssetDialogComponent},
     data() {
         return {
             ref: 'edit',

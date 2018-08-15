@@ -38,7 +38,7 @@
   import Service from '../../services/standing-book'
   import Config from "../../config";
   export default {
-      name: 'selectAssetComponent',
+      name: 'selectAssetDialogComponent',
       data() {
           return {
               visible: false,
@@ -96,11 +96,11 @@
           },
       },
       watch: {
-          reset: {
+          assetManageName: {
               immediate: true,
               handler(val) {
                   if (val) {
-                      this.name = this.assetManageName;
+                      this.name = val;
                   }
               }
           },

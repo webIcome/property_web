@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="selections"
+  <el-select :value="selections"
              :multiple="multiple"
              filterable
              reserve-keyword
@@ -17,14 +17,23 @@
          name: 'selectAssetComponent',
          data() {
              return {
-                 selections: [],
                  loading: false,
                  assets: []
              }
          },
          props: {
              value: '',
-             multiple: false
+             multiple: true
+         },
+         computed: {
+             selections: function () {
+                 if (!this.multiple) return this.value;
+                 if (this.value) {
+                     return this.value.split(',').map(item => Number(item))
+                 } else {
+                     return []
+                 }
+             }
          },
          methods: {
              remoteMethod(query) {
