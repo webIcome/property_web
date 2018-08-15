@@ -27,12 +27,13 @@
         :ref="tableRef">
       <slot name="table" :isSelectable="isSelectable" :pagingEvent="pagingEvent" :getPowerClass="getPowerClass" :getSignalClass="getSignalClass"></slot>
     </el-table>
-    <el-row style="padding: 25px 0" type="flex" justify="end" v-if="paginationShow">
+    <el-row style="padding: 25px 0" type="flex" justify="end">
       <el-pagination
+          :ref="pagingRef"
           background
-          :current-page="searchParams.pageNum"
+          :current-page.sync="searchParams.pageNum"
           layout="total, prev, pager, next, jumper"
-          :page-size="searchParams.pageSize"
+          :page-size.sync="searchParams.pageSize"
           @current-change="pagingEvent"
           :total="searchParams.total">
       </el-pagination>
@@ -56,7 +57,7 @@
                 selectionDeviceIds: [],
                 selectionIds: [],
                 tableRef: 'my-table',
-                paginationShow: false,
+                pagingRef: 'paging-ref'
             }
         },
         props: {
@@ -75,12 +76,6 @@
             },
             findList(params) {
                 this.service.findList(params).then(data => {
-                    this.paginationShow = false;
-                    this.$nextTick(() => {
-                        if (data.pages) {
-                            this.paginationShow = true
-                        }
-                    });
                     this.searchParams.pageNum = data.pageNum;
                     this.searchParams.pages = data.pages;
                     this.searchParams.pageSize = data.pageSize;
@@ -100,7 +95,7 @@
                 })
             },
             search: function () {
-                this.findList(Object.assign(this.searchParams, this.defaultPaging));
+                this.$refs[this.pagingRef].handleCurrentChange(this.defaultPaging.pageNum)
             },
             pagingEvent(pageNumber) {
                 if (pageNumber) this.searchParams.pageNum = pageNumber;
