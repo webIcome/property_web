@@ -2,13 +2,13 @@
   <div @click.stop="">
     <div :title="showText" v-if="showText" class="show-text"><span @click="showModal">{{showText}}</span></div>
     <el-dialog :visible.sync="visible" center :width="'600px'" append-to-body>
-      <div class="lat">纬度：{{device.latitude}}</div>
+      <div class="lat"><span>{{$t('component.lat')}}</span>：{{device.latitude}}</div>
       ；
-      <div class="lng">经度：{{device.longitude}}</div>；
-      <div class="lng">位置：{{device.position || device.address}}</div>
+      <div class="lng"><span>{{$t('component.lng')}}</span>：{{device.longitude}}</div>；
+      <div class="lng"><span>{{$t('component.position')}}</span>：{{device.position || device.address}}</div>
       <div style=" width: 100%; height: 500px;" :ref="mapId"></div>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="confirm">确 定</el-button>
+        <el-button type="primary" @click="confirm">{{$t("dialog.confirm")}}</el-button>
       </span>
     </el-dialog>
   </div>

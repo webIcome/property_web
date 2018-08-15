@@ -31,9 +31,9 @@
       <el-pagination
           :ref="pagingRef"
           background
-          :current-page.sync="searchParams.pageNum"
+          :current-page="searchParams.pageNum"
           layout="total, prev, pager, next, jumper"
-          :page-size.sync="searchParams.pageSize"
+          :page-size="searchParams.pageSize"
           @current-change="pagingEvent"
           :total="searchParams.total">
       </el-pagination>
@@ -57,7 +57,8 @@
                 selectionDeviceIds: [],
                 selectionIds: [],
                 tableRef: 'my-table',
-                pagingRef: 'paging-ref'
+                pagingRef: 'paging-ref',
+                currentPage: ''
             }
         },
         props: {
@@ -76,11 +77,16 @@
             },
             findList(params) {
                 this.service.findList(params).then(data => {
-                    this.searchParams.pageNum = data.pageNum;
-                    this.searchParams.pages = data.pages;
-                    this.searchParams.pageSize = data.pageSize;
-                    this.searchParams.total = data.total;
+                    if (this.searchParams.pageNum != data.pageNum) {
+                        this.$refs[this.pagingRef].lastEmittedPage = -1
+                    }
+                    this.$set(this.searchParams, 'pageNum', data.pageNum);
+                    this.$set(this.searchParams, 'pages', data.pages);
+                    this.$set(this.searchParams, 'pageSize', data.pageSize);
+                    this.$set(this.searchParams, 'total', data.total);
                     this.list = data.list;
+                }).catch(err => {
+                    this.$set(this.searchParams, 'pageNum', this.currentPage);
                 })
             },
             refreshPage() {
@@ -95,15 +101,21 @@
                 })
             },
             search: function () {
+                if (this.searchParams.pageNum == this.defaultPaging.pageNum) {
+                    this.$refs[this.pagingRef].lastEmittedPage = -1
+                }
                 this.$refs[this.pagingRef].handleCurrentChange(this.defaultPaging.pageNum)
             },
             pagingEvent(pageNumber) {
-                if (pageNumber) this.searchParams.pageNum = pageNumber;
+                if (pageNumber) {
+                    this.currentPage = this.searchParams.pageNum;
+                    this.$set(this.searchParams, 'pageNum', pageNumber);
+                }
                 this.findList(this.searchParams);
             },
             clearSearchParams: function (e) {
-                this.searchParams = {};
-                this.initList();
+                this.searchParams = Object.assign({},this.defaultPaging);
+                this.search();
             },
             handleSelectionChange(val) {
                 this.selectionList = val;

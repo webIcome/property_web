@@ -682,5 +682,15 @@
         "switchBox": "配电箱",
         "boiler": "锅炉",
         "draughtFan": "风机"
+    },
+    "component": {
+        "lat": "纬度",
+        "lng": "经度",
+        "position": "位置",
+        "select": "选择",
+        "selectPosition": "选择地理位置",
+        "selectAsset": "选择资产",
+        "inputAssetName": "输入资产名称",
+        "inputAssetCode": "输入资产编号"
     }
 }

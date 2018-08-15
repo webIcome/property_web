@@ -7,7 +7,7 @@
         <el-row>
           <el-col :span="12">
             <el-form-item :label='$t("system.project.zhName")' prop="projectNameCn">
-              <el-input v-model.trim="data.projectNameCn" :placeholder='$t("common.input")'></el-input>
+              <el-input v-model.trim="data.projectNameCn" :placeholder='$t("common.input")' clearable></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -90,6 +90,9 @@
                     address: [
                         {required: true, message: this.$t("rules.require")},
                     ],
+                    projectNameEn: [
+                        {required: true, message: this.$t("rules.require")},
+                    ]
                 }
             }
         },
@@ -124,6 +127,7 @@
                         Service.operate(this.getTransformDataToSend(this.data)).then(res => {
                             this.emitEvent();
                             this.hideModal();
+                            this.$globalCache.refleshProjects()
                         });
                     }
                 })

@@ -33,6 +33,7 @@
                 Service.deleteProject(this.id).then(res => {
                     this.hideModal();
                     this.$emit('initCurrentPaging')
+                    this.$globalCache.refleshProjects()
                 })
             },
             showModal() {

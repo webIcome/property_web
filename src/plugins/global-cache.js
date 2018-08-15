@@ -15,6 +15,10 @@ class GlobalCache {
         this._companies = null;
         return this.companies;
     }
+    refleshProjects() {
+        this._projects = null;
+        return this.projects;
+    }
     clearCache() {
         Object.keys(this).forEach(key => {
             this[key] = null;

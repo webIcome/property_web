@@ -1,16 +1,17 @@
 <template>
   <div>
-    <el-button v-if="!showText" type="primary" @click="showModal">选择</el-button>
+    <el-button v-if="!showText" type="primary" @click="showModal">{{$t('component.select')}}</el-button>
     <div v-else class="show-text"><span :title="showText" style="display: inline-block; max-width: 90%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;vertical-align: middle;" @click="showModal">{{showText}}</span><span class="clear" @click="clearSelect">&times;</span></div>
-    <el-dialog title="选择地理位置" :visible.sync="visible" center :width="'600px'" append-to-body>
-      <div class="lat">纬度：{{pointer.lat}}</div>
+    <el-input v-show="false" v-model="showText"></el-input>
+    <el-dialog :title="$t('component.selectPosition')" :visible.sync="visible" center :width="'600px'" append-to-body>
+      <div class="lat"><span>{{$t('component.lat')}}</span>：{{pointer.lat}}</div>
       ；
 
-      <div class="lng">经度：{{pointer.lng}}</div>
-      <el-input class="position" v-model="pointer.position" placeholder="当前地理位置" clearable></el-input>
+      <div class="lng"><span>{{$t('component.lng')}}</span>：{{pointer.lng}}</div>
+      <el-input class="position" v-model="pointer.position" :placeholder="$t('component.position')" clearable></el-input>
       <div style=" width: 100%; height: 500px;" :ref="mapId"></div>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="confirm">确 定</el-button>
+        <el-button type="primary" @click="confirm">{{$t("dialog.confirm")}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -112,7 +113,7 @@
                 this.hideModal();
             },
             clearSelect() {
-                this.$emit('input', {city: '', district: '', province: '', position: '',  lng: 0, lat: 0,});
+                this.$emit('input');
             },
             showModal() {
                 this.visible = true;
